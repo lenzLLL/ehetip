@@ -161,7 +161,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center text-white overflow-hidden">
         <img
-          src={heroImage}
+          src={"/h2.png"}
           alt="EnerTchad"
           className="absolute inset-0 w-full h-full object-cover"
         />

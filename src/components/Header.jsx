@@ -14,7 +14,6 @@ export default function Header() {
     { label: "Boutique", href: "/shop" },
     { label: "Blog", href: "/blog" },
     { label: "À propos", href: "/about" },
-    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -30,16 +29,22 @@ export default function Header() {
             </a>
 
             {/* MENU DESKTOP */}
-            <div className="hidden md:flex space-x-8">
+            <div className="hidden md:flex items-center space-x-1">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="text-gray-700 hover:text-[#1E5FA8] font-medium transition-colors"
+                  className="text-gray-700 hover:text-[#1E5FA8] px-4 py-2 font-medium transition-colors rounded-lg hover:bg-gray-100"
                 >
                   {item.label}
                 </a>
               ))}
+              <a
+                href="/contact"
+                className="ml-4 bg-gradient-to-r from-[#1E5FA8] to-[#3AA655] hover:shadow-lg text-white px-6 py-2 rounded-lg font-bold transition-all"
+              >
+                Contact
+              </a>
             </div>
 
             {/* PANIER + BOUTON ACHETER */}
@@ -75,24 +80,36 @@ export default function Header() {
 
           {/* MENU MOBILE */}
           {isOpen && (
-            <div className="md:hidden pb-4 space-y-2">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg"
-                >
-                  {item.label}
-                </a>
-              ))}
+            <div className="md:hidden pb-6 border-t border-gray-200">
+              <div className="space-y-1 py-4">
+                {navItems.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-[#1E5FA8] rounded-lg font-medium transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
 
-              <button
-                onClick={() => setCartOpen(true)}
-                className="flex items-center gap-3 px-4 py-2 text-[#1E5FA8]"
-              >
-                <ShoppingCart size={22} /> Panier
-              </button>
+              <div className="border-t border-gray-200 pt-4 space-y-3 px-2">
+                <button
+                  onClick={() => setCartOpen(true)}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-50 text-[#1E5FA8] rounded-lg font-semibold hover:bg-blue-100 transition-colors"
+                >
+                  <ShoppingCart size={20} /> Panier
+                </button>
+
+                <a
+                  href="/contact"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full block text-center px-4 py-3 bg-gradient-to-r from-[#1E5FA8] to-[#3AA655] text-white rounded-lg font-semibold hover:shadow-lg transition-all"
+                >
+                  Nous Contacter
+                </a>
+              </div>
             </div>
           )}
         </nav>

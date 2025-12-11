@@ -195,7 +195,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center text-white overflow-hidden">
         <img
-          src={"/h2.png"}
+          src={"/h5.png"}
           alt="EnerTchad"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -277,10 +277,24 @@ export default function Home() {
           </div>
 
           {/* Énergies Fossiles Segment */}
-          <div className="mb-20">
+          <div className="mb-24">
+            {/* Intro avec image */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20 bg-gradient-to-br from-[#F5F9FF] to-white rounded-3xl p-12 md:p-16">
+              <div className="order-2 md:order-1">
+                <div className="inline-block mb-6 px-4 py-2 bg-blue-100 rounded-full">
+                  <span className="text-[#1E5FA8] font-bold text-xs uppercase tracking-widest">⛽ Énergies Fossiles</span>
+                </div>
+                <h3 className="text-5xl md:text-6xl font-bold text-[#1E5FA8] mb-6">Carburants Premium 24/7</h3>
+                <p className="text-gray-700 text-xl leading-relaxed">
+                  Nous fournissons des carburants de haute qualité, des services de livraison mobile et des solutions d'importation certifiées internationalement. Disponibles partout au Tchad avec un service fiable et professionnel.
+                </p>
+              </div>
+              <img src={"/h7.jpg"} alt="Énergies Fossiles" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-[500px] object-cover" />
+            </div>
+
             <div className="flex items-center space-x-3 mb-8">
               <Fuel className="w-8 h-8 text-[#1E5FA8]" />
-              <h3 className="text-3xl font-bold text-[#1E5FA8]">Énergies Fossiles</h3>
+              <h3 className="text-2xl font-bold text-[#1E5FA8]">Nos Services</h3>
               <div className="flex-1 h-1 bg-gradient-to-r from-[#1E5FA8] to-transparent rounded-full"></div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -314,10 +328,24 @@ export default function Home() {
           </div>
 
           {/* Énergies Renouvelables Segment */}
-          <div className="mb-20">
+          <div className="mb-24">
+            {/* Intro avec image */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20 bg-gradient-to-br from-[#F0F8E8] to-white rounded-3xl p-12 md:p-16">
+              <img src={"/h8.jpg"} alt="Énergies Renouvelables" className="rounded-3xl shadow-2xl w-full h-[500px] object-cover" />
+              <div>
+                <div className="inline-block mb-6 px-4 py-2 bg-green-100 rounded-full">
+                  <span className="text-[#3AA655] font-bold text-xs uppercase tracking-widest">🌱 Énergies Renouvelables</span>
+                </div>
+                <h3 className="text-5xl md:text-6xl font-bold text-[#3AA655] mb-6">Solutions Durables & Écologiques</h3>
+                <p className="text-gray-700 text-xl leading-relaxed">
+                  Transformons le Tchad avec l'énergie solaire, la recharge électrique et le biogaz. Nos solutions respectueuses de l'environnement offrent une indépendance énergétique durable et économique pour les familles et les entreprises.
+                </p>
+              </div>
+            </div>
+
             <div className="flex items-center space-x-3 mb-8">
               <Leaf className="w-8 h-8 text-[#3AA655]" />
-              <h3 className="text-3xl font-bold text-[#3AA655]">Énergies Renouvelables</h3>
+              <h3 className="text-2xl font-bold text-[#3AA655]">Nos Services</h3>
               <div className="flex-1 h-1 bg-gradient-to-r from-[#3AA655] to-transparent rounded-full"></div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -352,9 +380,23 @@ export default function Home() {
 
           {/* Services Complémentaires Segment */}
           <div className="mb-16">
+            {/* Intro avec image */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20 bg-gradient-to-br from-[#FEF9E8] to-white rounded-3xl p-12 md:p-16">
+              <div className="order-2 md:order-1">
+                <div className="inline-block mb-6 px-4 py-2 bg-yellow-100 rounded-full">
+                  <span className="text-[#E6C34A] font-bold text-xs uppercase tracking-widest">🛠️ Services Complémentaires</span>
+                </div>
+                <h3 className="text-5xl md:text-6xl font-bold text-[#E6C34A] mb-6">Automobile & Environnement</h3>
+                <p className="text-gray-700 text-xl leading-relaxed">
+                  Complétez votre expérience EnerTchad avec nos services : maintenance automobile professionnelle, laverie écologique haute technologie et gestion responsable des déchets pour un Tchad plus vert.
+                </p>
+              </div>
+              <img src={carWashImage} alt="Services Complémentaires" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-[500px] object-cover" />
+            </div>
+
             <div className="flex items-center space-x-3 mb-8">
               <Wrench className="w-8 h-8 text-[#E6C34A]" />
-              <h3 className="text-3xl font-bold text-[#E6C34A]">Services Complémentaires</h3>
+              <h3 className="text-2xl font-bold text-[#E6C34A]">Nos Services</h3>
               <div className="flex-1 h-1 bg-gradient-to-r from-[#E6C34A] to-transparent rounded-full"></div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -391,6 +433,90 @@ export default function Home() {
         
 
     
+        </div>
+      </section>
+
+      {/* Assistance Technique Section */}
+      <section className="py-32 px-4 bg-gradient-to-b from-white via-[#F5F9FF] to-[#F0F8E8]">
+        <div className="max-w-7xl mx-auto">
+          {/* Intro avec image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20 bg-gradient-to-br from-[#FEF9E8] to-white rounded-3xl p-12 md:p-16">
+            <img src={"/h9.webp"} alt="Assistance Technique" className="rounded-3xl shadow-2xl w-full h-[500px] object-cover" />
+            <div>
+              <div className="inline-block mb-6 px-4 py-2 bg-yellow-100 rounded-full">
+                <span className="text-[#E6C34A] font-bold text-xs uppercase tracking-widest">📞 Assistance Technique 24/7</span>
+              </div>
+              <h2 className="text-5xl md:text-6xl font-bold text-[#E6C34A] mb-6">Support Réactif & Professionnel</h2>
+              <p className="text-gray-700 text-xl leading-relaxed mb-8">
+                EnerTchad est là pour vous 24 heures sur 24, 7 jours sur 7. Notre équipe technique qualifiée résout vos problèmes rapidement avec des solutions efficaces et un suivi personnalisé. Contactez-nous par téléphone, WhatsApp, email ou visitez nos stations.
+              </p>
+              
+              <div className="space-y-4">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-[#E6C34A] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Headset className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-[#1E5FA8] mb-1">Support Téléphonique</h4>
+                    <p className="text-gray-700">Nos conseillers sont disponibles 24/7 pour répondre à vos questions</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-[#E6C34A] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <MessageCircle className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-[#1E5FA8] mb-1">WhatsApp & Email</h4>
+                    <p className="text-gray-700">Écrivez-nous sur WhatsApp ou email pour une réponse rapide</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-[#E6C34A] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <Wrench className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-[#1E5FA8] mb-1">Dépannage Express</h4>
+                    <p className="text-gray-700">Interventions rapides et efficaces pour résoudre vos problèmes</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+            <div className="bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+              <div className="w-14 h-14 bg-gradient-to-br from-[#E6C34A] to-[#d4a028] rounded-xl flex items-center justify-center mb-6">
+                <Clock className="w-7 h-7 text-white" />
+              </div>
+              <h4 className="text-2xl font-bold text-[#1E5FA8] mb-3">Disponibilité 24/7</h4>
+              <p className="text-gray-700 leading-relaxed">
+                Notre équipe travaille jour et nuit pour assurer votre tranquillité et la continuité de nos services
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+              <div className="w-14 h-14 bg-gradient-to-br from-[#E6C34A] to-[#d4a028] rounded-xl flex items-center justify-center mb-6">
+                <Award className="w-7 h-7 text-white" />
+              </div>
+              <h4 className="text-2xl font-bold text-[#1E5FA8] mb-3">Équipe Certifiée</h4>
+              <p className="text-gray-700 leading-relaxed">
+                Techniciens et conseillers qualifiés avec une expérience reconnue dans tous nos domaines
+              </p>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
+              <div className="w-14 h-14 bg-gradient-to-br from-[#E6C34A] to-[#d4a028] rounded-xl flex items-center justify-center mb-6">
+                <Shield className="w-7 h-7 text-white" />
+              </div>
+              <h4 className="text-2xl font-bold text-[#1E5FA8] mb-3">Qualité Garantie</h4>
+              <p className="text-gray-700 leading-relaxed">
+                Nous garantissons une résolution efficace et un suivi personnalisé pour chaque demande
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

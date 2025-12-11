@@ -85,7 +85,7 @@ export default function Header() {
 
             {/* LOGO */}
             <a href="/" className="flex items-center">
-              <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
+              <img src="/logo.png" alt="Logo" className="h-10 rounded-full w-auto" />
             </a>
 
             {/* MENU DESKTOP */}

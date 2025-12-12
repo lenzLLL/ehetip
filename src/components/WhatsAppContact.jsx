@@ -14,11 +14,11 @@ export default function WhatsAppContact() {
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
             {/* Left side - Info */}
-            <div className="bg-gradient-to-br from-[#1E5FA8] to-[#164a8a] p-12 text-white flex flex-col justify-center">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <div className="bg-gradient-to-br from-[#1E5FA8] to-[#164a8a] p-6 md:p-12 text-white flex flex-col justify-center">
+              <h2 className="text-2xl md:text-5xl font-bold mb-4 md:mb-6">
                 Parlons ensemble
               </h2>
-              <p className="text-lg text-gray-100 mb-10 leading-relaxed">
+              <p className="text-sm md:text-lg text-gray-100 mb-6 md:mb-10 leading-relaxed">
                 Vous avez des questions sur nos services? Notre équipe est disponible pour discuter de vos besoins énergétiques et trouver les meilleures solutions pour votre entreprise.
               </p>
 
@@ -56,13 +56,13 @@ export default function WhatsAppContact() {
             </div>
 
             {/* Right side - CTA Buttons */}
-            <div className="p-12 flex flex-col justify-center">
+            <div className="p-6 md:p-12 flex flex-col justify-center">
               <div className="space-y-6">
                 <a
                   href={`https://wa.me/${whatsappId}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center space-x-3 bg-gradient-to-r from-[#25D366] to-[#20BA58] text-white px-8 py-5 rounded-xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 text-lg group"
+                  className="flex items-center justify-center space-x-3 bg-gradient-to-r from-[#25D366] to-[#20BA58] text-white px-4 py-3 md:px-8 md:py-5 rounded-xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 text-sm md:text-lg group"
                 >
                   <MessageCircle size={24} />
                   <span>Envoyer un WhatsApp</span>
@@ -70,7 +70,7 @@ export default function WhatsAppContact() {
 
                 <a
                   href={`tel:${whatsappNumber}`}
-                  className="flex items-center justify-center space-x-3 bg-gradient-to-r from-[#1E5FA8] to-[#164a8a] text-white px-8 py-5 rounded-xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 text-lg"
+                  className="flex items-center justify-center space-x-3 bg-gradient-to-r from-[#1E5FA8] to-[#164a8a] text-white px-4 py-3 md:px-8 md:py-5 rounded-xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 text-sm md:text-lg"
                 >
                   <Phone size={24} />
                   <span>Appeler maintenant</span>
@@ -78,7 +78,7 @@ export default function WhatsAppContact() {
 
                 <a
                   href="/contact"
-                  className="flex items-center justify-center space-x-3 border-2 border-[#1E5FA8] text-[#1E5FA8] px-8 py-5 rounded-xl font-bold hover:bg-[#1E5FA8] hover:text-white transition-all transform hover:scale-105 text-lg"
+                  className="flex items-center justify-center space-x-3 border-2 border-[#1E5FA8] text-[#1E5FA8] px-4 py-3 md:px-8 md:py-5 rounded-xl font-bold hover:bg-[#1E5FA8] hover:text-white transition-all transform hover:scale-105 text-sm md:text-lg"
                 >
                   <Mail size={24} />
                   <span>Envoyer un message</span>

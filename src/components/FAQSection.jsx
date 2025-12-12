@@ -37,14 +37,14 @@ export default function FAQSection() {
     <section className="py-32 px-4 bg-gradient-to-b from-[#F5E6D3] to-white">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <span className="text-[#3AA655] font-bold text-sm uppercase tracking-widest inline-block mb-4 px-4 py-2 bg-green-100/50 rounded-full">
             ❓ Questions Fréquentes
           </span>
-          <h2 className="text-5xl md:text-6xl font-bold text-[#1E5FA8] mb-6">
+          <h2 className="text-3xl md:text-6xl font-bold text-[#1E5FA8] mb-4 md:mb-6">
             FAQ - <span className="bg-gradient-to-r from-[#3AA655] to-[#E6C34A] bg-clip-text text-transparent">Questions Réponses</span>
           </h2>
-          <p className="text-gray-700 text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-700 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed">
             Trouvez les réponses aux questions les plus fréquemment posées par nos clients
           </p>
         </div>
@@ -58,9 +58,9 @@ export default function FAQSection() {
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full px-8 py-6 flex items-center justify-between hover:bg-gray-50 transition"
+                className="w-full px-4 md:px-8 py-3 md:py-6 flex items-center justify-between hover:bg-gray-50 transition"
               >
-                <h3 className="text-lg font-bold text-gray-900 text-left group-hover:text-[#1E5FA8]">
+                <h3 className="text-base md:text-lg font-bold text-gray-900 text-left group-hover:text-[#1E5FA8]">
                   {faq.question}
                 </h3>
                 <ChevronDown

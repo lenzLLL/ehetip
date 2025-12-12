@@ -193,7 +193,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center text-white overflow-hidden">
+      <section className="relative h-[60vh] md:h-screen flex items-center justify-center text-white overflow-hidden">
         <img
           src={"/h10.jpg"}
           alt="EnerTchad"
@@ -202,29 +202,29 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#1E5FA8]/20 via-[#1E5FA8]/10 to-transparent opacity-60"></div>
 
         <div className="relative z-10 text-center max-w-5xl mx-auto px-4">
-          <div className="inline-block bg-[#E6C34A] text-[#1E5FA8] px-6 py-2 rounded-full text-sm font-bold mb-6 shadow-lg">
+          <div className="inline-block bg-[#E6C34A] text-[#1E5FA8] px-4 py-1 rounded-full text-xs font-bold mb-4 shadow-lg">
             ⚡ Leader de l'énergie au Tchad
           </div>
-          <h1 className="font-bold text-5xl md:text-7xl mb-6 font-poppins leading-tight">
+          <h1 className="font-bold text-3xl md:text-7xl mb-4 md:mb-6 font-poppins leading-tight">
             EnerTchad S.A
           </h1>
-          <p className="text-xl md:text-3xl mb-4 font-light">
+          <p className="text-base md:text-3xl mb-3 md:mb-4 font-light">
             L'énergie qui fait avancer le Tchad
           </p>
-          <p className="text-base md:text-lg mb-10 text-gray-200 max-w-2xl mx-auto">
+          <p className="text-sm md:text-lg mb-6 md:mb-10 text-gray-200 max-w-2xl mx-auto">
             Distribution de carburant, énergies renouvelables, mobilité
             électrique et services automobiles de qualité supérieure
           </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
+          <div className="flex flex-col md:flex-row gap-3 md:gap-4 justify-center">
             <a
               href="/services"
-              className="bg-[#E6C34A] text-[#1E5FA8] px-10 py-4 rounded-lg font-bold hover:bg-[#d4a028] transition-all shadow-xl text-lg"
+              className="bg-[#E6C34A] text-[#1E5FA8] px-6 py-3 md:px-10 md:py-4 rounded-lg font-bold hover:bg-[#d4a028] transition-all shadow-xl text-sm md:text-lg"
             >
               Découvrir nos services
             </a>
             <a
               href="/contact"
-              className="border-2 border-white text-white px-10 py-4 rounded-lg font-bold hover:bg-white hover:text-[#1E5FA8] transition-all text-lg"
+              className="border-2 border-white text-white px-6 py-3 md:px-10 md:py-4 rounded-lg font-bold hover:bg-white hover:text-[#1E5FA8] transition-all text-sm md:text-lg"
             >
               Trouver une station
             </a>
@@ -240,7 +240,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-gradient-to-r from-[#1E5FA8] via-[#1a5a8a] to-[#3AA655] relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-gradient-to-r from-[#1E5FA8] via-[#1a5a8a] to-[#3AA655] relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#E6C34A] rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#E6C34A] rounded-full blur-3xl"></div>
@@ -249,11 +249,11 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, idx) => (
               <div key={idx} className="text-center text-white group">
-                <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl mb-4 group-hover:bg-white/20 transition transform group-hover:scale-110">
-                  <stat.icon className="w-14 h-14 mx-auto text-[#E6C34A] group-hover:text-white transition" />
+                <div className="bg-white/10 backdrop-blur-sm p-4 md:p-6 rounded-2xl mb-4 group-hover:bg-white/20 transition transform group-hover:scale-110">
+                  <stat.icon className="w-10 h-10 md:w-14 md:h-14 mx-auto text-[#E6C34A] group-hover:text-white transition" />
                 </div>
-                <div className="text-5xl font-bold mb-2 bg-gradient-to-r from-[#E6C34A] to-white bg-clip-text text-transparent">{stat.value}</div>
-                <div className="text-sm text-gray-100 font-medium">{stat.label}</div>
+                <div className="text-2xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-[#E6C34A] to-white bg-clip-text text-transparent">{stat.value}</div>
+                <div className="text-xs md:text-sm text-gray-100 font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -268,7 +268,7 @@ export default function Home() {
             <span className="text-[#3AA655] font-bold text-sm uppercase tracking-widest inline-block mb-4 px-4 py-2 bg-green-100/50 rounded-full">
               ✨ Nos Solutions
             </span>
-            <h2 className="text-5xl md:text-6xl font-bold text-[#1E5FA8] mb-6">
+            <h2 className="text-3xl md:text-6xl font-bold text-[#1E5FA8] mb-6">
               Des Services <span className="bg-gradient-to-r from-[#3AA655] to-[#E6C34A] bg-clip-text text-transparent">Complets</span>
             </h2>
             <p className="text-gray-700 mb-8 text-lg max-w-2xl mx-auto leading-relaxed">
@@ -284,7 +284,7 @@ export default function Home() {
                 <div className="inline-block mb-6 px-4 py-2 bg-blue-100 rounded-full">
                   <span className="text-[#1E5FA8] font-bold text-xs uppercase tracking-widest">⛽ Énergies Fossiles</span>
                 </div>
-                <h3 className="text-5xl md:text-6xl font-bold text-[#1E5FA8] mb-6">Carburants Premium 24/7</h3>
+                <h3 className="text-2xl md:text-6xl font-bold text-[#1E5FA8] mb-6">Carburants Premium 24/7</h3>
                 <p className="text-gray-700 text-xl leading-relaxed">
                   Nous fournissons des carburants de haute qualité, des services de livraison mobile et des solutions d'importation certifiées internationalement. Disponibles partout au Tchad avec un service fiable et professionnel.
                 </p>
@@ -336,7 +336,7 @@ export default function Home() {
                 <div className="inline-block mb-6 px-4 py-2 bg-green-100 rounded-full">
                   <span className="text-[#3AA655] font-bold text-xs uppercase tracking-widest">🌱 Énergies Renouvelables</span>
                 </div>
-                <h3 className="text-5xl md:text-6xl font-bold text-[#3AA655] mb-6">Solutions Durables & Écologiques</h3>
+                <h3 className="text-2xl md:text-6xl font-bold text-[#3AA655] mb-6">Solutions Durables & Écologiques</h3>
                 <p className="text-gray-700 text-xl leading-relaxed">
                   Transformons le Tchad avec l'énergie solaire, la recharge électrique et le biogaz. Nos solutions respectueuses de l'environnement offrent une indépendance énergétique durable et économique pour les familles et les entreprises.
                 </p>
@@ -386,7 +386,7 @@ export default function Home() {
                 <div className="inline-block mb-6 px-4 py-2 bg-yellow-100 rounded-full">
                   <span className="text-[#E6C34A] font-bold text-xs uppercase tracking-widest">🛠️ Services Complémentaires</span>
                 </div>
-                <h3 className="text-5xl md:text-6xl font-bold text-[#E6C34A] mb-6">Automobile & Environnement</h3>
+                <h3 className="text-2xl md:text-6xl font-bold text-[#E6C34A] mb-6">Automobile & Environnement</h3>
                 <p className="text-gray-700 text-xl leading-relaxed">
                   Complétez votre expérience EnerTchad avec nos services : maintenance automobile professionnelle, laverie écologique haute technologie et gestion responsable des déchets pour un Tchad plus vert.
                 </p>
@@ -446,7 +446,7 @@ export default function Home() {
               <div className="inline-block mb-6 px-4 py-2 bg-yellow-100 rounded-full">
                 <span className="text-[#E6C34A] font-bold text-xs uppercase tracking-widest">📞 Assistance Technique 24/7</span>
               </div>
-              <h2 className="text-5xl md:text-6xl font-bold text-[#E6C34A] mb-6">Support Réactif & Professionnel</h2>
+              <h2 className="text-3xl md:text-6xl font-bold text-[#E6C34A] mb-6">Support Réactif & Professionnel</h2>
               <p className="text-gray-700 text-xl leading-relaxed mb-8">
                 EnerTchad est là pour vous 24 heures sur 24, 7 jours sur 7. Notre équipe technique qualifiée résout vos problèmes rapidement avec des solutions efficaces et un suivi personnalisé. Contactez-nous par téléphone, WhatsApp, email ou visitez nos stations.
               </p>

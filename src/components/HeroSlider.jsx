@@ -35,7 +35,7 @@ export function HeroSlider() {
   }, [slides.length]);
 
   return (
-    <div className="relative w-full h-96 bg-gradient-to-r from-gray-900 to-gray-800 overflow-hidden rounded-lg">
+    <div className="relative w-full h-60 md:h-96 bg-gradient-to-r from-gray-900 to-gray-800 overflow-hidden rounded-lg">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div
@@ -46,9 +46,9 @@ export function HeroSlider() {
         >
           <div className={`bg-gradient-to-r ${slide.bg} w-full h-full flex items-center justify-center`}>
             <div className="text-center text-white">
-              <div className="text-6xl mb-4">{slide.image}</div>
-              <h2 className="text-4xl font-bold mb-2">{slide.title}</h2>
-              <p className="text-xl text-gray-100">{slide.subtitle}</p>
+              <div className="text-4xl md:text-6xl mb-4">{slide.image}</div>
+              <h2 className="text-2xl md:text-4xl font-bold mb-2">{slide.title}</h2>
+              <p className="text-sm md:text-xl text-gray-100">{slide.subtitle}</p>
             </div>
           </div>
         </div>

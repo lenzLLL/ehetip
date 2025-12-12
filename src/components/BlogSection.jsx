@@ -70,17 +70,17 @@ export default function BlogSection({ articles: propArticles }) {
   }
 
   return (
-    <section className="py-32 px-4 bg-gradient-to-b from-white to-[#F5E6D3]">
+    <section className="py-12 md:py-32 px-4 bg-gradient-to-b from-white to-[#F5E6D3]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-20">
           <span className="text-[#3AA655] font-bold text-sm uppercase tracking-widest inline-block mb-4 px-4 py-2 bg-green-100/50 rounded-full">
             📰 Blog EnerTchad
           </span>
-          <h2 className="text-5xl md:text-6xl font-bold text-[#1E5FA8] mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold text-[#1E5FA8] mb-6">
             Nos Articles <span className="bg-gradient-to-r from-[#3AA655] to-[#E6C34A] bg-clip-text text-transparent">Récents</span>
           </h2>
-          <p className="text-gray-700 text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-700 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed">
             Restez informé des dernières actualités sur l'énergie, la mobilité électrique et les solutions automobiles innovantes
           </p>
         </div>
@@ -88,7 +88,7 @@ export default function BlogSection({ articles: propArticles }) {
         {/* Articles Grid */}
         {propProvided && articlesToRender.length === 0 ? (
           <div className="text-center py-12 mb-12">
-            <div className="text-6xl mb-4">📝</div>
+            <div className="text-4xl md:text-6xl mb-4">📝</div>
             <h3 className="text-2xl font-bold text-[#1E5FA8] mb-2">Aucun article disponible</h3>
             <p className="text-gray-600">Il n'y a pas encore d'articles publiés. Revenez bientôt ou contactez l'administrateur.</p>
           </div>
@@ -100,7 +100,7 @@ export default function BlogSection({ articles: propArticles }) {
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-[#E6C34A] group flex flex-col"
               >
                 {/* Image */}
-                <div className="relative h-64 overflow-hidden bg-gray-300">
+                <div className="relative h-48 md:h-64 overflow-hidden bg-gray-300">
                   <img
                     src={article.image || article.imageUrl || ''}
                     alt={article.title}
@@ -153,7 +153,7 @@ export default function BlogSection({ articles: propArticles }) {
         <div className="text-center">
           <a
             href="/blog"
-            className="inline-block bg-gradient-to-r from-[#1E5FA8] to-[#3AA655] text-white px-12 py-4 rounded-xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 text-lg"
+            className="inline-block bg-gradient-to-r from-[#1E5FA8] to-[#3AA655] text-white px-6 py-3 md:px-12 md:py-4 rounded-xl font-bold hover:shadow-2xl transition-all transform hover:scale-105 text-sm md:text-lg"
           >
             Lire tous les articles
           </a>

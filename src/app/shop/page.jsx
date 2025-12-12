@@ -138,7 +138,7 @@ export default function Shop() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative h-96 flex items-center justify-center text-white overflow-hidden">
+      <section className="relative h-60 md:h-96 flex items-center justify-center text-white overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#1E5FA8] via-[#164a8a] to-[#3AA655]"></div>
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#E6C34A] rounded-full blur-3xl"></div>
@@ -151,20 +151,20 @@ export default function Shop() {
         />
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-          <div className="mb-6 inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full border border-white/30">
-            <span className="text-white font-semibold text-sm">🛍️ NOTRE BOUTIQUE</span>
+          <div className="mb-4 md:mb-6 inline-block bg-white/20 backdrop-blur-sm px-4 py-1 md:px-6 md:py-2 rounded-full border border-white/30">
+            <span className="text-white font-semibold text-xs md:text-sm">🛍️ NOTRE BOUTIQUE</span>
           </div>
-          <h1 className="font-bold text-6xl md:text-7xl mb-6 leading-tight">
+          <h1 className="font-bold text-3xl md:text-6xl mb-4 md:mb-6 leading-tight">
             Vos Produits <span className="text-[#E6C34A]">Essentiels</span>
           </h1>
-          <p className="text-xl text-gray-100 mb-8">
+          <p className="text-sm md:text-xl text-gray-100 mb-6 md:mb-8">
             Qualité premium pour tous vos besoins énergétiques et automobiles
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-[#E6C34A] text-[#1E5FA8] px-8 py-3 rounded-lg font-bold hover:bg-white transition-all transform hover:scale-105">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+            <button className="bg-[#E6C34A] text-[#1E5FA8] px-4 py-2 md:px-8 md:py-3 rounded-lg font-bold hover:bg-white transition-all transform hover:scale-105 text-sm md:text-base">
               Explorer nos Produits
             </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-bold hover:bg-white/10 transition-all">
+            <button className="border-2 border-white text-white px-4 py-2 md:px-8 md:py-3 rounded-lg font-bold hover:bg-white/10 transition-all text-sm md:text-base">
               En Savoir Plus
             </button>
           </div>

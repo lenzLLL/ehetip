@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="fr">
-      <body>
+      <body className="text-sm md:text-base">
         <Providers>
           <QueryProvider>
             <CartProvider>

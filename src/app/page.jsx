@@ -289,7 +289,7 @@ export default function Home() {
                   Nous fournissons des carburants de haute qualité, des services de livraison mobile et des solutions d'importation certifiées internationalement. Disponibles partout au Tchad avec un service fiable et professionnel.
                 </p>
               </div>
-              <img src={"/h8.jpg"} alt="Énergies Fossiles" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
+              <img src={"/f.png"} alt="Énergies Fossiles" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
             </div>
 
             <div className="flex items-center space-x-3 mb-8">
@@ -331,7 +331,7 @@ export default function Home() {
           <div className="mb-24">
             {/* Intro avec image */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-12 items-center mb-8 md:mb-20 bg-gradient-to-br from-[#F0F8E8] to-white rounded-3xl p-2 lg:p-16">
-              <img src={"/h7.jpg"} alt="Énergies Renouvelables" className="rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
+              <img src={"/r.png"} alt="Énergies Renouvelables" className="rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
               <div>
                 <div className="inline-block mb-6 px-4 py-2 bg-green-100 rounded-full">
                   <span className="text-[#3AA655] font-bold text-xs uppercase tracking-widest">🌱 Énergies Renouvelables</span>
@@ -651,7 +651,7 @@ export default function Home() {
           "Boissons et encas disponibles",
           "Ambiance calme et sécurisée",
         ]}
-        imageSrc={"/h6.png"}
+        imageSrc={"/c.jpg"}
         imageAlt="Zone de co-working"
         imageLeft={false}
         ctaText="Voir les stations"

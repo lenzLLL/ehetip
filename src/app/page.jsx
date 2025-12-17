@@ -1,1069 +1,894 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
-  Fuel,
+  Facebook,
+  Instagram,
+  Linkedin,
+  Twitter,
   Zap,
-  Wrench,
-  Leaf,
-  ArrowRight,
-  Droplet,
-  Sparkles,
+  Target,
   TrendingUp,
-  Truck,
-  Recycle,
-  Headset,
-  MessageCircle,
-  MapPin,
   Users,
+  Globe,
+  Video,
+  Bot,
+  Smartphone,
+  CheckCircle,
+  ArrowRight,
+  Sparkles,
+  Rocket,
   Award,
   Clock,
-  Shield,
-  Wind,
-  Flame,
-  Hammer,
-  Settings,
-  Activity,
-  Anchor,
-  GaugeCircle,
-  LineChart,
-  Cpu,
-  PaintBucket,Gauge,Atom
-
+  Menu,
+  X,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
-import Promo from "../components/Promo";
-import TestimonialCard from "../components/TestimonialCard";
-import FAQSection from "../components/FAQSection";
-import WhatsAppContact from "../components/WhatsAppContact";
-import BlogSection from "../components/BlogSection";
-import ProductCard from "../components/ProductCard";
 
-const carWashImage =
-  "https://raw.createusercontent.com/6f7e64de-7812-4733-bf78-e5f94d805ed9/";
-const solarImage =
-  "https://raw.createusercontent.com/5222af1a-cfb4-4e80-a98e-84c680d4ac32/";
-const stationInterior =
-  "https://raw.createusercontent.com/3f39c044-0768-47e4-bb23-aa1ba0217c9d/";
-const teamImage =
-  "https://raw.createusercontent.com/1af55a56-938f-48cc-954b-a7d27089ddc2/";
-const evChargerImage =
-  "https://raw.createusercontent.com/54cd1c2a-59f3-4545-a962-6bdc7b2fd1a9/";
+export default function DigiCorePage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("all");
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
-export default function Home() {
-  const whatsappNumber = "+23566298696";
-  
   const services = [
-  {
-  icon: Flame,
-  title: "Biomasse Solide",
-  description:
-    "Bois énergie, charbon de bois, résidus agricoles, briquettes et déchets agro-industriels.",
-  segment: "Énergies Renouvelables",
-},
-
-// 💨 Biogaz
-{
-  icon: Recycle,
-  title: "Biogaz",
-  description:
-    "Méthane issu de biodigesteurs, gaz de décharge et stations d’épuration.",
-  segment: "Énergies Renouvelables",
-},
-
-// ⛽ Biocarburants liquides
-{
-  icon: Droplet,
-  title: "Biocarburants Liquides",
-  description:
-    "Bioéthanol, biodiesel, biokérosène et huiles végétales pour mobilité et industrie.",
-  segment: "Énergies Renouvelables",
-},
-
-// ⚡ Biohydrogène & Gaz de synthèse
-{
-  icon: Atom,
-  title: "Biohydrogène & Gaz de Synthèse",
-  description:
-    "Hydrogène vert et syngas (CO + H₂) issus de la biomasse par fermentation ou gazéification.",
-  segment: "Énergies Renouvelables",
-},
- {
-  icon: Hammer,
-  title: "Forage & Complétion",
-  description:
-    "Forage directionnel et horizontal, cimentation intelligente et acquisition de données en temps réel.",
-  segment: "Énergies Fossiles",
-},
-{
-  icon: Gauge,
-  title: "Production & Optimisation",
-  description:
-    "Systèmes de levage artificiel (ESP, Gas Lift, Rod Pump) et gestion des flux multiphasiques.",
-  segment: "Énergies Fossiles",
-},
-
-
-// 🛠 Ingénierie & Maintenance
-{
-  icon:PaintBucket,
-  title: "Ingénierie & Maintenance",
-  description:
-    "Stimulation hydraulique, interventions sur puits et maintenance prédictive et industrielle, conformité HSE.",
-  segment: "Énergies Fossiles",
-},
-
-// 🌊 Offshore & Subsea
-{
-  icon: Anchor,
-  title: "Offshore & Subsea",
-  description:
-    "Ingénierie sous-marine (SURF), inspection et monitoring des pipelines, precommissioning et decommissioning sécurisé.",
-  segment: "Énergies Fossiles",
-},
-
     {
-      icon: Fuel,
-      title: "Station-Service",
-      description:
-        "Carburants de qualité supérieure, diesel et essence, disponibles 24/7",
-      segment: "Énergies Fossiles",
-    },
-    {
-      icon: Truck,
-      title: "Livraison Mobile de Carburant",
-      description:
-        "Service de livraison directe pour industriels et clients normaux - partout au Tchad",
-      segment: "Énergies Fossiles",
-    },
-    {
-      icon: Droplet,
-      title: "Huiles Moteur",
-      description: "Lubrifiants premium pour tous types de véhicules",
-      segment: "Énergies Fossiles",
-    },
-    {
-      icon: Truck,
-      title: "Import de Carburant",
-      description:
-        "Importation et distribution de carburant de qualité certifiée internationalement",
-      segment: "Énergies Fossiles",
-    },
-    {
-      icon: Fuel,
-      title: "Carburants Routiers",
-      description:
-        "Essence (SP95, SP98, E10, E85) et Gazole (B7, B10, B30, GNR) pour mobilité et véhicules lourds.",
-      segment: "Énergies Fossiles",
-    },
-    {
-      icon: Droplet,
-      title: "Combustibles de Chauffage",
-      description:
-        "Fioul domestique, kérosène/jet fuel et GPL (propane, butane) pour chauffage, cuisson et usages industriels.",
-      segment: "Énergies Fossiles",
-    },
-    {
-      icon: Leaf,
-      title: "Énergie Solaire",
-      description:
-        "Solutions d'énergie renouvelable pour particuliers et entreprises",
-      segment: "Énergies Renouvelables",
-    },
-    {
-      icon: Wind,
-      title: "Énergie Éolienne",
-      description:
-        "Solutions d'énergie éolienne pour entreprises et communautés : études, installation et maintenance de petites et moyennes turbines.",
-      segment: "Énergies Renouvelables",
-    },
-    {
-      icon: Zap,
-      title: "Recharge Électrique",
-      description: "Stations de recharge rapide pour véhicules électriques",
-      segment: "Énergies Renouvelables",
-    },
-  
-    {
-      icon: Flame,
-      title: "Biogaz",
-      description:
-        "Production et distribution de biogaz pour énergie domestique et industrielle",
-      segment: "Services Complémentaires",
-    },
-    {
-      icon: Sparkles,
-      title: "Laverie Auto",
-      description: "Services de nettoyage automatisé et écologique",
-      segment: "Services Complémentaires",
+      icon: Target,
+      title: "Campagnes publicitaires Meta",
+      desc: "Facebook & Instagram Ads ciblées avec ROI optimisé",
+      color: "from-blue-500 to-cyan-500",
     },
     {
       icon: TrendingUp,
-      title: "Produits Industriels",
-      description:
-        "Lubrifiants, solvants, asphalte, coke, combustibles lourds et pétrole lampant pour usages industriels.",
-      segment: "Services Complémentaires",
+      title: "Stratégie digitale",
+      desc: "Plans personnalisés basés sur vos objectifs business",
+      color: "from-purple-500 to-pink-500",
+    },
+    {
+      icon: Users,
+      title: "Community Management",
+      desc: "Animation professionnelle de vos réseaux sociaux",
+      color: "from-orange-500 to-red-500",
+    },
+    {
+      icon: Video,
+      title: "Vidéos publicitaires",
+      desc: "Production de contenus vidéo impactants",
+      color: "from-indigo-500 to-blue-500",
+    },
+      {
+        icon: Smartphone,
+        title: "Conception d'application mobile",
+        desc: "Design UI/UX et développement d'apps iOS & Android",
+        color: "from-indigo-500 to-purple-500",
+      },
+    {
+      icon: Bot,
+      title: "Automatisation",
+      desc: "Chatbots intelligents et WhatsApp Business API",
+      color: "from-teal-500 to-cyan-500",
+    },
+    {
+      icon: Globe,
+      title: "Création de site web",
+      desc: "Sites vitrines et e-commerce optimisés pour la conversion",
+      color: "from-blue-500 to-cyan-500",
     },
     {
       icon: Sparkles,
-      title: "Produits Pétrochimiques (PP)",
-      description:
-        "Polypropylène (PP) : matière polyvalente pour emballages, textiles, pièces automobiles et équipements médicaux.",
-      segment: "Services Complémentaires",
-    },
-    {
-      icon: Wrench,
-      title: "Maintenance Auto",
-      description:
-        "Services d'entretien et de réparation automobiles professionnels",
-      segment: "Services Complémentaires",
-    },
-    {
-      icon: Recycle,
-      title: "Traitement de Déchets",
-      description:
-        "Unité complète de traitement des déchets plastiques et ménagers avec solutions durables",
-      segment: "Services Complémentaires",
-    },
-    {
-      icon: Headset,
-      title: "Assistance Technique",
-      description:
-        "Support technique 24/7 pour tous vos questions et problèmes",
-      segment: "Services Complémentaires",
+      title: "Création graphique",
+      desc: "Identité visuelle professionnelle et logos uniques",
+      color: "from-pink-500 to-rose-500",
     },
   ];
-
-  const [products, setProducts] = useState([]);
-  const [articles, setArticles] = useState([]);
-  const [isLoadingData, setIsLoadingData] = useState(true);
-
-  useEffect(() => {
-    let mounted = true;
-    const load = async () => {
-      setIsLoadingData(true);
-      try {
-        const [pRes, aRes] = await Promise.all([fetch('/api/products'), fetch('/api/blog')]);
-        const [pJson, aJson] = await Promise.all([pRes.ok ? await pRes.json() : [], aRes.ok ? await aRes.json() : []]);
-        if (!mounted) return;
-        setProducts(Array.isArray(pJson) ? pJson : []);
-        setArticles(Array.isArray(aJson) ? aJson : []);
-      } catch (err) {
-        console.error('Failed to load home data:', err);
-        if (mounted) {
-          setProducts([]);
-          setArticles([]);
-        }
-      } finally {
-        if (mounted) setIsLoadingData(false);
-      }
-    };
-
-    load();
-    return () => { mounted = false };
-  }, []);
 
   const stats = [
-    { icon: MapPin, value: "15+", label: "Stations-Service" },
-    { icon: Users, value: "50,000+", label: "Clients satisfaits" },
-    { icon: Zap, value: "8", label: "Bornes électriques" },
-    { icon: Award, value: "15 ans", label: "D'expérience" },
+    { value: "72h", label: "Livraison express", icon: Clock },
+    { value: "100%", label: "Digital", icon: Rocket },
+    { value: "6+", label: "Secteurs d'activité", icon: Target },
+    { value: "24/7", label: "Support client", icon: Award },
   ];
 
-  const testimonials = [
+  const allProjects = [
     {
-      name: "Mamadou Hassan",
-      role: "Entrepreneur, N'Djamena",
-      content: "EnerTchad a transformé mon activité commerciale. Leurs services sont fiables et leurs prix sont compétitifs. Je recommande vivement!",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
+      name: "GreenPowerSolar",
+      category: "energie",
+      categoryLabel: "Énergie",
+      desc: "Site vitrine + WhatsApp bot",
+      image:
+        "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=600&fit=crop",
     },
     {
-      name: "Amira Abdoulaye",
-      role: "Directrice, Entreprise de Transport",
-      content: "Les panneaux solaires installés par EnerTchad ont réduit nos coûts énergétiques de 40%. Une véritable révolution pour notre entreprise!",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop",
+      name: "SmartEdu",
+      category: "education",
+      categoryLabel: "Éducation",
+      desc: "Logo + page Instagram + vidéo TikTok",
+      image:
+        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop",
     },
     {
-      name: "Jean Pierre Dubois",
-      role: "Propriétaire, Station-service",
-      content: "Partenaire depuis 8 ans. EnerTchad offre un service de distribution impeccable et un support client exceptionnel. C'est du professionnalisme.",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop",
+      name: "LogisPlus",
+      category: "logistique",
+      categoryLabel: "Logistique",
+      desc: "Chatbot + 4 campagnes Facebook",
+      image:
+        "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&h=600&fit=crop",
     },
     {
-      name: "Fatima Ali",
-      role: "Responsable Parc Auto, ONG",
-      content: "Les bornes de recharge électrique d'EnerTchad sont essentielles pour notre transition vers la mobilité verte. Excellent service!",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop",
+      name: "AfricaStyle",
+      category: "ecommerce",
+      categoryLabel: "E-commerce",
+      desc: "E-commerce + automation Messenger",
+      image:
+        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop",
+    },
+    {
+      name: "HealthPlus Clinic",
+      category: "sante",
+      categoryLabel: "Santé",
+      desc: "Site web + Google Ads + SEO",
+      image:
+        "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=600&fit=crop",
+    },
+    {
+      name: "TechStartup Inc",
+      category: "tech",
+      categoryLabel: "Tech",
+      desc: "Branding complet + stratégie digitale",
+      image:
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop",
+    },
+  ];
+
+  const tabs = [
+    { id: "all", label: "Tous les projets" },
+    { id: "energie", label: "Énergie" },
+    { id: "education", label: "Éducation" },
+    { id: "ecommerce", label: "E-commerce" },
+    { id: "tech", label: "Tech" },
+    { id: "sante", label: "Santé" },
+    { id: "logistique", label: "Logistique" },
+  ];
+
+  const filteredProjects =
+    activeTab === "all"
+      ? allProjects
+      : allProjects.filter((p) => p.category === activeTab);
+
+  const packs = [
+    {
+      name: "Pack Visibilité",
+      price: "150 000",
+      priceEuro: "230€",
+      desc: "Idéal pour démarrer votre présence digitale",
+      features: [
+        "Création de 3 visuels/semaine",
+        "1 page Facebook animée",
+        "Audit rapide de présence en ligne",
+        "Community Manager",
+        "Rapport mensuel basique",
+      ],
+      gradient: "from-blue-500 to-cyan-500",
+      popular: false,
+    },
+    {
+      name: "Pack Croissance",
+      price: "300 000",
+      priceEuro: "450€",
+      desc: "Pour accélérer votre croissance digitale",
+      popular: true,
+      features: [
+        "2 Publications professionnelles/semaine",
+        "Community Manager dédié",
+        "1 vidéo professionnelle/mois",
+        "1 campagne sponsorisée ciblée",
+        "Visuels pro + stratégie hashtags",
+        "Rapport mensuel détaillé avec insights",
+      ],
+      gradient: "from-[#00D4D4] to-[#B4F34C]",
+    },
+    {
+      name: "Pack Premium",
+      price: "750 000",
+      priceEuro: "1 150€",
+      desc: "La solution complète pour dominer votre marché",
+      features: [
+        "3 à 5 publications premium/semaine",
+        "Gestion complète et optimisation du site web",
+        "CRM configuré et personnalisé",
+        "Community manager dédié à temps plein",
+        "2 campagnes sponsorisées optimisées",
+        "2 vidéos professionnelles/mois",
+        "WhatsApp bot intelligent offert",
+        "Support prioritaire 24/7",
+      ],
+      gradient: "from-purple-500 to-pink-500",
+      popular: false,
+    },
+  ];
+
+  const faqs = [
+    {
+      question: "Quels sont vos délais de livraison ?",
+      answer:
+        "Nos délais varient selon le service : un logo ou une identité visuelle en 72h maximum, un site web en 5-7 jours, et une stratégie digitale complète en 2 semaines. Nous proposons également des formules express pour les projets urgents.",
+    },
+    {
+      question: "Comment se passe la collaboration ?",
+      answer:
+        "Tout se fait en ligne ! Après un premier échange pour comprendre vos besoins, nous vous envoyons un devis. Une fois validé, nous travaillons par étapes avec des points de validation réguliers via WhatsApp, email ou visio.",
+    },
+    {
+      question: "Proposez-vous des formules mensuelles ?",
+      answer:
+        "Oui ! Nous avons des packs mensuels pour le community management, les campagnes publicitaires, et l'automatisation. Consultez notre page 'Nos Packs' pour découvrir toutes nos offres récurrentes.",
+    },
+    {
+      question: "Travaillez-vous avec des petites entreprises ?",
+      answer:
+        "Absolument ! Nous accompagnons aussi bien les grandes entreprises que les PME, startups et entrepreneurs. Nos tarifs sont adaptés à tous les budgets et nous proposons des solutions évolutives.",
+    },
+    {
+      question: "Quels outils utilisez-vous ?",
+      answer:
+        "Nous utilisons les meilleurs outils du marché : Canva Pro pour le design, Google Analytics et Meta Business Suite pour l'analyse, ManyChat et WhatsApp API pour l'automatisation, WordPress pour les sites web, et bien d'autres selon vos besoins.",
     },
   ];
 
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="relative h-[60vh] md:h-screen flex items-center justify-center text-white overflow-hidden">
-        <img
-          src={"/h10.jpg"}
-          alt="EnerTchad"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1E5FA8]/20 via-[#1E5FA8]/10 to-transparent opacity-60"></div>
-
-        <div className="relative z-10 text-center max-w-5xl mx-auto px-4">
-          <div className="hidden md:inline-block bg-[#E6C34A] text-[#1E5FA8] px-4 py-1 rounded-full text-xs font-bold mb-4 shadow-lg">
-            ⚡ Leader de l'énergie au Tchad
-          </div>
-          <h1 className="hidden md:block font-bold text-3xl md:text-7xl mb-4 md:mb-6 font-poppins leading-tight">
-            EnerTchad S.A
-          </h1>
-          <p className="hidden md:block text-base md:text-3xl mb-3 md:mb-4 font-light">
-            L'énergie qui fait avancer le Tchad
-          </p>
-          <p className="hidden md:block text-sm md:text-lg mb-6 md:mb-10 text-gray-200 max-w-2xl mx-auto">
-            Distribution de carburant, énergies renouvelables, mobilité
-            électrique et services automobiles de qualité supérieure
-          </p>
-          <div className="flex flex-col md:flex-row gap-3 md:gap-4 justify-center items-center">
-            <a
-              href="/services"
-              aria-label="Découvrir nos services"
-              className="inline-flex items-center justify-center w-[50vw] md:w-auto px-4 py-2 md:px-10 md:py-4 bg-[#E6C34A] text-[#1E5FA8] rounded-lg font-bold hover:bg-[#d4a028] transition-all shadow-xl text-sm md:text-lg"
-            >
-              Découvrir nos services
-            </a>
-            <a
-              href="/contact"
-              aria-label="Trouver une station"
-              className="inline-flex items-center justify-center w-[50vw] md:w-auto px-4 py-2 md:px-10 md:py-4 border-2 border-white text-white rounded-lg font-bold hover:bg-white hover:text-[#1E5FA8] transition-all text-sm md:text-lg"
-            >
-              Trouver une station
-            </a>
-          </div>
-        </div>
-
-        {/* Scroll indicator (hidden on mobile) */}
-        <div className="hidden md:block absolute md:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20 pointer-events-none">
-          <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-            <div className="w-1.5 h-3 bg-white rounded-full mt-2"></div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-12 md:py-20 bg-gradient-to-r from-[#1E5FA8] via-[#1a5a8a] to-[#3AA655] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#E6C34A] rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#E6C34A] rounded-full blur-3xl"></div>
-        </div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, idx) => (
-              <div key={idx} className="text-center text-white group">
-                <div className="bg-white/10 backdrop-blur-sm p-4 md:p-6 rounded-2xl mb-4 group-hover:bg-white/20 transition transform group-hover:scale-110">
-                  <stat.icon className="w-10 h-10 md:w-14 md:h-14 mx-auto text-[#E6C34A] group-hover:text-white transition" />
-                </div>
-                <div className="text-2xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-[#E6C34A] to-white bg-clip-text text-transparent">{stat.value}</div>
-                <div className="text-xs md:text-sm text-gray-100 font-medium">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section with Segments */}
-      <section className="py-8 md:py-32 px-4 bg-gradient-to-b from-[#F5E6D3] to-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#E6C34A]/10 rounded-full blur-3xl"></div>
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-20">
-            <span className="text-[#3AA655] font-bold text-sm uppercase tracking-widest inline-block mb-4 px-4 py-2 bg-green-100/50 rounded-full">
-              ✨ Nos Solutions
-            </span>
-            <h2 className="text-3xl md:text-6xl font-bold text-[#1E5FA8] mb-6">
-              Des Services <span className="bg-gradient-to-r from-[#3AA655] to-[#E6C34A] bg-clip-text text-transparent">Complets</span>
-            </h2>
-            <p className="text-gray-700 mb-8 text-lg max-w-2xl mx-auto leading-relaxed">
-              Découvrez notre gamme complète de solutions énergétiques et services automobiles adaptés à vos besoins
-            </p>
-          </div>
-
-          {/* Énergies Fossiles Segment */}
-          <div className="mb-24">
-            {/* Intro avec image */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-12 items-center mb-20 bg-gradient-to-br from-[#F5F9FF] to-white rounded-3xl p-2 lg:p-16">
-              <div className="order-2 md:order-1">
-                <div className="inline-block mb-6 px-4 py-2 bg-blue-100 rounded-full">
-                  <span className="text-[#1E5FA8] font-bold text-xs uppercase tracking-widest">⛽ Carburants Premium 24/7</span>
-                </div>
-                <h3 className="text-2xl md:text-6xl font-bold text-[#1E5FA8] mb-6">Énergies Fossiles</h3>
-                <p className="text-gray-700 text-xl leading-relaxed">
-                  Nous fournissons des carburants de haute qualité, des services de livraison mobile et des solutions d'importation certifiées internationalement. Disponibles partout au Tchad avec un service fiable et professionnel.
-                </p>
-                            <div className=" mt-10">
-                <a
-                    href="/services"
-                    className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold  transition shadow-lg bg-yellow-400 hover:bg-yellow-500 text-blue-900`}
-                 >
-                     Voir tous les services
-                     <ArrowRight size={20} />
-                </a>
-             </div>
-              </div>
-              <img src={"/h8.jpg"} alt="Énergies Fossiles" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
-            </div>
-
-            <div className="flex items-center space-x-3 mb-8">
-              <Fuel className="w-8 h-8 text-[#1E5FA8]" />
-              <h3 className="text-2xl font-bold text-[#1E5FA8]">Nos Services</h3>
-              <div className="flex-1 h-1 bg-gradient-to-r from-[#1E5FA8] to-transparent rounded-full"></div>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
-              {services.filter(s => s.segment === "Énergies Fossiles").slice(0,3).map((service, idx) => {
-                const ServiceIcon = service.icon;
-                return (
-                  <div 
-                    key={idx}
-                    className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#1E5FA8]"
-                  >
-                    <div className="bg-gradient-to-br from-[#1E5FA8] to-[#164a8a] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
-                      <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-[#E6C34A]" />
-                    </div>
-                    <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#1E5FA8] transition line-clamp-1 md:line-clamp-none">
-                      {service.title}
-                    </h4>
-                    <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
-                      {service.description}
-                    </p>
-                    <a 
-                      href="/services"
-                      className="inline-flex items-center space-x-2 text-[#1E5FA8] font-bold text-sm md:text-base group-hover:text-[#E6C34A] transition"
-                    >
-                      <span>En savoir plus</span>
-                      <span className="transform group-hover:translate-x-1 transition">→</span>
-                    </a>
-                  </div>
-                );
-              })}
-            </div>
-
-          </div>
-
-          {/* Énergies Renouvelables Segment */}
-          <div className="mb-24">
-            {/* Intro avec image */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-12 items-center mb-8 md:mb-20 bg-gradient-to-br from-[#F0F8E8] to-white rounded-3xl p-2 lg:p-16">
-              <img src={"/r.png"} alt="Énergies Renouvelables" className="rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
-              <div>
-                <div className="inline-block mb-6 px-4 py-2 bg-green-100 rounded-full">
-                  <span className="text-[#3AA655] font-bold text-xs uppercase tracking-widest">🌱 Solutions Durables & Écologiques</span>
-                </div>
-                <h3 className="text-2xl md:text-6xl font-bold text-[#3AA655] mb-6">Énergies Renouvelables</h3>
-                <p className="text-gray-700 text-xl leading-relaxed">
-                  EnerTchad s’engage à bâtir un avenir énergétique durable, inclusif et innovant.  
-Nous intégrons les énergies renouvelables comme pilier stratégique de la transition énergétique et du développement continental. En réduisant les émissions de CO₂ et en contribuant aux objectifs ESG, nous favorisons l’autonomie énergétique des communautés et des industries, tout en créant de la valeur locale à travers l’emploi, la formation et l’inclusion, grâce à des innovations vertes et des solutions digitales dédiées au suivi et à l’optimisation des performances.
-                </p>
-                       <div className=" mt-10">
-                          <a
-                                href="/services"
-                               className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold  transition shadow-lg bg-green-600 hover:bg-green-700`}
-                          >
-                                   Voir tous les services
-                                   <ArrowRight size={20} />
-                            </a>
-                     </div>
-              </div>
-              
-            </div>
-
-            <div className="flex items-center space-x-3 mb-8">
-              <Leaf className="w-8 h-8 text-[#3AA655]" />
-              <h3 className="text-2xl font-bold text-[#3AA655]">Nos Services</h3>
-              <div className="flex-1 h-1 bg-gradient-to-r from-[#3AA655] to-transparent rounded-full"></div>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
-              {services.filter(s => s.segment === "Énergies Renouvelables").slice(0,3).map((service, idx) => {
-                const ServiceIcon = service.icon;
-                return (
-                  <div 
-                    key={idx}
-                    className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#3AA655]"
-                  >
-                    <div className="bg-gradient-to-br from-[#3AA655] to-[#2d8a45] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
-                      <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
-                    </div>
-                    <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#3AA655] transition line-clamp-1 md:line-clamp-none">
-                      {service.title}
-                    </h4>
-                    <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
-                      {service.description}
-                    </p>
-                    <a 
-                      href="/services"
-                      className="inline-flex items-center space-x-2 text-[#3AA655] font-bold text-sm md:text-base group-hover:text-[#1E5FA8] transition"
-                    >
-                      <span>En savoir plus</span>
-                      <span className="transform group-hover:translate-x-1 transition">→</span>
-                    </a>
-                  </div>
-                );
-              })}
-            </div>
-                      
-          </div>
-
-          {/* Services Complémentaires Segment */}
-          <div className="mb-16">
-            {/* Intro avec image */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-12 items-center mb-20 bg-gradient-to-br from-[#FEF9E8] to-white rounded-3xl p-2 lg:p-16">
-              <div className="order-2 md:order-1">
-                <div className="inline-block mb-6 px-4 py-2 bg-yellow-100 rounded-full">
-                  <span className="text-[#E6C34A] font-bold text-xs uppercase tracking-widest">🛠️ Automobile & Environnement</span>
-                </div>
-                <h3 className="text-2xl md:text-6xl font-bold text-[#E6C34A] mb-6">Services Complémentaires</h3>
-                <p className="text-gray-700 text-xl leading-relaxed">
-                  Complétez votre expérience EnerTchad avec nos services : maintenance automobile professionnelle, laverie écologique haute technologie et gestion responsable des déchets pour un Tchad plus vert.
-                </p>
-                   <div className="mt-10">
-                <a
-                    href="/services"
-                    className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold  transition shadow-lg bg-yellow-400 hover:bg-yellow-500 text-blue-900`}
-                 >
-                     Voir tous les services
-                     <ArrowRight size={20} />
-                </a>
-             </div>
-              </div>
-              <img src={carWashImage} alt="Services Complémentaires" className="order-1 md:order-2 rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
-            </div>
-
-            <div className="flex items-center space-x-3 mb-8">
-              <Wrench className="w-8 h-8 text-[#E6C34A]" />
-              <h3 className="text-2xl font-bold text-[#E6C34A]">Nos Services</h3>
-              <div className="flex-1 h-1 bg-gradient-to-r from-[#E6C34A] to-transparent rounded-full"></div>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-6">
-              {services.filter(s => s.segment === "Services Complémentaires").slice(0,3).map((service, idx) => {
-                const ServiceIcon = service.icon;
-                return (
-                  <div 
-                    key={idx}
-                    className="group bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-[#E6C34A]"
-                  >
-                    <div className="bg-gradient-to-br from-[#E6C34A] to-[#d4a028] p-4 rounded-xl w-fit mb-4 md:mb-6 group-hover:shadow-lg transition">
-                      <ServiceIcon className="w-6 md:w-8 h-6 md:h-8 text-white" />
-                    </div>
-                    <h4 className="text-base md:text-xl font-bold text-gray-900 mb-2 md:mb-3 group-hover:text-[#E6C34A] transition line-clamp-1 md:line-clamp-none">
-                      {service.title}
-                    </h4>
-                    <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
-                      {service.description}
-                    </p>
-                    <a 
-                      href="/services"
-                      className="inline-flex items-center space-x-2 text-[#E6C34A] font-bold text-sm md:text-base group-hover:text-[#1E5FA8] transition"
-                    >
-                      <span>En savoir plus</span>
-                      <span className="transform group-hover:translate-x-1 transition">→</span>
-                    </a>
-                  </div>
-                );
-              })}
-            </div>
-                     
-          </div>
-
-          {/* CTA avec WhatsApp */}
-        
-
-    
-        </div>
-      </section>
-
-      {/* Assistance Technique Section */}
-      <section className="py-8 md:py-32 px-4 bg-gradient-to-b from-white via-[#F5F9FF] to-[#F0F8E8]">
-        <div className="max-w-7xl mx-auto">
-          {/* Intro avec image */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-12 items-center mb-8 md:mb-20 bg-gradient-to-br from-[#FEF9E8] to-white rounded-3xl p-2 lg:p-16">
-            <img src={"/h9.webp"} alt="Assistance Technique" className="rounded-3xl shadow-2xl w-full h-64 md:h-[500px] object-cover" />
-            <div>
-              <div className="inline-block mb-6 px-4 py-2 bg-yellow-100 rounded-full">
-                <span className="text-[#E6C34A] font-bold text-xs uppercase tracking-widest">📞 Support Réactif & Professionnel</span>
-              </div>
-              <h2 className="text-3xl md:text-6xl font-bold text-[#E6C34A] mb-6">Assistance Technique 24/7</h2>
-              <p className="text-gray-700 text-xl leading-relaxed mb-8">
-                EnerTchad est là pour vous 24 heures sur 24, 7 jours sur 7. Notre équipe technique qualifiée résout vos problèmes rapidement avec des solutions efficaces et un suivi personnalisé. Contactez-nous par téléphone, WhatsApp, email ou visitez nos stations.
-              </p>
-              
-              <div className="space-y-4">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#E6C34A] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <Headset className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-[#1E5FA8] mb-1">Support Téléphonique</h4>
-                    <p className="text-gray-700">Nos conseillers sont disponibles 24/7 pour répondre à vos questions</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#E6C34A] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <MessageCircle className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-[#1E5FA8] mb-1">WhatsApp & Email</h4>
-                    <p className="text-gray-700">Écrivez-nous sur WhatsApp ou email pour une réponse rapide</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-[#E6C34A] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <Wrench className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-[#1E5FA8] mb-1">Dépannage Express</h4>
-                    <p className="text-gray-700">Interventions rapides et efficaces pour résoudre vos problèmes</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mt-8 md:mt-16">
-            <div className="bg-white rounded-2xl p-3 md:p-10 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#E6C34A] to-[#d4a028] rounded-xl flex items-center justify-center mb-6">
-                <Clock className="w-7 h-7 text-white" />
-              </div>
-              <h4 className="text-2xl font-bold text-[#1E5FA8] mb-3">Disponibilité 24/7</h4>
-              <p className="text-gray-700 leading-relaxed">
-                Notre équipe travaille jour et nuit pour assurer votre tranquillité et la continuité de nos services
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl p-3 md:p-10 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#E6C34A] to-[#d4a028] rounded-xl flex items-center justify-center mb-6">
-                <Award className="w-7 h-7 text-white" />
-              </div>
-              <h4 className="text-2xl font-bold text-[#1E5FA8] mb-3">Équipe Certifiée</h4>
-              <p className="text-gray-700 leading-relaxed">
-                Techniciens et conseillers qualifiés avec une expérience reconnue dans tous nos domaines
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl p-3 md:p-10 shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#E6C34A] to-[#d4a028] rounded-xl flex items-center justify-center mb-6">
-                <Shield className="w-7 h-7 text-white" />
-              </div>
-              <h4 className="text-2xl font-bold text-[#1E5FA8] mb-3">Qualité Garantie</h4>
-              <p className="text-gray-700 leading-relaxed">
-                Nous garantissons une résolution efficace et un suivi personnalisé pour chaque demande
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Preview Section */}
-      <section className="py-24 px-4 -mt-24 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="relative">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
+      {/* Header */}
+      <header className="fixed top-0 w-full bg-black/80 backdrop-blur-lg shadow-lg z-50 border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            <a href="/" className="flex items-center gap-3">
               <img
-                src={"/h3.png"}
-                alt="Station moderne"
-                className="rounded-2xl shadow-2xl"
+                src="/logo.png"
+                alt="DigiCore Logo"
+                className="h-12  sm:h-14"
               />
-              <div className="hidden md:block absolute -bottom-6 -right-6 bg-[#E6C34A] p-3 md:p-6 rounded-xl shadow-xl w-24 md:w-auto">
-                <div className="text-2xl md:text-4xl font-bold text-[#1E5FA8]">15+</div>
-                <div className="text-xs md:text-sm text-[#1E5FA8] font-semibold leading-tight">
-                  Années d'excellence
-                </div>
-              </div>
-            </div>
-            <div>
-              <span className="text-[#3AA655] font-semibold text-sm uppercase tracking-wide">
-                À Propos de nous
-              </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1E5FA8] mb-6 font-poppins mt-2">
-                Leader de l'énergie au Tchad
-              </h2>
-              <p className="text-gray-700 mb-6 text-lg leading-relaxed">
-                EnerTchad S.A. est une entreprise tchadienne spécialisée dans la
-                distribution de carburant, les énergies renouvelables et la
-                mobilité électrique. Depuis 15 ans, nous accompagnons le
-                développement du Tchad avec des solutions énergétiques
-                innovantes et durables.
-              </p>
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start space-x-3">
-                  <Shield className="w-6 h-6 text-[#3AA655] flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-bold text-[#1E5FA8]">
-                      Qualité certifiée
-                    </h3>
-                    <p className="text-gray-600 text-sm">
-                      Carburants aux normes internationales
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <TrendingUp className="w-6 h-6 text-[#3AA655] flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-bold text-[#1E5FA8]">
-                      Innovation continue
-                    </h3>
-                    <p className="text-gray-600 text-sm">
-                      Technologies de pointe pour vos besoins énergétiques
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <Clock className="w-6 h-6 text-[#3AA655] flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-bold text-[#1E5FA8]">Service 24/7</h3>
-                    <p className="text-gray-600 text-sm">
-                      Disponibilité permanente sur toutes nos stations
-                    </p>
-                  </div>
-                </div>
-              </div>
+            </a>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-8">
+              <a
+                href="/"
+                className="text-white hover:text-[#00D4D4] transition font-medium"
+              >
+                Accueil
+              </a>
               <a
                 href="/about"
-                className="inline-block bg-[#3AA655] text-white px-8 py-3 rounded-lg font-bold hover:bg-[#2d8a45] transition-all"
+                className="text-white/80 hover:text-[#00D4D4] transition font-medium"
               >
-                En savoir plus
+                À propos
+              </a>
+              <a
+                href="/services"
+                className="text-white/80 hover:text-[#00D4D4] transition font-medium"
+              >
+                Services
+              </a>
+              <a
+                href="/packs"
+                className="text-white/80 hover:text-[#00D4D4] transition font-medium"
+              >
+                Nos Packs
+              </a>
+              <a
+                href="/contact"
+                className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-2 rounded-full hover:shadow-lg hover:shadow-[#00D4D4]/50 transition font-semibold"
+              >
+                Contact
+              </a>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden text-white p-2"
+            >
+              {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
+
+          {/* Mobile Navigation */}
+          {mobileMenuOpen && (
+            <nav className="md:hidden mt-4 pb-4 space-y-4">
+              <a
+                href="/"
+                className="block text-white hover:text-[#00D4D4] transition font-medium py-2"
+              >
+                Accueil
+              </a>
+              <a
+                href="/about"
+                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
+              >
+                À propos
+              </a>
+              <a
+                href="/services"
+                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
+              >
+                Services
+              </a>
+              <a
+                href="/packs"
+                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
+              >
+                Nos Packs
+              </a>
+              <a
+                href="/contact"
+                className="block bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-3 rounded-full text-center font-semibold"
+              >
+                Contact
+              </a>
+            </nav>
+          )}
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-24 px-4 overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-0 w-96 h-96 bg-[#00D4D4]/30 rounded-full blur-3xl animate-pulse"></div>
+          <div
+            className="absolute top-40 right-0 w-96 h-96 bg-[#B4F34C]/30 rounded-full blur-3xl animate-pulse"
+            style={{ animationDelay: "1s" }}
+          ></div>
+          <div
+            className="absolute bottom-0 left-1/3 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"
+            style={{ animationDelay: "2s" }}
+          ></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative">
+          <div className="text-center max-w-5xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#00D4D4]/20 to-[#B4F34C]/20 border border-[#00D4D4]/50 text-white px-6 py-3 rounded-full text-sm font-semibold mb-8 backdrop-blur-sm">
+              <Zap size={20} className="text-[#00D4D4]" />
+              Agence Marketing Digital 100% en ligne
+            </div>
+
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black mb-6">
+              <span className="bg-gradient-to-r from-[#00D4D4] via-[#B4F34C] to-[#00D4D4] bg-clip-text text-transparent">
+                DigiCore Inc
+              </span>
+            </h1>
+
+            <p className="text-2xl sm:text-3xl text-[#B4F34C] font-bold mb-4">
+              Marketing Agency
+            </p>
+
+            <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+              Créons ensemble votre{" "}
+              <span className="text-[#00D4D4] font-semibold">
+                présence digitale
+              </span>{" "}
+              qui convertit. Stratégie, design, technologie et automatisation
+              pour des{" "}
+              <span className="text-[#B4F34C] font-semibold">
+                résultats mesurables
+              </span>
+              .
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+              <a
+                href="/packs"
+                className="group bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-10 py-5 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-[#00D4D4]/50 transition-all flex items-center justify-center gap-3"
+              >
+                Découvrir nos offres
+                <ArrowRight
+                  size={24}
+                  className="group-hover:translate-x-2 transition-transform"
+                />
+              </a>
+              <a
+                href="/contact"
+                className="border-2 border-white text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-black transition-all"
+              >
+                Demander un devis
+              </a>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex items-center justify-center gap-6">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-[#00D4D4] transition-all hover:scale-110"
+              >
+                <Facebook size={22} />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-[#00D4D4] transition-all hover:scale-110"
+              >
+                <Instagram size={22} />
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-[#00D4D4] transition-all hover:scale-110"
+              >
+                <Linkedin size={22} />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-[#00D4D4] transition-all hover:scale-110"
+              >
+                <Twitter size={22} />
               </a>
             </div>
           </div>
         </div>
+
+        <style jsx global>{`
+          @keyframes pulse {
+            0%, 100% {
+              opacity: 0.5;
+              transform: scale(1);
+            }
+            50% {
+              opacity: 0.8;
+              transform: scale(1.1);
+            }
+          }
+          .animate-pulse {
+            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+          }
+        `}</style>
       </section>
 
-      {/* Exploitation des Hydrocarbures */}
-      <section className="py-20 px-4 bg-white">
+      {/* Stats Section */}
+      <section className="py-16 px-4 border-y border-white/10 bg-black/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8">
-            <span className="text-[#1E5FA8] font-semibold text-sm uppercase tracking-wide">
-              Exploitation des hydrocarbures
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1E5FA8] mb-4 font-poppins mt-2">
-              La société EnerTchad S.A a pour objet
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => {
+              const Icon = stat.icon;
+              return (
+                <div key={index} className="text-center group">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] mb-4 group-hover:scale-110 transition-transform">
+                    <Icon size={32} className="text-black" />
+                  </div>
+                  <div className="text-5xl font-black text-white mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-gray-400 font-medium">{stat.label}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Preview */}
+      <section className="py-24 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl sm:text-6xl font-black mb-6">
+              Nos{" "}
+              <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
+                Services
+              </span>
             </h2>
-            <p className="text-gray-700 mb-6 text-lg leading-relaxed max-w-3xl mx-auto">
-              L’exploration, la recherche, l’exploitation et la production
-              d’hydrocarbures liquides et gazeux ; Le raffinage, la
-              transformation et la valorisation des produits pétroliers et
-              gaziers ;
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Des solutions digitales complètes pour propulser votre croissance
             </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <div
+                  key={index}
+                  className="group relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/10 hover:border-[#00D4D4]/50 transition-all duration-300 hover:scale-105 overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#00D4D4]/0 to-[#B4F34C]/0 group-hover:from-[#00D4D4]/10 group-hover:to-[#B4F34C]/10 transition-all duration-300"></div>
+                  <div className="relative">
+                    <div
+                      className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}
+                    >
+                      <Icon className="text-white" size={32} />
+                    </div>
+                    <h3 className="font-bold text-xl mb-3 text-white">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-400 leading-relaxed">
+                      {service.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="text-center">
             <a
-              href="/about"
-              className="inline-block bg-[#1E5FA8] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#164a8a] transition-all"
+              href="/services"
+              className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-black transition-all group"
             >
-              Read More
+              Voir tous nos services
+              <ArrowRight
+                size={20}
+                className="group-hover:translate-x-2 transition-transform"
+              />
             </a>
           </div>
         </div>
       </section>
 
-      <Promo
-        title="Roulez électrique, nous couvrons la distance."
-        description={`EnerTchad déploie le premier réseau de bornes de recharge pour voitures électriques au Tchad, avec une station tous les 100 km pour vous garantir liberté et confort sur toutes vos routes. Que vous traversiez le pays pour les affaires ou les loisirs, vous trouvez toujours un point de recharge fiable, sécurisé et simple d’utilisation. Nos bornes sont adaptées aux réalités du terrain tchadien et permettent une recharge rapide afin de vous faire gagner du temps. Avec EnerTchad, choisir la voiture électrique n’est plus un risque, c’est un avantage : économies de carburant, moins de pollution et une expérience de conduite moderne, à la hauteur d’un Tchad tourné vers l’avenir.`}
-        bullets={[
-          "Station tous les 100 km",
-          "Recharge rapide et sécurisée",
-          "Compatibilité multi-normes",
-          "Maintenance locale et support",
-        ]}
-        imageSrc={evChargerImage}
-        imageAlt="Réseau de bornes EnerTchad"
-        imageLeft={false}
-        ctaText="En savoir plus"
-        ctaHref="/services"
-        wrapperClass="bg-gradient-to-r from-[#F5F9FF] to-white md:py-28"
-        imageClass="rounded-2xl shadow-2xl w-full h-96 md:h-[560px] object-cover"
-        titleClass="text-4xl md:text-6xl"
-        descriptionClass="text-lg md:text-xl text-gray-700"
-        ctaClass="inline-block bg-[#E6C34A] text-[#1E5FA8] px-8 py-4 rounded-lg font-bold hover:bg-[#d4a028] transition-all text-lg"
-      />
-
-      <Promo
-        title="Zone de co-working pendant la charge"
-        description={`Profitez d'un espace confortable et connecté pendant que votre véhicule se recharge. Nos stations proposent des zones de travail avec Wi‑Fi, prises électriques et boissons pour que vous puissiez rester productif.`}
-        bullets={[
-          "Wi‑Fi haut débit",
-          "Prises et espaces de travail ergonomiques",
-          "Boissons et encas disponibles",
-          "Ambiance calme et sécurisée",
-        ]}
-        imageSrc={"/c.jpg"}
-        imageAlt="Zone de co-working"
-        imageLeft={false}
-        ctaText="Voir les stations"
-        ctaHref="/services"
-        wrapperClass="bg-gradient-to-r from-[#F7FBFF] to-white md:py-28"
-        imageClass="rounded-2xl shadow-2xl w-full h-96 md:h-[560px] object-cover"
-        titleClass="text-4xl md:text-6xl"
-        descriptionClass="text-lg md:text-xl text-gray-700"
-        ctaClass="inline-block bg-[#1E5FA8] text-white px-8 py-4 rounded-lg font-bold hover:bg-[#164a8a] transition-all text-lg"
-      />
-
-      <Promo
-        title="Service de mobilité électrique"
-        description={`EnerTchad propose des solutions de mobilité électrique complètes : location de véhicules électriques, navettes pour entreprises et solutions de flotte électrique adaptées à vos besoins.`}
-        bullets={[
-          "Location courte et longue durée",
-          "Navettes et solutions pour entreprises",
-          "Maintenance et support dédiés",
-          "Intégration avec nos bornes de recharge",
-        ]}
-        imageSrc={evChargerImage}
-        imageAlt="Mobilité électrique"
-        imageLeft={true}
-        ctaText="Découvrir la mobilité"
-        ctaHref="/services"
-        wrapperClass="bg-gradient-to-r from-[#F5F9FF] to-white md:py-28"
-        imageClass="rounded-2xl shadow-2xl w-full h-96 md:h-[560px] object-cover"
-        titleClass="text-4xl md:text-6xl"
-        descriptionClass="text-lg md:text-xl text-gray-700"
-        ctaClass="inline-block bg-[#1E5FA8] text-white px-8 py-4 rounded-lg font-bold hover:bg-[#164a8a] transition-all text-lg"
-      />
-
-      {/* Features Section */}
-      <section className="py-24 px-4 bg-gradient-to-br from-[#1E5FA8] to-[#164a8a]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
-              <span className="text-[#E6C34A] font-semibold text-sm uppercase tracking-wide">
-                Nos Atouts
-              </span>
-              <h2 className="text-4xl md:text-5xl font-bold mb-8 font-poppins mt-2">
-                Pourquoi choisir EnerTchad ?
-              </h2>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4 bg-white/10 p-5 rounded-xl backdrop-blur-sm">
-                  <div className="w-12 h-12 bg-[#E6C34A] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Shield size={24} className="text-[#1E5FA8]" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-xl mb-2">
-                      Sécurité garantie
-                    </h3>
-                    <p className="text-gray-200 text-sm">
-                      Carburants certifiés et services conformes aux normes
-                      internationales les plus strictes
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4 bg-white/10 p-5 rounded-xl backdrop-blur-sm">
-                  <div className="w-12 h-12 bg-[#E6C34A] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <TrendingUp size={24} className="text-[#1E5FA8]" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-xl mb-2">
-                      Rapidité & efficacité
-                    </h3>
-                    <p className="text-gray-200 text-sm">
-                      Services 24/7, stations connectées, processus optimisés
-                      pour votre confort
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4 bg-white/10 p-5 rounded-xl backdrop-blur-sm">
-                  <div className="w-12 h-12 bg-[#E6C34A] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Leaf size={24} className="text-[#1E5FA8]" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-xl mb-2">
-                      Engagement environnemental
-                    </h3>
-                    <p className="text-gray-200 text-sm">
-                      Installations modernes, énergies renouvelables, transition
-                      écologique
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4 bg-white/10 p-5 rounded-xl backdrop-blur-sm">
-                  <div className="w-12 h-12 bg-[#E6C34A] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Award size={24} className="text-[#1E5FA8]" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-xl mb-2">
-                      Excellence & fiabilité
-                    </h3>
-                    <p className="text-gray-200 text-sm">
-                      15 ans d'expérience, expertise reconnue, approvisionnement
-                      constant
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <img
-              src={"/h4.png"}
-              alt="Station de recharge"
-              className="rounded-2xl shadow-2xl"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Products Section */}
-      {(!isLoadingData) && (
-        <section className="py-24 px-4 bg-[#F5E6D3]">
+      {/* Projects Showcase with Tabs */}
+      <section className="py-24 px-4 bg-gradient-to-b from-transparent to-black/50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <span className="text-[#3AA655] font-semibold text-sm uppercase tracking-wide">
-              Notre Boutique
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1E5FA8] mb-4 font-poppins mt-2">
-              Nos Produits Premium
+            <h2 className="text-5xl sm:text-6xl font-black mb-6">
+              Projets{" "}
+              <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
+                Récents
+              </span>
             </h2>
-            <p className="text-gray-700 mb-8 text-lg max-w-2xl mx-auto">
-              Sélection de produits de haute qualité pour tous vos besoins
-              énergétiques et automobiles
+            <p className="text-xl text-gray-400">
+              Découvrez comment nous transformons les entreprises
             </p>
           </div>
 
-          {products.length > 0 ? (
-            <>
-              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-                {products.map((product) => (
-                  <ProductCard key={product.id || product.slug || Math.random()} {...product} />
-                ))}
-              </div>
-
-              <div className="text-center mt-12">
-                <a
-                  href="/shop"
-                  className="inline-block bg-gradient-to-r from-[#E6C34A] to-[#d4a028] text-[#1E5FA8] px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition-all"
-                >
-                  Voir la boutique complète
-                </a>
-              </div>
-            </>
-          ) : (
-            <div className="text-center py-12">
-              <div className="text-5xl mb-4">🛒</div>
-              <h3 className="text-2xl font-bold text-[#1E5FA8] mb-2">Aucun produit disponible</h3>
-              <p className="text-gray-500 text-lg">Nous n'avons actuellement aucun produit en ligne. Revenez bientôt ou contactez-nous pour plus d'informations.</p>
-            </div>
-          )}
-        </div>
-      </section>
-      )}
-
-      {/* Testimonials Section */}
-      <section className="py-32 px-4 bg-gradient-to-b from-white to-[#F5E6D3] relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-[#3AA655]/5 rounded-full blur-3xl"></div>
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-20">
-            <span className="text-[#3AA655] font-bold text-sm uppercase tracking-widest inline-block mb-4 px-4 py-2 bg-green-100/50 rounded-full">
-              💬 Ce que disent nos clients
-            </span>
-            <h2 className="text-5xl md:text-6xl font-bold text-[#1E5FA8] mb-6">
-              Témoignages de <span className="bg-gradient-to-r from-[#3AA655] to-[#E6C34A] bg-clip-text text-transparent">Nos Clients</span>
-            </h2>
-            <p className="text-gray-700 mb-8 text-lg max-w-2xl mx-auto leading-relaxed">
-              Découvrez pourquoi des milliers de clients font confiance à EnerTchad pour leurs besoins énergétiques
-            </p>
+          {/* Tabs */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-6 py-3 rounded-full font-semibold transition-all ${
+                  activeTab === tab.id
+                    ? "bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black"
+                    : "bg-white/10 text-white hover:bg-white/20"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {testimonials.map((testimonial, idx) => (
-              <TestimonialCard key={idx} {...testimonial} />
+          {/* Projects Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map((project, index) => (
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-3xl border border-white/10 hover:border-white/30 transition-all duration-300"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                </div>
+                <div className="absolute inset-0 flex flex-col justify-end p-8">
+                  <div className="inline-block bg-[#00D4D4] text-black px-4 py-1 rounded-full text-sm font-bold mb-3 w-fit">
+                    {project.categoryLabel}
+                  </div>
+                  <h3 className="text-3xl font-black mb-2 text-white">
+                    {project.name}
+                  </h3>
+                  <p className="text-gray-300">{project.desc}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Team/Values Section */}
-      <section className="py-24 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="text-[#3AA655] font-semibold text-sm uppercase tracking-wide">
-                Notre Équipe
-              </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1E5FA8] mb-6 font-poppins mt-2">
-                Des Experts à Votre Service
+        {/* Packs Preview (inserted) */}
+        <section className="py-20 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-28">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#00D4D4]/20 to-[#B4F34C]/20 border border-[#00D4D4]/50 text-white px-6 py-3 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm">
+                <Sparkles size={20} className="text-[#B4F34C]" />
+                Des formules adaptées à chaque besoin
+              </div>
+              <h2 className="text-5xl sm:text-6xl font-black mb-8">
+                Nos {" "}
+                <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
+                  Packs
+                </span>
               </h2>
-              <p className="text-gray-700 mb-6 text-lg leading-relaxed">
-                Notre équipe de professionnels qualifiés est dédiée à vous
-                offrir le meilleur service et les meilleures solutions
-                énergétiques. Formés aux dernières technologies, nos experts
-                vous accompagnent dans tous vos projets.
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Choisissez le pack qui correspond à vos ambitions et à votre
+                budget. Tous nos packs incluent un accompagnement personnalisé.
               </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-[#E6C34A] rounded-full"></div>
-                  <span className="text-gray-700">
-                    Plus de 200 employés qualifiés
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-[#E6C34A] rounded-full"></div>
-                  <span className="text-gray-700">
-                    Formation continue aux nouvelles technologies
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-[#E6C34A] rounded-full"></div>
-                  <span className="text-gray-700">
-                    Service client disponible 24/7
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-[#E6C34A] rounded-full"></div>
-                  <span className="text-gray-700">
-                    Experts en énergies renouvelables
-                  </span>
-                </li>
-              </ul>
             </div>
-            <img
-              src={teamImage}
-              alt="Équipe EnerTchad"
-              className="rounded-2xl shadow-2xl"
-            />
+            <div className="pt-6 grid md:grid-cols-3 gap-8">
+              {packs.map((pack, index) => (
+                <div
+                  key={index}
+                  className={`relative group ${
+                    pack.popular ? "md:-mt-8 md:scale-105" : ""
+                  }`}
+                >
+                  {pack.popular && (
+                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-10">
+                      <div className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-2 rounded-full text-sm font-bold shadow-lg">
+                        ⭐ Plus Populaire
+                      </div>
+                    </div>
+                  )}
+
+                  <div
+                    className={`relative h-full bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border ${
+                      pack.popular
+                        ? "border-[#00D4D4] shadow-2xl shadow-[#00D4D4]/20"
+                        : "border-white/10 hover:border-white/30"
+                    } transition-all duration-300`}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#00D4D4]/0 to-[#B4F34C]/0 group-hover:from-[#00D4D4]/5 group-hover:to-[#B4F34C]/5 rounded-3xl transition-all"></div>
+
+                    <div className="relative">
+                      <div
+                        className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${pack.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}
+                      >
+                        <Sparkles className="text-white" size={36} />
+                      </div>
+
+                      <h3 className="text-3xl font-black mb-2 text-white">
+                        {pack.name}
+                      </h3>
+                      <p className="text-gray-400 mb-6">{pack.desc}</p>
+
+                      <div className="mb-8">
+                        <div className="flex items-end gap-2 mb-2">
+                          <span className="text-5xl font-black bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
+                            {pack.price}
+                          </span>
+                          <span className="text-gray-400 mb-2">FCFA</span>
+                        </div>
+                        <div className="text-xl text-gray-300 font-semibold">
+                          {pack.priceEuro} / mois
+                        </div>
+                      </div>
+
+                      <div className="space-y-4 mb-8">
+                        {pack.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-start gap-3">
+                            <CheckCircle
+                              className="text-[#B4F34C] flex-shrink-0 mt-1"
+                              size={22}
+                            />
+                            <span className="text-gray-300 leading-relaxed">
+                              {feature}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <a
+                        href="/contact"
+                        className={`block text-center py-4 rounded-full font-bold text-lg transition-all group ${
+                          pack.popular
+                            ? "bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black hover:shadow-xl hover:shadow-[#00D4D4]/30"
+                            : "border-2 border-white/30 text-white hover:bg-white hover:text-black"
+                        }`}
+                      >
+                        <span className="flex items-center justify-center gap-2">
+                          Choisir ce pack
+                          <ArrowRight
+                            size={20}
+                            className="group-hover:translate-x-1 transition-transform"
+                          />
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+      <section className="py-24 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl sm:text-6xl font-black mb-6">
+              Questions{" "}
+              <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
+                Fréquentes
+              </span>
+            </h2>
+            <p className="text-xl text-gray-400">
+              Tout ce que vous devez savoir sur nos services
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden"
+              >
+                <button
+                  onClick={() =>
+                    setOpenFaqIndex(openFaqIndex === index ? null : index)
+                  }
+                  className="w-full flex items-center justify-between p-6 text-left hover:bg-white/5 transition-all"
+                >
+                  <span className="font-bold text-lg text-white pr-4">
+                    {faq.question}
+                  </span>
+                  {openFaqIndex === index ? (
+                    <ChevronUp
+                      size={24}
+                      className="text-[#00D4D4] flex-shrink-0"
+                    />
+                  ) : (
+                    <ChevronDown
+                      size={24}
+                      className="text-gray-400 flex-shrink-0"
+                    />
+                  )}
+                </button>
+                {openFaqIndex === index && (
+                  <div className="px-6 pb-6">
+                    <p className="text-gray-300 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
-
-      {/* FAQ Section */}
-      <FAQSection />
-
-      {/* WhatsApp Contact Section */}
-      <WhatsAppContact />
-
-      {/* Blog Section - render with optional message when empty */}
-      {(!isLoadingData) && <BlogSection articles={articles} />}
 
       {/* CTA Section */}
-      <section className="py-24 px-4 bg-gradient-to-r from-[#E6C34A] to-[#d4a028]">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-poppins text-[#1E5FA8]">
-            Rejoignez la révolution énergétique
-          </h2>
-          <p className="text-xl mb-10 text-[#1E5FA8] font-medium">
-            Découvrez comment EnerTchad S.A. transforme le secteur de l'énergie
-            au Tchad avec des solutions innovantes et durables
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              className="inline-block bg-[#1E5FA8] text-white px-10 py-4 rounded-lg font-bold hover:bg-[#164a8a] transition-all shadow-xl"
-            >
-              Nous contacter
-            </a>
-            <a
-              href="/services"
-              className="inline-block border-2 border-[#1E5FA8] text-[#1E5FA8] px-10 py-4 rounded-lg font-bold hover:bg-[#1E5FA8] hover:text-white transition-all"
-            >
-              Explorer nos services
-            </a>
+      <section className="py-24 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="relative bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] rounded-3xl p-12 overflow-hidden">
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-black rounded-full blur-3xl"></div>
+            </div>
+            <div className="relative text-center">
+              <h2 className="text-4xl sm:text-5xl font-black text-black mb-6">
+                Prêt à transformer votre présence digitale ?
+              </h2>
+              <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
+                Rejoignez les entreprises qui font confiance à DigiCore pour
+                leur croissance digitale
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="/contact"
+                  className="bg-black text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-gray-900 transition-all inline-flex items-center justify-center gap-3 group"
+                >
+                  Démarrer mon projet
+                  <Rocket
+                    size={24}
+                    className="group-hover:translate-y-[-4px] transition-transform"
+                  />
+                </a>
+                <a
+                  href="/about"
+                  className="bg-white/20 backdrop-blur-sm text-black px-10 py-5 rounded-full font-bold text-lg hover:bg-white/30 transition-all"
+                >
+                  En savoir plus
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="border-t border-white/10 bg-black py-12 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            <div className="md:col-span-2">
+              <img
+                src="/logo.png"
+                alt="DigiCore Logo"
+                className="h-12 mb-6"
+              />
+              <p className="text-gray-400 mb-6 max-w-md">
+                DigiCore Inc - Votre partenaire digital pour créer de la valeur,
+                générer des conversions et atteindre vos objectifs business.
+              </p>
+              <div className="flex items-center gap-4">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
+                >
+                  <Facebook size={20} />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
+                >
+                  <Instagram size={20} />
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
+                >
+                  <Linkedin size={20} />
+                </a>
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
+                >
+                  <Twitter size={20} />
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-lg mb-4 text-white">Navigation</h3>
+              <div className="space-y-3">
+                <a
+                  href="/"
+                  className="block text-gray-400 hover:text-[#00D4D4] transition"
+                >
+                  Accueil
+                </a>
+                <a
+                  href="/about"
+                  className="block text-gray-400 hover:text-[#00D4D4] transition"
+                >
+                  À propos
+                </a>
+                <a
+                  href="/services"
+                  className="block text-gray-400 hover:text-[#00D4D4] transition"
+                >
+                  Services
+                </a>
+                <a
+                  href="/packs"
+                  className="block text-gray-400 hover:text-[#00D4D4] transition"
+                >
+                  Nos Packs
+                </a>
+                <a
+                  href="/contact"
+                  className="block text-gray-400 hover:text-[#00D4D4] transition"
+                >
+                  Contact
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-lg mb-4 text-white">Contact</h3>
+              <div className="space-y-3 text-gray-400">
+                <p>+237 690 91 04 01</p>
+                <p>contact@digicoreinc.org</p>
+                <p>www.digicoreinc.org</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-white/10 pt-8 text-center text-gray-400">
+            <p>© 2025 DigiCore Inc. Marketing Agency - Tous droits réservés</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

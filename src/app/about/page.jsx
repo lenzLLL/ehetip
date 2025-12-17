@@ -1,163 +1,266 @@
 "use client";
-
-import { Award, Target, Lightbulb, Users, Heart, Zap, Leaf, Shield } from "lucide-react";
-
-const heroImage =
-  "https://raw.createusercontent.com/d979799f-e68c-4795-9838-15c0098f6471/";
-const teamImage =
-  "https://raw.createusercontent.com/1af55a56-938f-48cc-954b-a7d27089ddc2/";
-
-export default function About() {
-  const values = [
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Twitter,
+  CheckCircle,
+  Target,
+  Zap,
+  Award,
+  Users,
+  TrendingUp,
+  Globe,
+  Briefcase,
+  Sparkles,
+  Menu,X
+} from "lucide-react";
+import {useState} from "react";
+export default function AboutPage() {
+  const mission = [
     {
-      icon: Lightbulb,
-      title: "Innovation",
-      description:
-        "Nous investissons dans les technologies de pointe pour offrir les meilleures solutions",
-      color: "from-blue-500 to-blue-600",
+      icon: Target,
+      title: "Présence digitale forte",
+      desc: "Construire une identité numérique professionnelle et attractive qui vous démarque",
+    },
+    {
+      icon: Users,
+      title: "Clients qualifiés",
+      desc: "Gagner des clients via les bons canaux digitaux avec des stratégies ciblées",
+    },
+    {
+      icon: Zap,
+      title: "Automatisation",
+      desc: "Automatiser la relation client pour plus d'efficacité et de disponibilité 24/7",
+    },
+    {
+      icon: TrendingUp,
+      title: "Analyse & amélioration",
+      desc: "Suivre et améliorer continuellement vos performances marketing",
+    },
+    {
+      icon: Globe,
+      title: "Accessibilité",
+      desc: "Rendre le digital simple, accessible et rentable pour tous",
+    },
+    {
+      icon: CheckCircle,
+      title: "Conversion",
+      desc: "Transformer vos prospects en clients fidèles grâce à des outils performants",
+    },
+  ];
+
+  const team = [
+    {
+      name: "DJON LI NGWANG Emmanuel",
+      role: "CEO DigiCore Inc et Consultant en stratégie",
+      color: "from-[#00D4D4] to-[#B4F34C]",
+    },
+    {
+      name: "Amrawi Abdou",
+      role: "Chef de projet digital",
+      color: "from-blue-500 to-purple-500",
+    },
+    {
+      name: "Mahamat Djotta Aurelle",
+      role: "Traffic Manager et Spécialiste SEO",
+      color: "from-purple-500 to-pink-500",
+    },
+  ];
+
+  const strengths = [
+    {
+      icon: Zap,
+      title: "Livraison rapide",
+      desc: "Logo ou site en 72h maximum",
+      gradient: "from-yellow-500 to-orange-500",
     },
     {
       icon: Award,
-      title: "Qualité",
-      description:
-        "Excellence dans tous nos produits et services, conformes aux normes internationales",
-      color: "from-green-500 to-green-600",
+      title: "Tarifs accessibles",
+      desc: "Solutions adaptées à tous les budgets",
+      gradient: "from-green-500 to-emerald-500",
     },
     {
-      icon: Heart,
-      title: "Responsabilité Sociale",
-      description: "Engagement envers nos clients, employés et la communauté",
-      color: "from-red-500 to-red-600",
+      icon: Briefcase,
+      title: "Multi-secteurs",
+      desc: "Expérience en énergie, éducation, e-commerce, mode, logistique",
+      gradient: "from-blue-500 to-cyan-500",
     },
     {
-      icon: Leaf,
-      title: "Durabilité",
-      description:
-        "Transition énergétique et solutions respectueuses de l'environnement",
-      color: "from-emerald-500 to-emerald-600",
+      icon: Sparkles,
+      title: "Outils modernes",
+      desc: "Canva Pro, CapCut, ManyChat, WordPress, WhatsApp API",
+      gradient: "from-purple-500 to-pink-500",
     },
   ];
 
-  const stats = [
-    { value: "50+", label: "Stations-service", icon: Zap },
-    { value: "500K+", label: "Clients satisfaits", icon: Users },
-    { value: "15 ans", label: "D'expérience", icon: Award },
-    { value: "100%", label: "Qualité certifiée", icon: Shield },
+  const sectors = [
+    { name: "Retail & FMCG", icon: "🛒" },
+    { name: "Immobilier", icon: "🏢" },
+    { name: "Banques/Fintech", icon: "💳" },
+    { name: "Éducation/Formation", icon: "🎓" },
+    { name: "ONG/Institutions", icon: "🤝" },
+    { name: "Tech/Startups", icon: "💻" },
   ];
-
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative h-[500px] flex items-center justify-center text-white overflow-hidden">
-        <img
-          src={heroImage}
-          alt="EnerTchad"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1E5FA8]/80 via-[#1E5FA8]/60 to-[#3AA655]/70"></div>
-
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-          <div className="mb-6 inline-block bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full border border-white/30">
-            <span className="text-white font-semibold">Notre Histoire</span>
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
+      {/* Header */}
+      <header className="fixed top-0 w-full bg-black/80 backdrop-blur-lg shadow-lg z-50 border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            <a href="/" className="flex items-center gap-3">
+              <img
+                src="/logo.png"
+               
+                alt="DigiCore Logo"
+                className="h-12 sm:h-14"
+              />
+            </a>
+            <nav className="hidden md:flex items-center gap-8">
+              <a
+                href="/"
+                className="text-white/80 hover:text-[#00D4D4] transition font-medium"
+              >
+                Accueil
+              </a>
+              <a
+                href="/about"
+                className="text-white hover:text-[#00D4D4] transition font-medium"
+              >
+                À propos
+              </a>
+              <a
+                href="/services"
+                className="text-white/80 hover:text-[#00D4D4] transition font-medium"
+              >
+                Services
+              </a>
+              <a
+                href="/packs"
+                className="text-white/80 hover:text-[#00D4D4] transition font-medium"
+              >
+                Nos Packs
+              </a>
+              <a
+                href="/contact"
+                className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-2 rounded-full hover:shadow-lg hover:shadow-[#00D4D4]/50 transition font-semibold"
+              >
+                Contact
+              </a>
+            </nav>
+             <button
+                          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                          className="md:hidden text-white p-2"
+                        >
+                          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                        </button>
           </div>
-          <h1 className="font-bold text-6xl md:text-7xl mb-6 leading-tight">
-            À Propos de <span className="bg-gradient-to-r from-[#E6C34A] to-[#FFD700] bg-clip-text text-transparent">EnerTchad</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-100">
-            Bâtir l'avenir énergétique du Tchad ensemble
-          </p>
+            {mobileMenuOpen && (
+            <nav className="md:hidden mt-4 pb-4 space-y-4">
+              <a
+                href="/"
+                className="block text-white hover:text-[#00D4D4] transition font-medium py-2"
+              >
+                Accueil
+              </a>
+              <a
+                href="/about"
+                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
+              >
+                À propos
+              </a>
+              <a
+                href="/services"
+                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
+              >
+                Services
+              </a>
+              <a
+                href="/packs"
+                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
+              >
+                Nos Packs
+              </a>
+              <a
+                href="/contact"
+                className="block bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-3 rounded-full text-center font-semibold"
+              >
+                Contact
+              </a>
+            </nav>
+          )}
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="pt-32 pb-20 px-4 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1508780709619-79562169bc64?q=80&w=1600&auto=format&fit=crop"
+            alt="background"
+            className="w-full h-full object-cover brightness-75"
+          />
+          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="absolute top-20 right-0 w-96 h-96 bg-[#00D4D4]/20 rounded-full blur-3xl z-30"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#B4F34C]/20 rounded-full blur-3xl z-30"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative">
+          <div className="text-center max-w-4xl mx-auto">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6">
+              À propos de{" "}
+              <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
+                DigiCore
+              </span>
+            </h1>
+            <p className="text-xl text-gray-300 leading-relaxed">
+              DigiCore est une{" "}
+              <span className="text-[#00D4D4] font-semibold">
+                agence de marketing digital 100% en ligne
+              </span>{" "}
+              spécialisée dans la création de valeur numérique pour les grandes
+              entreprises, PME, entrepreneurs, marques personnelles et
+              institutions.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Story Section */}
-      <section className="py-20 px-4 bg-gradient-to-b from-white to-gray-50">
-        <div className="max-w-5xl mx-auto">
-          <div className="space-y-12">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1E5FA8] mb-8">Notre Histoire</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-6">
-                  <p className="text-lg text-gray-700 leading-relaxed">
-                    Fondée en 2010, EnerTchad S.A. s'est établie comme un leader incontournable dans le secteur énergétique tchadien. Notre parcours a commencé avec une vision simple mais puissante : <span className="font-semibold text-[#3AA655]">fournir au Tchad une énergie fiable, de qualité et accessible à tous</span>.
-                  </p>
-                  <p className="text-lg text-gray-700 leading-relaxed">
-                    Au fil des années, nous avons construit un réseau solide de stations-service à travers le pays, servant des millions de clients satisfaits. Nos opérations se sont étendues à chaque région, apportant l'excellence en matière de service et de qualité.
-                  </p>
-                </div>
-                <div className="space-y-6">
-                  <p className="text-lg text-gray-700 leading-relaxed">
-                    Face aux défis climatiques et à la demande croissante d'énergie, nous nous sommes réinventés. Aujourd'hui, EnerTchad S.A. est bien plus qu'une entreprise pétrolière traditionnelle - nous sommes un acteur clé de la transition énergétique.
-                  </p>
-                  <p className="text-lg text-gray-700 leading-relaxed">
-                    Notre engagement envers l'excellence, l'innovation et la responsabilité environnementale continue de guider chaque décision. Nous offrons carburants, recharge électrique, énergie solaire et des solutions innovantes qui façonnent l'avenir énergétique du Tchad.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Vision & Mission */}
-      <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center text-[#1E5FA8] mb-16">Notre Raison d'Être</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="group">
-              <div className="bg-gradient-to-br from-[#1E5FA8] to-[#164a8a] rounded-2xl p-12 text-white h-full transform hover:scale-105 transition-transform duration-300 shadow-xl">
-                <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-xl mb-6">
-                  <Target size={32} />
-                </div>
-                <h3 className="text-3xl font-bold mb-4">Notre Vision</h3>
-                <p className="text-lg leading-relaxed opacity-95">
-                  Être le leader incontournable du secteur énergétique en Afrique centrale, en offrant des solutions durables et innovantes qui transforment la vie des populations et accélèrent le développement économique du Tchad.
-                </p>
-              </div>
-            </div>
-
-            <div className="group">
-              <div className="bg-gradient-to-br from-[#3AA655] to-[#2d8242] rounded-2xl p-12 text-white h-full transform hover:scale-105 transition-transform duration-300 shadow-xl">
-                <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-xl mb-6">
-                  <Lightbulb size={32} />
-                </div>
-                <h3 className="text-3xl font-bold mb-4">Notre Mission</h3>
-                <p className="text-lg leading-relaxed opacity-95">
-                  Fournir une énergie fiable, de qualité supérieure et durable, tout en développant des services innovants qui répondent aux besoins diversifiés de nos clients, tout en respectant l'environnement.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values */}
-      <section className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-6xl mx-auto">
+      {/* Mission Statement */}
+      <section className="py-20 px-4 bg-gradient-to-b from-transparent to-black/50">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-[#1E5FA8] mb-4">Nos Valeurs Fondamentales</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Les principes qui guident chaque décision et action chez EnerTchad
+            <h2 className="text-4xl sm:text-5xl font-black mb-6">
+              Notre{" "}
+              <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
+                Mission
+              </span>
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Nous combinons stratégie, design, technologie et automatisation
+              pour générer de la visibilité, des conversions et surtout des
+              résultats mesurables.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((value, idx) => {
-              const Icon = value.icon;
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {mission.map((item, index) => {
+              const Icon = item.icon;
               return (
                 <div
-                  key={idx}
-                  className="group bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-transparent hover:border-[#E6C34A] overflow-hidden"
+                  key={index}
+                  className="group bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/10 hover:border-[#00D4D4]/50 transition-all duration-300 hover:scale-105"
                 >
-                  <div className={`bg-gradient-to-br ${value.color} rounded-lg p-4 w-fit mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon size={32} className="text-white" />
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#00D4D4] to-[#B4F34C] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <Icon className="text-black" size={32} />
                   </div>
-                  <h3 className="font-bold text-xl text-[#1E5FA8] mb-3">
-                    {value.title}
+                  <h3 className="font-bold text-xl mb-3 text-white">
+                    {item.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {value.description}
-                  </p>
+                  <p className="text-gray-400 leading-relaxed">{item.desc}</p>
                 </div>
               );
             })}
@@ -165,122 +268,246 @@ export default function About() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="relative py-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1E5FA8] via-[#164a8a] to-[#3AA655]"></div>
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#E6C34A] rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#E6C34A] rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, idx) => {
-              const StatIcon = stat.icon;
-              return (
-                <div key={idx} className="text-center group">
-                  <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl mb-6 group-hover:bg-white/20 transition-all">
-                    <StatIcon className="w-12 h-12 mx-auto text-[#E6C34A] group-hover:scale-125 transition-transform" />
-                  </div>
-                  <div className="text-5xl font-bold text-white mb-2">{stat.value}</div>
-                  <div className="text-lg text-gray-100">{stat.label}</div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
+      {/* Strengths */}
       <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1E5FA8] mb-6">Notre Équipe Exceptional</h2>
-              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Avec plus de 2000 employés dédiés à travers le Tchad, EnerTchad S.A. est fière de son équipe diverse et talentueuse. Nos collaborateurs sont le cœur de notre succès.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-[#3AA655] text-white">
-                      <Users size={24} />
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-black mb-6">
+              Nos{" "}
+              <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
+                Atouts
+              </span>
+            </h2>
+            <p className="text-xl text-gray-400">
+              Ce qui nous rend uniques et efficaces
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {strengths.map((strength, index) => {
+              const Icon = strength.icon;
+              return (
+                <div key={index} className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all"></div>
+                  <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/10 hover:border-white/30 transition-all">
+                    <div
+                      className={`w-14 h-14 rounded-xl bg-gradient-to-br ${strength.gradient} flex items-center justify-center mb-6`}
+                    >
+                      <Icon className="text-white" size={28} />
                     </div>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-[#1E5FA8]">Formation Continue</h3>
-                    <p className="text-gray-600">Investissement constant dans le développement professionnel</p>
+                    <h3 className="font-bold text-lg mb-2 text-white">
+                      {strength.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm">{strength.desc}</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-[#3AA655] text-white">
-                      <Heart size={24} />
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Team */}
+      <section className="py-20 px-4 bg-gradient-to-b from-transparent to-black/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-black mb-6">
+              Notre{" "}
+              <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
+                Équipe
+              </span>
+            </h2>
+            <p className="text-xl text-gray-400">
+              Des experts passionnés dédiés à votre succès
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {team.map((member, index) => (
+              <div key={index} className="group relative">
+                <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:border-white/30 transition-all overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#00D4D4]/0 to-[#B4F34C]/0 group-hover:from-[#00D4D4]/10 group-hover:to-[#B4F34C]/10 transition-all"></div>
+                  <div className="relative">
+                    <div
+                      className={`w-24 h-24 rounded-full bg-gradient-to-br ${member.color} flex items-center justify-center text-white text-3xl font-black mb-6 mx-auto group-hover:scale-110 transition-transform`}
+                    >
+                      {member.name.charAt(0)}
                     </div>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-[#1E5FA8]">Culture d'Excellence</h3>
-                    <p className="text-gray-600">Environnement inclusif et collaboratif qui valorise l'innovation</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-[#3AA655] text-white">
-                      <Award size={24} />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-[#1E5FA8]">Reconnaissance</h3>
-                    <p className="text-gray-600">Récompense et avancement basés sur le mérite et la performance</p>
+                    <h3 className="font-bold text-xl mb-3 text-white text-center">
+                      {member.name}
+                    </h3>
+                    <p className="text-gray-400 text-center leading-relaxed">
+                      {member.role}
+                    </p>
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sectors */}
+      <section className="py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-black mb-6">
+              Secteurs{" "}
+              <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
+                Prioritaires
+              </span>
+            </h2>
+            <p className="text-xl text-gray-400">
+              Notre expertise couvre de multiples industries
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {sectors.map((sector, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-[#00D4D4]/50 transition-all hover:scale-105 text-center group"
+              >
+                <div className="text-4xl mb-3 group-hover:scale-125 transition-transform">
+                  {sector.icon}
+                </div>
+                <div className="font-semibold text-white">{sector.name}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] rounded-3xl p-12 text-center">
+            <h2 className="text-4xl sm:text-5xl font-black text-black mb-6">
+              Travaillons ensemble !
+            </h2>
+            <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
+              Découvrez comment DigiCore peut transformer votre présence
+              digitale
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/contact"
+                className="bg-black text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-gray-900 transition-all"
+              >
+                Nous contacter
+              </a>
+              <a
+                href="/services"
+                className="bg-white/20 backdrop-blur-sm text-black px-10 py-5 rounded-full font-bold text-lg hover:bg-white/30 transition-all"
+              >
+                Voir nos services
+              </a>
             </div>
-            <div className="relative">
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-white/10 bg-black py-12 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            <div className="md:col-span-2">
               <img
-                src={teamImage}
-                alt="Notre équipe"
-                className="rounded-2xl shadow-2xl w-full h-96 object-cover"
+              src="/logo.png"
+               alt="DigiCore Logo"
+                className="h-12 mb-6"
               />
-              <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-[#E6C34A]/20 rounded-full blur-3xl"></div>
+              <p className="text-gray-400 mb-6 max-w-md">
+                DigiCore Inc - Votre partenaire digital pour créer de la valeur,
+                générer des conversions et atteindre vos objectifs business.
+              </p>
+              <div className="flex items-center gap-4">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
+                >
+                  <Facebook size={20} />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
+                >
+                  <Instagram size={20} />
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
+                >
+                  <Linkedin size={20} />
+                </a>
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
+                >
+                  <Twitter size={20} />
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-lg mb-4 text-white">Navigation</h3>
+              <div className="space-y-3">
+                <a
+                  href="/"
+                  className="block text-gray-400 hover:text-[#00D4D4] transition"
+                >
+                  Accueil
+                </a>
+                <a
+                  href="/about"
+                  className="block text-gray-400 hover:text-[#00D4D4] transition"
+                >
+                  À propos
+                </a>
+                <a
+                  href="/services"
+                  className="block text-gray-400 hover:text-[#00D4D4] transition"
+                >
+                  Services
+                </a>
+                <a
+                  href="/packs"
+                  className="block text-gray-400 hover:text-[#00D4D4] transition"
+                >
+                  Nos Packs
+                </a>
+                <a
+                  href="/contact"
+                  className="block text-gray-400 hover:text-[#00D4D4] transition"
+                >
+                  Contact
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-lg mb-4 text-white">Contact</h3>
+              <div className="space-y-3 text-gray-400">
+                <p>+237 690 91 04 01</p>
+                <p>contact@digicoreinc.org</p>
+                <p>www.digicoreinc.org</p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="relative py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1E5FA8] to-[#3AA655]"></div>
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 1px)',
-            backgroundSize: '50px 50px',
-          }}></div>
-        </div>
-
-        <div className="max-w-4xl mx-auto relative z-10 text-center">
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Rejoignez l'Aventure <span className="text-[#E6C34A]">EnerTchad</span>
-          </h2>
-          <p className="text-xl text-gray-100 mb-12 max-w-2xl mx-auto">
-            Ensemble, créons le futur énergétique durable du Tchad et transformons la vie des populations
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              className="inline-block bg-[#E6C34A] text-[#1E5FA8] px-10 py-4 rounded-lg font-bold text-lg hover:bg-white transition-all transform hover:scale-105 shadow-lg"
-            >
-              Nous Contacter
-            </a>
-            <a
-              href="/shop"
-              className="inline-block bg-white/10 backdrop-blur-sm text-white px-10 py-4 rounded-lg font-bold text-lg border-2 border-white hover:bg-white/20 transition-all"
-            >
-              Découvrir nos Services
-            </a>
+          <div className="border-t border-white/10 pt-8 text-center text-gray-400">
+            <p>© 2025 DigiCore Inc. Marketing Agency - Tous droits réservés</p>
           </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 }

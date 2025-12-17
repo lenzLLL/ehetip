@@ -18,9 +18,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <QueryProvider>
             <CartProvider>
-              {!isAdmin && <Header />}
               <main>{children}</main>
-              {!isAdmin && <Footer />}
             </CartProvider>
           </QueryProvider>
         </Providers>

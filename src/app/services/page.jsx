@@ -182,92 +182,40 @@ export default function ServicesPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
+    <div className="min-h-screen bg-white text-slate-800">
       {/* Header */}
-      <header className="fixed top-0 w-full bg-black/80 backdrop-blur-lg shadow-lg z-50 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <a href="/" className="flex items-center gap-3">
-              <img
-                src="/logo.png"
-                alt="DigiCore Logo"
-                className="h-12 sm:h-14"
-              />
-            </a>
-            <nav className="hidden md:flex items-center gap-8">
-              <a
-                href="/"
-                className="text-white/80 hover:text-[#00D4D4] transition font-medium"
-              >
-                Accueil
-              </a>
-              <a
-                href="/about"
-                className="text-white/80 hover:text-[#00D4D4] transition font-medium"
-              >
-                À propos
-              </a>
-              <a
-                href="/services"
-                className="text-white hover:text-[#00D4D4] transition font-medium"
-              >
-                Services
-              </a>
-              <a
-                href="/packs"
-                className="text-white/80 hover:text-[#00D4D4] transition font-medium"
-              >
-                Nos Packs
-              </a>
-              <a
-                href="/contact"
-                className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-2 rounded-full hover:shadow-lg hover:shadow-[#00D4D4]/50 transition font-semibold"
-              >
-                Contact
-              </a>
-            </nav>
-             <button
-                          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                          className="md:hidden text-white p-2"
-                        >
-                          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-                        </button>
-          </div>
-            {mobileMenuOpen && (
-            <nav className="md:hidden mt-4 pb-4 space-y-4">
-              <a
-                href="/"
-                className="block text-white hover:text-[#00D4D4] transition font-medium py-2"
-              >
-                Accueil
-              </a>
-              <a
-                href="/about"
-                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
-              >
-                À propos
-              </a>
-              <a
-                href="/services"
-                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
-              >
-                Services
-              </a>
-              <a
-                href="/packs"
-                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
-              >
-                Nos Packs
-              </a>
-              <a
-                href="/contact"
-                className="block bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-3 rounded-full text-center font-semibold"
-              >
-                Contact
-              </a>
-            </nav>
-          )}
+            <header className="fixed top-0 w-full bg-white/80 backdrop-blur-lg shadow-lg z-50 border-b border-gray-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+          <a href="/" className="flex items-center gap-3">
+            <img src="/logo.png" alt="DigiCore Logo" className="h-12 sm:h-14" />
+          </a>
+          <nav className="hidden md:flex items-center gap-8">
+            <a href="/" className="text-gray-900 hover:text-[#00D4D4] font-medium transition">Accueil</a>
+            <a href="/about" className="text-gray-700 hover:text-[#00D4D4] font-medium transition">À propos</a>
+            <a href="/services" className="text-gray-700 hover:text-[#00D4D4] font-medium transition">Services</a>
+            <a href="/packs" className="text-gray-700 hover:text-[#00D4D4] font-medium transition">Nos Packs</a>
+            <a href="/contact" className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-2 rounded-full font-semibold hover:shadow-lg transition">Contact</a>
+          </nav>
+          <button
+            type="button"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label="Toggle menu"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden text-gray-900 p-2"
+          >
+            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
+        {mobileMenuOpen && (
+          <nav id="mobile-menu" className="md:hidden mt-4 pb-4 space-y-4 relative z-50 bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-lg">
+            <a href="/" className="block text-gray-900 hover:text-[#00D4D4] py-2">Accueil</a>
+            <a href="/about" className="block text-gray-700 hover:text-[#00D4D4] py-2">À propos</a>
+            <a href="/services" className="block text-gray-700 hover:text-[#00D4D4] py-2">Services</a>
+            <a href="/packs" className="block text-gray-700 hover:text-[#00D4D4] py-2">Nos Packs</a>
+            <a href="/contact" className="block bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-3 rounded-full text-center font-semibold">Contact</a>
+          </nav>
+        )}
       </header>
 
       {/* Hero */}
@@ -276,69 +224,47 @@ export default function ServicesPage() {
           <img
             src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop"
             alt="services background"
-            className="w-full h-full object-cover brightness-75"
+            className="w-full h-full object-cover brightness-60"
           />
-          <div className="absolute inset-0 bg-black/40"></div>
-          <div className="absolute top-20 left-0 w-96 h-96 bg-[#00D4D4]/20 rounded-full blur-3xl z-30"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#B4F34C]/20 rounded-full blur-3xl z-30"></div>
+          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="absolute top-20 left-0 w-96 h-96 bg-emerald-200/20 rounded-full blur-3xl z-30"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl z-30"></div>
         </div>
 
         <div className="max-w-7xl mx-auto relative">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6">
-              Nos{" "}
-              <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
-                Services
-              </span>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6 text-white">
+              Nos <span className="bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">Services</span>
             </h1>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              Des solutions digitales complètes pour transformer votre présence
-              en ligne et générer des résultats concrets
+            <p className="text-lg text-white/90 leading-relaxed">
+              Des solutions digitales complètes pour transformer votre présence en ligne et générer des résultats concrets
             </p>
           </div>
         </div>
       </section>
 
       {/* Main Services */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-black mb-6">
-              Services{" "}
-              <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
-                Principaux
-              </span>
-            </h2>
+            <h2 className="text-4xl sm:text-5xl font-black mb-6">Services <span className="bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">Principaux</span></h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {mainServices.map((service, index) => {
               const Icon = service.icon;
               return (
-                <div
-                  key={index}
-                  className="group relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm p-10 rounded-3xl border border-white/10 hover:border-[#00D4D4]/50 transition-all duration-300 hover:scale-[1.02] overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#00D4D4]/0 to-[#B4F34C]/0 group-hover:from-[#00D4D4]/5 group-hover:to-[#B4F34C]/5 transition-all duration-300"></div>
+                <div key={index} className="group relative bg-white p-8 rounded-2xl border border-slate-200 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] overflow-hidden">
                   <div className="relative">
-                    <div
-                      className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}
-                    >
-                      <Icon className="text-white" size={36} />
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                      <Icon className="text-white" size={28} />
                     </div>
-                    <h3 className="font-bold text-2xl mb-3 text-white">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-400 mb-6 leading-relaxed">
-                      {service.desc}
-                    </p>
-                    <ul className="space-y-3">
+                    <h3 className="font-bold text-2xl mb-2 text-slate-900">{service.title}</h3>
+                    <p className="text-slate-600 mb-4 leading-relaxed">{service.desc}</p>
+                    <ul className="space-y-2">
                       {service.features.map((feature, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-center gap-3 text-gray-300"
-                        >
-                          <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#00D4D4] to-[#B4F34C]"></div>
+                        <li key={idx} className="flex items-center gap-3 text-slate-600">
+                          <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
                           {feature}
                         </li>
                       ))}
@@ -352,37 +278,23 @@ export default function ServicesPage() {
       </section>
 
       {/* Google Services */}
-      <section className="py-20 px-4 bg-gradient-to-b from-transparent to-black/50">
+      <section className="py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-black mb-6">
-              Spécialisation{" "}
-              <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
-                Google
-              </span>
-            </h2>
-            <p className="text-xl text-gray-400">
-              Expertise complète des outils Google pour votre visibilité
-            </p>
+            <h2 className="text-4xl sm:text-5xl font-black mb-6">Spécialisation <span className="bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">Google</span></h2>
+            <p className="text-xl text-slate-600">Expertise complète des outils Google pour votre visibilité</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {googleServices.map((service, index) => {
               const Icon = service.icon;
               return (
-                <div
-                  key={index}
-                  className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm p-8 rounded-3xl border border-white/10 hover:border-white/30 transition-all hover:scale-105"
-                >
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center mb-6">
-                    <Icon className="text-white" size={32} />
+                <div key={index} className="bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition-all hover:scale-105">
+                  <div className="w-14 h-14 rounded-2xl bg-emerald-500 flex items-center justify-center mb-4">
+                    <Icon className="text-white" size={24} />
                   </div>
-                  <h3 className="font-bold text-xl mb-3 text-white">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {service.desc}
-                  </p>
+                  <h3 className="font-bold text-xl mb-2 text-slate-900">{service.title}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{service.desc}</p>
                 </div>
               );
             })}
@@ -391,37 +303,23 @@ export default function ServicesPage() {
       </section>
 
       {/* Automation */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-black mb-6">
-              Automatisation &{" "}
-              <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
-                Nouvelles Technologies
-              </span>
-            </h2>
-            <p className="text-xl text-gray-400">
-              Gagnez du temps et augmentez votre efficacité
-            </p>
+            <h2 className="text-4xl sm:text-5xl font-black mb-6">Automatisation & <span className="bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">Nouvelles Technologies</span></h2>
+            <p className="text-xl text-slate-600">Gagnez du temps et augmentez votre efficacité</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {automation.map((service, index) => {
               const Icon = service.icon;
               return (
-                <div
-                  key={index}
-                  className="group bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm p-10 rounded-3xl border border-white/10 hover:border-[#B4F34C]/50 transition-all hover:scale-105"
-                >
-                  <div className="w-18 h-18 rounded-2xl bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform">
-                    <Icon className="text-white" size={34} />
+                <div key={index} className="group bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition-all hover:scale-105">
+                  <div className="w-14 h-14 rounded-2xl bg-emerald-500 flex items-center justify-center mb-4 group-hover:rotate-6 transition-transform">
+                    <Icon className="text-white" size={28} />
                   </div>
-                  <h3 className="font-bold text-xl mb-3 text-white">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-400 leading-relaxed">
-                    {service.desc}
-                  </p>
+                  <h3 className="font-bold text-xl mb-2 text-slate-900">{service.title}</h3>
+                  <p className="text-slate-600 leading-relaxed">{service.desc}</p>
                 </div>
               );
             })}
@@ -432,121 +330,54 @@ export default function ServicesPage() {
       {/* CTA */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] rounded-3xl p-12 text-center">
-            <h2 className="text-4xl sm:text-5xl font-black text-black mb-6">
-              Prêt à démarrer ?
-            </h2>
-            <p className="text-xl text-black/80 mb-8">
-              Discutons de votre projet et trouvons la solution adaptée à vos
-              besoins
-            </p>
+          <div className="bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-3xl p-12 text-center shadow-lg">
+            <h2 className="text-4xl sm:text-5xl font-black text-black mb-4">Prêt à démarrer ?</h2>
+            <p className="text-lg text-black/80 mb-6">Discutons de votre projet et trouvons la solution adaptée à vos besoins</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/contact"
-                className="bg-black text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-gray-900 transition-all"
-              >
-                Demander un devis
-              </a>
-              <a
-                href="/packs"
-                className="bg-white/20 backdrop-blur-sm text-black px-10 py-5 rounded-full font-bold text-lg hover:bg-white/30 transition-all"
-              >
-                Voir nos packs
-              </a>
+              <a href="/contact" className="bg-black text-white px-8 py-3 rounded-full font-semibold text-base hover:bg-gray-900 transition-all">Demander un devis</a>
+              <a href="/packs" className="bg-white/90 text-slate-900 px-8 py-3 rounded-full font-semibold text-base hover:shadow-md transition-all">Voir nos packs</a>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 bg-black py-12 px-4">
+      <footer className="border-t border-slate-200 bg-white py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div className="md:col-span-2">
-              <img
-               src="/logo.png"
-                 alt="DigiCore Logo"
-                className="h-12 mb-6"
-              />
-              <p className="text-gray-400 mb-6 max-w-md">
-                DigiCore Inc - Votre partenaire digital pour créer de la valeur,
-                générer des conversions et atteindre vos objectifs business.
-              </p>
+              <img src="/logo.png" alt="DigiCore Logo" className="h-12 mb-6" />
+              <p className="text-slate-600 mb-6 max-w-md">DigiCore Inc - Votre partenaire digital pour créer de la valeur, générer des conversions et atteindre vos objectifs business.</p>
               <div className="flex items-center gap-4">
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
-                >
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-emerald-100 transition">
                   <Facebook size={20} />
                 </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
-                >
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-emerald-100 transition">
                   <Instagram size={20} />
                 </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
-                >
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-emerald-100 transition">
                   <Linkedin size={20} />
                 </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
-                >
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-emerald-100 transition">
                   <Twitter size={20} />
                 </a>
               </div>
             </div>
 
             <div>
-              <h3 className="font-bold text-lg mb-4 text-white">Navigation</h3>
+              <h3 className="font-bold text-lg mb-4 text-slate-900">Navigation</h3>
               <div className="space-y-3">
-                <a
-                  href="/"
-                  className="block text-gray-400 hover:text-[#00D4D4] transition"
-                >
-                  Accueil
-                </a>
-                <a
-                  href="/about"
-                  className="block text-gray-400 hover:text-[#00D4D4] transition"
-                >
-                  À propos
-                </a>
-                <a
-                  href="/services"
-                  className="block text-gray-400 hover:text-[#00D4D4] transition"
-                >
-                  Services
-                </a>
-                <a
-                  href="/packs"
-                  className="block text-gray-400 hover:text-[#00D4D4] transition"
-                >
-                  Nos Packs
-                </a>
-                <a
-                  href="/contact"
-                  className="block text-gray-400 hover:text-[#00D4D4] transition"
-                >
-                  Contact
-                </a>
+                <a href="/" className="block text-slate-600 hover:text-emerald-600 transition">Accueil</a>
+                <a href="/about" className="block text-slate-600 hover:text-emerald-600 transition">À propos</a>
+                <a href="/services" className="block text-slate-600 hover:text-emerald-600 transition">Services</a>
+                <a href="/packs" className="block text-slate-600 hover:text-emerald-600 transition">Nos Packs</a>
+                <a href="/contact" className="block text-slate-600 hover:text-emerald-600 transition">Contact</a>
               </div>
             </div>
 
             <div>
-              <h3 className="font-bold text-lg mb-4 text-white">Contact</h3>
-              <div className="space-y-3 text-gray-400">
+              <h3 className="font-bold text-lg mb-4 text-slate-900">Contact</h3>
+              <div className="space-y-3 text-slate-600">
                 <p>+237 690 91 04 01</p>
                 <p>contact@digicoreinc.org</p>
                 <p>www.digicoreinc.org</p>
@@ -554,7 +385,7 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          <div className="border-t border-white/10 pt-8 text-center text-gray-400">
+          <div className="border-t border-slate-200 pt-8 text-center text-slate-500">
             <p>© 2025 DigiCore Inc. Marketing Agency - Tous droits réservés</p>
           </div>
         </div>

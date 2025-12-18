@@ -1,566 +1,184 @@
-"use client";
-import { useState } from "react";
+﻿"use client";
 import {
-  Facebook,
-  Instagram,
-  Linkedin,
-  Twitter,
-  Phone,
-  Mail,
-  Globe,
-  MapPin,
-  Send,
-  CheckCircle,
-  Menu,
-  X,
+	Facebook,
+	Instagram,
+	Linkedin,
+	Twitter,
+	Menu,
+	X,
+	Phone,
+	Mail,
+	Globe,
+	Send,
 } from "lucide-react";
+import { useState } from "react";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    message: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Simulate form submission
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        company: "",
-        message: "",
-      });
-    }, 3000);
-  };
+	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+	const [formData, setFormData] = useState({ name: "", email: "", company: "", message: "" });
+	const [sent, setSent] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+	function handleChange(e) {
+		const { name, value } = e.target;
+		setFormData((s) => ({ ...s, [name]: value }));
+	}
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
-      {/* Header */}
-      <header className="fixed top-0 w-full bg-black/80 backdrop-blur-lg shadow-lg z-50 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <a href="/" className="flex items-center gap-3">
-              <img
-                src="/logo.png"
-                alt="DigiCore Logo"
-                className="h-12 sm:h-14"
-              />
-            </a>
+	function handleSubmit(e) {
+		e.preventDefault();
+		setSent(true);
+		setTimeout(() => setSent(false), 3000);
+		setFormData({ name: "", email: "", company: "", message: "" });
+	}
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
-              <a
-                href="/"
-                className="text-white/80 hover:text-[#00D4D4] transition font-medium"
-              >
-                Accueil
-              </a>
-              <a
-                href="/about"
-                className="text-white/80 hover:text-[#00D4D4] transition font-medium"
-              >
-                À propos
-              </a>
-              <a
-                href="/services"
-                className="text-white/80 hover:text-[#00D4D4] transition font-medium"
-              >
-                Services
-              </a>
-              <a
-                href="/packs"
-                className="text-white/80 hover:text-[#00D4D4] transition font-medium"
-              >
-                Nos Packs
-              </a>
-              <a
-                href="/contact"
-                className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-2 rounded-full hover:shadow-lg hover:shadow-[#00D4D4]/50 transition font-semibold"
-              >
-                Contact
-              </a>
-            </nav>
-             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-white p-2"
-            >
-              {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-white p-2"
-            >
-              {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
-            {mobileMenuOpen && (
-            <nav className="md:hidden mt-4 pb-4 space-y-4">
-              <a
-                href="/"
-                className="block text-white hover:text-[#00D4D4] transition font-medium py-2"
-              >
-                Accueil
-              </a>
-              <a
-                href="/about"
-                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
-              >
-                À propos
-              </a>
-              <a
-                href="/services"
-                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
-              >
-                Services
-              </a>
-              <a
-                href="/packs"
-                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
-              >
-                Nos Packs
-              </a>
-              <a
-                href="/contact"
-                className="block bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-3 rounded-full text-center font-semibold"
-              >
-                Contact
-              </a>
-            </nav>
-          )}
+	return (
+		<div className="min-h-screen bg-gradient-to-b from-emerald-50 via-emerald-100 to-emerald-200 text-gray-900">
+			{/* Header (match About) */}
+			<header className="fixed top-0 w-full bg-white/80 backdrop-blur-lg shadow-lg z-50 border-b border-gray-300">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+					<div className="flex items-center justify-between">
+						<a href="/" className="flex items-center gap-3">
+							<img src="/logo.png" alt="DigiCore Logo" className="h-12 sm:h-14" />
+						</a>
+						<nav className="hidden md:flex items-center gap-8">
+							<a href="/" className="text-gray-900 hover:text-[#00D4D4] transition font-medium">Accueil</a>
+							<a href="/about" className="text-gray-900 font-medium">À propos</a>
+							<a href="/services" className="text-gray-700 hover:text-[#00D4D4] transition font-medium">Services</a>
+							<a href="/packs" className="text-gray-700 hover:text-[#00D4D4] transition font-medium">Nos Packs</a>
+							<a href="/contact" className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-2 rounded-full hover:shadow-lg hover:shadow-[#00D4D4]/50 transition font-semibold">Contact</a>
+						</nav>
+						<button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-gray-900 p-2">{mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}</button>
+					</div>
+					{mobileMenuOpen && (
+						<nav className="md:hidden mt-4 pb-4 space-y-4">
+							<a href="/" className="block text-gray-900 hover:text-[#00D4D4] transition font-medium py-2">Accueil</a>
+							<a href="/about" className="block text-gray-900 hover:text-[#00D4D4] transition font-medium py-2">À propos</a>
+							<a href="/services" className="block text-gray-700 hover:text-[#00D4D4] transition font-medium py-2">Services</a>
+							<a href="/packs" className="block text-gray-700 hover:text-[#00D4D4] transition font-medium py-2">Nos Packs</a>
+							<a href="/contact" className="block bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-3 rounded-full text-center font-semibold">Contact</a>
+						</nav>
+					)}
+				</div>
+			</header>
 
-          {/* Mobile Navigation */}
-          {mobileMenuOpen && (
-            <nav className="md:hidden mt-4 pb-4 space-y-4">
-              <a
-                href="/"
-                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
-              >
-                Accueil
-              </a>
-              <a
-                href="/about"
-                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
-              >
-                À propos
-              </a>
-              <a
-                href="/services"
-                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
-              >
-                Services
-              </a>
-              <a
-                href="/packs"
-                className="block text-white/80 hover:text-[#00D4D4] transition font-medium py-2"
-              >
-                Nos Packs
-              </a>
-              <a
-                href="/contact"
-                className="block bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-3 rounded-full text-center font-semibold"
-              >
-                Contact
-              </a>
-            </nav>
-          )}
-        </div>
-      </header>
+			{/* Hero */}
+			<section className="pt-32 mt-10 pb-12 px-4 relative overflow-hidden">
+				<div className="absolute inset-0">
+					<img src="https://images.unsplash.com/photo-1508780709619-79562169bc64?q=80&w=1600&auto=format&fit=crop" alt="background" className="w-full h-full object-cover" />
+					<div className="absolute inset-0 bg-emerald-50/70"></div>
+				</div>
 
-      {/* Hero */}
-      <section className="pt-32 pb-20 px-4 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=1600&auto=format&fit=crop"
-            alt="contact background"
-            className="w-full h-full object-cover brightness-75"
-          />
-          <div className="absolute inset-0 bg-black/40"></div>
-          <div className="absolute top-20 left-0 w-96 h-96 bg-[#00D4D4]/20 rounded-full blur-3xl z-30"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#B4F34C]/20 rounded-full blur-3xl z-30"></div>
-        </div>
+				<div className="max-w-7xl mx-auto relative text-center z-20">
+					<h1 className="text-4xl sm:text-5xl font-black mb-4">Contactez <span className="text-emerald-700">DigiCore</span></h1>
+					<p className="text-lg text-gray-700 max-w-2xl mx-auto">Parlez-nous de votre projet — nous créons des stratégies digitales qui fonctionnent.</p>
+				</div>
+			</section>
 
-        <div className="max-w-7xl mx-auto relative">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black mb-6">
-              Contactez-
-              <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
-                nous
-              </span>
-            </h1>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              Prêt à propulser votre présence digitale ? Discutons de votre
-              projet et trouvons ensemble la meilleure solution.
-            </p>
-          </div>
-        </div>
-      </section>
+			{/* Content */}
+			<section className="pb-20 mt-10">
+				<div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-12">
+					<div className="md:col-span-1">
+						<div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+							<h3 className="text-xl font-bold text-emerald-700 mb-3">Nos coordonnées</h3>
+							<p className="text-gray-600 mb-6">Nous sommes disponibles pour discuter de votre projet et vous proposer une solution adaptée.</p>
 
-      {/* Contact Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Info */}
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-3xl sm:text-4xl font-black mb-6">
-                  Parlons de votre{" "}
-                  <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">
-                    projet
-                  </span>
-                </h2>
-                <p className="text-gray-400 text-lg leading-relaxed">
-                  Notre équipe est à votre écoute pour comprendre vos besoins et
-                  vous proposer des solutions adaptées. Nous répondons
-                  généralement en moins de 24h.
-                </p>
-              </div>
+							<div className="space-y-4 text-gray-700">
+								<div className="flex items-start gap-3">
+									<div className="w-11 h-11 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700">
+										<Phone size={18} />
+									</div>
+									<div>
+										<div className="font-semibold">Téléphone</div>
+										<div className="text-sm text-gray-600">+237 690 91 04 01</div>
+									</div>
+								</div>
 
-              <div className="space-y-6">
-                <div className="flex items-start gap-4 group">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#00D4D4] to-[#B4F34C] flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <Phone size={28} className="text-black" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-1 text-white">
-                      Téléphone
-                    </h3>
-                    <a
-                      href="tel:+237690910401"
-                      className="text-gray-400 hover:text-[#00D4D4] transition text-lg"
-                    >
-                      +237 690 91 04 01
-                    </a>
-                    <p className="text-gray-500 text-sm mt-1">
-                      Lun - Sam, 8h - 18h
-                    </p>
-                  </div>
-                </div>
+								<div className="flex items-start gap-3">
+									<div className="w-11 h-11 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700">
+										<Mail size={18} />
+									</div>
+									<div>
+										<div className="font-semibold">Email</div>
+										<div className="text-sm text-gray-600">contact@digicoreinc.org</div>
+									</div>
+								</div>
 
-                <div className="flex items-start gap-4 group">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <Mail size={28} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-1 text-white">Email</h3>
-                    <a
-                      href="mailto:contact@digicoreinc.org"
-                      className="text-gray-400 hover:text-[#00D4D4] transition text-lg"
-                    >
-                      contact@digicoreinc.org
-                    </a>
-                    <p className="text-gray-500 text-sm mt-1">
-                      Réponse en moins de 24h
-                    </p>
-                  </div>
-                </div>
+								<div className="flex items-start gap-3">
+									<div className="w-11 h-11 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700">
+										<Globe size={18} />
+									</div>
+									<div>
+										<div className="font-semibold">Site web</div>
+										<div className="text-sm text-gray-600">www.digicoreinc.org</div>
+									</div>
+								</div>
+							</div>
 
-                <div className="flex items-start gap-4 group">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <Globe size={28} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-1 text-white">
-                      Site web
-                    </h3>
-                    <a
-                      href="https://www.digicoreinc.org"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-[#00D4D4] transition text-lg"
-                    >
-                      www.digicoreinc.org
-                    </a>
-                  </div>
-                </div>
-              </div>
+							<div className="mt-6 text-sm text-gray-600">
+								Heure d'ouverture: Lun - Ven, 9:00 - 17:00
+							</div>
+						</div>
+					</div>
 
-              {/* Social Media */}
-              <div className="pt-8">
-                <h3 className="font-bold text-lg mb-4 text-white">
-                  Suivez-nous
-                </h3>
-                <div className="flex items-center gap-4">
-                  <a
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-[#00D4D4] transition-all hover:scale-110"
-                  >
-                    <Facebook size={22} />
-                  </a>
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-[#00D4D4] transition-all hover:scale-110"
-                  >
-                    <Instagram size={22} />
-                  </a>
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-[#00D4D4] transition-all hover:scale-110"
-                  >
-                    <Linkedin size={22} />
-                  </a>
-                  <a
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-[#00D4D4] transition-all hover:scale-110"
-                  >
-                    <Twitter size={22} />
-                  </a>
-                </div>
-              </div>
-            </div>
+					<div className="md:col-span-2">
+						<div className="bg-white rounded-3xl p-10 shadow-2xl border border-gray-100">
+							<h3 className="text-2xl font-bold text-gray-900 mb-4">Envoyez-nous un message</h3>
+							<form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<input name="name" value={formData.name} onChange={handleChange} required placeholder="Nom complet *" className="col-span-1 md:col-span-1 p-4 border rounded-xl focus:outline-none" />
+								<input name="email" type="email" value={formData.email} onChange={handleChange} required placeholder="Email *" className="col-span-1 md:col-span-1 p-4 border rounded-xl focus:outline-none" />
+								<input name="company" value={formData.company} onChange={handleChange} placeholder="Entreprise (optionnel)" className="col-span-1 md:col-span-2 p-4 border rounded-xl focus:outline-none" />
+								<textarea name="message" value={formData.message} onChange={handleChange} required rows={6} placeholder="Décrivez votre projet..." className="col-span-1 md:col-span-2 p-4 border rounded-xl focus:outline-none resize-none" />
 
-            {/* Contact Form */}
-            <div className="relative">
-              <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-white/10">
-                {submitted ? (
-                  <div className="flex flex-col items-center justify-center py-16 text-center">
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#00D4D4] to-[#B4F34C] flex items-center justify-center mb-6">
-                      <CheckCircle size={40} className="text-black" />
-                    </div>
-                    <h3 className="text-2xl font-bold mb-3 text-white">
-                      Message envoyé !
-                    </h3>
-                    <p className="text-gray-400">
-                      Nous avons bien reçu votre message et vous répondrons dans
-                      les plus brefs délais.
-                    </p>
-                  </div>
-                ) : (
-                  <>
-                    <h3 className="text-2xl font-bold mb-2 text-white">
-                      Demande de devis
-                    </h3>
-                    <p className="text-gray-400 mb-8">
-                      Remplissez le formulaire ci-dessous et nous vous
-                      recontacterons rapidement
-                    </p>
+								<div className="col-span-1 md:col-span-2">
+									<button type="submit" className="w-full inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black font-bold py-4 rounded-2xl shadow-lg">
+										Envoyer le message
+										<Send size={18} />
+									</button>
+								</div>
 
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      <div>
-                        <label
-                          htmlFor="name"
-                          className="block text-sm font-semibold mb-2 text-gray-300"
-                        >
-                          Nom complet *
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          required
-                          className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00D4D4] focus:ring-2 focus:ring-[#00D4D4]/20 transition"
-                          placeholder="Votre nom"
-                        />
-                      </div>
+								{sent && <div className="col-span-1 md:col-span-2 text-emerald-700 font-semibold">Message envoyé — nous vous répondrons bientôt.</div>}
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
 
-                      <div>
-                        <label
-                          htmlFor="email"
-                          className="block text-sm font-semibold mb-2 text-gray-300"
-                        >
-                          Email *
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00D4D4] focus:ring-2 focus:ring-[#00D4D4]/20 transition"
-                          placeholder="votre@email.com"
-                        />
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="phone"
-                          className="block text-sm font-semibold mb-2 text-gray-300"
-                        >
-                          Téléphone
-                        </label>
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00D4D4] focus:ring-2 focus:ring-[#00D4D4]/20 transition"
-                          placeholder="+237 XXX XX XX XX"
-                        />
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="company"
-                          className="block text-sm font-semibold mb-2 text-gray-300"
-                        >
-                          Entreprise
-                        </label>
-                        <input
-                          type="text"
-                          id="company"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleChange}
-                          className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00D4D4] focus:ring-2 focus:ring-[#00D4D4]/20 transition"
-                          placeholder="Nom de votre entreprise"
-                        />
-                      </div>
-
-                      <div>
-                        <label
-                          htmlFor="message"
-                          className="block text-sm font-semibold mb-2 text-gray-300"
-                        >
-                          Votre projet *
-                        </label>
-                        <textarea
-                          id="message"
-                          name="message"
-                          value={formData.message}
-                          onChange={handleChange}
-                          required
-                          rows="5"
-                          className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#00D4D4] focus:ring-2 focus:ring-[#00D4D4]/20 transition resize-none"
-                          placeholder="Décrivez votre projet et vos objectifs..."
-                        ></textarea>
-                      </div>
-
-                      <button
-                        type="submit"
-                        className="w-full bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black py-4 rounded-xl font-bold text-lg hover:shadow-xl hover:shadow-[#00D4D4]/30 transition-all flex items-center justify-center gap-3 group"
-                      >
-                        Envoyer le message
-                        <Send
-                          size={20}
-                          className="group-hover:translate-x-1 transition-transform"
-                        />
-                      </button>
-                    </form>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-white/10 bg-black py-12 px-4">
+			{/* Footer (match About) */}
+			  <footer className="border-t border-slate-200 bg-white py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div className="md:col-span-2">
-              <img
-                src="/logo.png"
-                alt="DigiCore Logo"
-                className="h-12 mb-6"
-              />
-              <p className="text-gray-400 mb-6 max-w-md">
-                DigiCore Inc - Votre partenaire digital pour créer de la valeur,
-                générer des conversions et atteindre vos objectifs business.
-              </p>
+              <img src="/logo.png" alt="DigiCore Logo" className="h-12 mb-6" />
+              <p className="text-slate-600 mb-6 max-w-md">DigiCore Inc - Votre partenaire digital pour créer de la valeur, générer des conversions et atteindre vos objectifs business.</p>
               <div className="flex items-center gap-4">
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
-                >
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-emerald-100 transition">
                   <Facebook size={20} />
                 </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
-                >
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-emerald-100 transition">
                   <Instagram size={20} />
                 </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
-                >
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-emerald-100 transition">
                   <Linkedin size={20} />
                 </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#00D4D4] transition"
-                >
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-emerald-100 transition">
                   <Twitter size={20} />
                 </a>
               </div>
             </div>
 
             <div>
-              <h3 className="font-bold text-lg mb-4 text-white">Navigation</h3>
+              <h3 className="font-bold text-lg mb-4 text-slate-900">Navigation</h3>
               <div className="space-y-3">
-                <a
-                  href="/"
-                  className="block text-gray-400 hover:text-[#00D4D4] transition"
-                >
-                  Accueil
-                </a>
-                <a
-                  href="/about"
-                  className="block text-gray-400 hover:text-[#00D4D4] transition"
-                >
-                  À propos
-                </a>
-                <a
-                  href="/services"
-                  className="block text-gray-400 hover:text-[#00D4D4] transition"
-                >
-                  Services
-                </a>
-                <a
-                  href="/packs"
-                  className="block text-gray-400 hover:text-[#00D4D4] transition"
-                >
-                  Nos Packs
-                </a>
-                <a
-                  href="/contact"
-                  className="block text-gray-400 hover:text-[#00D4D4] transition"
-                >
-                  Contact
-                </a>
+                <a href="/" className="block text-slate-600 hover:text-emerald-600 transition">Accueil</a>
+                <a href="/about" className="block text-slate-600 hover:text-emerald-600 transition">À propos</a>
+                <a href="/services" className="block text-slate-600 hover:text-emerald-600 transition">Services</a>
+                <a href="/packs" className="block text-slate-600 hover:text-emerald-600 transition">Nos Packs</a>
+                <a href="/contact" className="block text-slate-600 hover:text-emerald-600 transition">Contact</a>
               </div>
             </div>
 
             <div>
-              <h3 className="font-bold text-lg mb-4 text-white">Contact</h3>
-              <div className="space-y-3 text-gray-400">
+              <h3 className="font-bold text-lg mb-4 text-slate-900">Contact</h3>
+              <div className="space-y-3 text-slate-600">
                 <p>+237 690 91 04 01</p>
                 <p>contact@digicoreinc.org</p>
                 <p>www.digicoreinc.org</p>
@@ -568,11 +186,11 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="border-t border-white/10 pt-8 text-center text-gray-400">
+          <div className="border-t border-slate-200 pt-8 text-center text-slate-500">
             <p>© 2025 DigiCore Inc. Marketing Agency - Tous droits réservés</p>
           </div>
         </div>
       </footer>
-    </div>
-  );
+		</div>
+	);
 }

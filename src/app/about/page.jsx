@@ -172,7 +172,7 @@ export default function AboutPage() {
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">Nous combinons stratégie, design, technologie et automatisation pour générer visibilité, conversions et résultats mesurables.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {mission.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -197,7 +197,7 @@ export default function AboutPage() {
             <p className="text-xl text-gray-700">Ce qui nous rend uniques et efficaces</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {strengths.map((strength, index) => {
               const Icon = strength.icon;
               return (
@@ -222,7 +222,7 @@ export default function AboutPage() {
             <p className="text-xl text-gray-700">Des experts passionnés dédiés à votre succès</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {team.map((member, index) => (
               <div key={index} className="bg-white p-6 rounded-2xl shadow-sm text-center">
                 <div className={`w-24 h-24 rounded-full mx-auto mb-4 bg-gradient-to-br ${member.color} flex items-center justify-center text-white text-3xl font-bold`}>{member.name.charAt(0)}</div>

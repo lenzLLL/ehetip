@@ -250,27 +250,28 @@ export default function ServicesPage() {
             <h2 className="text-4xl sm:text-5xl font-black mb-6">Services <span className="bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">Principaux</span></h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {mainServices.map((service, index) => {
               const Icon = service.icon;
+              const slug = service.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
               return (
-                <div key={index} className="group relative bg-white p-8 rounded-2xl border border-slate-200 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] overflow-hidden">
+                <a key={index} href={`/services/${slug}`} className="group relative bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] overflow-hidden block">
                   <div className="relative">
-                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                      <Icon className="text-white" size={28} />
+                    <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform`}>
+                      <Icon className="text-white" size={20} />
                     </div>
-                    <h3 className="font-bold text-2xl mb-2 text-slate-900">{service.title}</h3>
-                    <p className="text-slate-600 mb-4 leading-relaxed">{service.desc}</p>
-                    <ul className="space-y-2">
+                    <h3 className="font-bold text-lg sm:text-2xl mb-2 text-slate-900">{service.title}</h3>
+                    <p className="text-slate-600 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">{service.desc}</p>
+                    <ul className="space-y-1 text-sm text-slate-600">
                       {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center gap-3 text-slate-600">
+                        <li key={idx} className="flex items-center gap-3">
                           <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
                           {feature}
                         </li>
                       ))}
                     </ul>
                   </div>
-                </div>
+                </a>
               );
             })}
           </div>
@@ -285,7 +286,7 @@ export default function ServicesPage() {
             <p className="text-xl text-slate-600">Expertise complète des outils Google pour votre visibilité</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {googleServices.map((service, index) => {
               const Icon = service.icon;
               return (
@@ -310,7 +311,7 @@ export default function ServicesPage() {
             <p className="text-xl text-slate-600">Gagnez du temps et augmentez votre efficacité</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {automation.map((service, index) => {
               const Icon = service.icon;
               return (

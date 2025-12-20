@@ -1,5 +1,7 @@
 "use client"
 import React from "react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { CheckCircle, ArrowRight, Sparkles } from "lucide-react";
 
 export default function PacksPreview({ packs }) {
@@ -55,9 +57,72 @@ export default function PacksPreview({ packs }) {
       },
     ];
 
+    // mobile carousel handled by react-responsive-carousel
+
   return (
     <div className="pt-6">
-      <div className="grid md:grid-cols-3 gap-8">
+      {/* Mobile carousel using react-responsive-carousel */}
+      <div className="md:hidden px-2">
+        <Carousel
+          showArrows={false}
+          showStatus={false}
+          showThumbs={false}
+          infiniteLoop
+          autoPlay
+          interval={3000}
+          swipeable
+          emulateTouch
+          centerMode
+          centerSlidePercentage={80}
+        >
+          {localPacks.map((pack, index) => (
+            <div key={index} className="p-2">
+              <div className={`h-full bg-white rounded-2xl p-4 border ${pack.popular ? "border-4 border-[#00D4D4] shadow-lg" : "border-gray-200"}`}>
+                {pack.popular && (
+                  <div className="mb-2">
+                    <div className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg inline-block">
+                      ⭐ Plus Populaire
+                    </div>
+                  </div>
+                )}
+                <div className="flex items-start gap-4">
+                  <div className={`w-14 h-14 rounded-lg ${pack.gradient} flex items-center justify-center`}>
+                    <Sparkles className="text-white" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-extrabold text-gray-900">{pack.name}</h3>
+                    <p className="text-sm text-gray-700">{pack.desc}</p>
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <div className="flex items-end gap-2">
+                    <span className="text-2xl font-black text-gray-900">{pack.price}</span>
+                    <span className="text-gray-600">FCFA</span>
+                  </div>
+                  <div className="text-sm text-gray-700 font-semibold">{pack.priceEuro} / mois</div>
+                </div>
+
+                <div className="mt-3 space-y-2">
+                  {pack.features.slice(0,3).map((feature, idx) => (
+                    <div key={idx} className="flex items-start gap-2">
+                      <CheckCircle className="text-[#00D4D4] flex-shrink-0 mt-1" size={16} />
+                      <span className="text-sm text-gray-700">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <a href="/contact" className={`mt-4 inline-flex items-center justify-center w-full text-center py-2 rounded-full font-bold text-sm ${pack.popular ? "bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black" : "border-2 border-gray-300 text-gray-900 hover:bg-gray-100"}`}>
+                  <span className="flex items-center justify-center gap-2">Choisir <ArrowRight size={16} /></span>
+                </a>
+              </div>
+            </div>
+          ))}
+        </Carousel>
+      </div>
+
+      {/* Desktop grid */}
+      <div className="hidden md:grid md:grid-cols-3 gap-8">
         {localPacks.map((pack, index) => (
           <div key={index} className={`relative group ${pack.popular ? "md:-mt-8 md:scale-105" : ""}`}>
             {pack.popular && (

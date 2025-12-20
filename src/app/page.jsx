@@ -25,6 +25,8 @@ import {
   ChevronUp,
 } from "lucide-react";
 import PacksPreview from "../components/PacksPreview";
+import ServiceImage from "../components/ServiceImage";
+import ProjectCard from "../components/ProjectCard";
 
 export default function DigiCorePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -122,7 +124,7 @@ export default function DigiCorePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 px-4 overflow-hidden">
+      <section className="relative pt-28 pb-12 px-4 md:pt-36 md:pb-24 max-h-[520px] md:max-h-none overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
           {/* Background image — replace URL with a local file in /public if desired */}
           <img
@@ -134,26 +136,26 @@ export default function DigiCorePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-transparent mix-blend-multiply"></div>
         </div>
         <div className="absolute inset-0 z-10 pointer-events-none">
-          <div className="absolute top-20 left-0 w-96 h-96 bg-[#00D4D4]/18 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-40 right-0 w-96 h-96 bg-[#B4F34C]/18 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
-          <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-[#B4F34C]/18 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "2s" }}></div>
+          <div className="absolute top-24 left-0 w-56 h-56 md:w-96 md:h-96 bg-[#00D4D4]/18 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-36 right-0 w-56 h-56 md:w-96 md:h-96 bg-[#B4F34C]/18 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
+          <div className="absolute bottom-0 left-1/3 w-56 h-56 md:w-96 md:h-96 bg-[#B4F34C]/18 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "2s" }}></div>
         </div>
         <div className="max-w-7xl mx-auto relative text-center z-20">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#00D4D4]/20 to-[#B4F34C]/20 border border-[#00D4D4]/50 px-6 py-3 rounded-full text-sm font-semibold mb-8 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#00D4D4]/20 to-[#B4F34C]/20 border border-[#00D4D4]/50 px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-semibold mb-6 sm:mb-8 backdrop-blur-sm">
             <Zap size={20} className="text-[#00D4D4]" /> Agence Marketing Digital 100% en ligne
           </div>
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black mb-6 text-white" style={{ textShadow: '0 6px 20px rgba(0,0,0,0.6)' }}>
+          <h1 className="text-3xl sm:text-6xl lg:text-8xl font-black mb-6 text-white" style={{ textShadow: '0 6px 20px rgba(0,0,0,0.6)' }}>
             DigiCore Inc
           </h1>
-          <p className="text-2xl sm:text-3xl font-bold mb-4 text-white/90" style={{ textShadow: '0 4px 16px rgba(0,0,0,0.5)' }}>Marketing Agency</p>
-          <p className="text-xl mb-12 max-w-3xl mx-auto leading-relaxed text-white/80" style={{ textShadow: '0 3px 12px rgba(0,0,0,0.45)' }}>
+          <p className="text-lg sm:text-2xl font-bold mb-4 text-white/90" style={{ textShadow: '0 4px 16px rgba(0,0,0,0.5)' }}>Marketing Agency</p>
+          <p className="text-base sm:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed text-white/80" style={{ textShadow: '0 3px 12px rgba(0,0,0,0.45)' }}>
             Créons ensemble votre <span className="font-semibold text-white">présence digitale</span> qui convertit. Stratégie, design, technologie et automatisation pour des <span className="font-semibold text-white">résultats mesurables</span>.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-            <a href="/packs" className="group bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-10 py-5 rounded-full font-bold text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-3">
-              Découvrir nos offres <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8 sm:mb-16">
+            <a href="/packs" className="group bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-3 sm:px-10 sm:py-5 rounded-full font-bold text-sm sm:text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-3">
+              Découvrir nos offres <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
             </a>
-            <a href="/contact" className="border-2 border-gray-900 text-gray-900 px-10 py-5 rounded-full font-bold text-lg hover:bg-gray-900 hover:text-white transition-all">Demander un devis</a>
+            <a href="/contact" className="border-2 border-gray-900 text-gray-900 px-6 py-3 sm:px-10 sm:py-5 rounded-full font-bold text-sm sm:text-lg hover:bg-gray-900 hover:text-white transition-all">Demander un devis</a>
           </div>
         </div>
         <style jsx global>{`
@@ -167,16 +169,16 @@ export default function DigiCorePage() {
 
       {/* Stats Section */}
       <section className="py-16 px-4 border-y border-emerald-100 bg-emerald-50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="max-w-7xl mx-auto flex flex-row items-center justify-between gap-6 text-center">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <div key={index} className="group">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] mb-4 group-hover:scale-110 transition-transform">
-                  <Icon size={32} className="text-black" />
+              <div key={index} className="group min-w-[80px] sm:min-w-[120px] px-2 overflow-hidden">
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                  <Icon size={20} className="text-black" />
                 </div>
-                <div className="text-5xl font-black text-gray-900 mb-2">{stat.value}</div>
-                <div className="text-gray-700 font-medium">{stat.label}</div>
+                <div className="text-2xl sm:text-5xl font-black text-gray-900 mb-1 sm:mb-2 whitespace-nowrap truncate">{stat.value}</div>
+                <div className="text-sm sm:text-base text-gray-700 font-medium whitespace-nowrap truncate">{stat.label}</div>
               </div>
             );
           })}
@@ -193,17 +195,18 @@ export default function DigiCorePage() {
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">Des solutions digitales complètes pour propulser votre croissance</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {services.map((service, index) => {
               const Icon = service.icon;
+              const slug = service.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
               return (
-                <div key={index} className="group relative bg-white shadow-md rounded-3xl p-8 border border-gray-200 hover:shadow-lg transition-all duration-300">
+                <a key={index} href={`/services/${slug}`} className="group relative bg-white shadow-md rounded-3xl p-6 sm:p-8 border border-gray-200 hover:shadow-lg transition-all duration-300 block">
                   <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
                     <Icon className="text-white" size={32} />
                   </div>
                   <h3 className="font-bold text-xl mb-3 text-gray-900">{service.title}</h3>
                   <p className="text-gray-700 leading-relaxed">{service.desc}</p>
-                </div>
+                </a>
               );
             })}
           </div>
@@ -241,16 +244,9 @@ export default function DigiCorePage() {
     </div>
 
     {/* Projects Grid */}
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {filteredProjects.map((project, index) => (
-        <div key={index} className="group relative bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-lg transition-all border border-gray-200">
-          <img src={project.image} alt={project.name} className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" />
-          <div className="p-6">
-            <span className="text-sm font-semibold text-gray-500">{project.categoryLabel}</span>
-            <h3 className="font-bold text-xl text-gray-900 mt-2 mb-2">{project.name}</h3>
-            <p className="text-gray-700">{project.desc}</p>
-          </div>
-        </div>
+        <ProjectCard key={index} project={project} />
       ))}
     </div>
   </div>

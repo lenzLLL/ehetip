@@ -160,7 +160,7 @@ export default function EHETIPLandingPage() {
       {/* Stats Section */}
       <section className="py-16 bg-white border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-12">
             {[
               { label: "Étudiants", value: "800+", icon: Users },
               { label: "Taux de Réussite", value: "98%", icon: Award },
@@ -195,7 +195,7 @@ export default function EHETIPLandingPage() {
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-20 items-center">
-            <div className="flex-1 grid grid-cols-2 gap-4">
+            <div className="flex-1 grid grid-cols-2 gap-2 md:gap-4">
               <div className="space-y-4">
                 <img
                   src="https://ucarecdn.com/d2160582-259a-41ee-b84f-ee6adabf67da/-/format/auto/"
@@ -292,7 +292,7 @@ export default function EHETIPLandingPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-8">
             {[
               {
                 title: "Relations Internationales",
@@ -348,7 +348,7 @@ export default function EHETIPLandingPage() {
               Ce que disent nos étudiants
             </h3>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-8">
             {[
               {
                 name: "Mahamat Saleh",

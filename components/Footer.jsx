@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="pt-24 pb-12" style={{ backgroundColor: 'var(--footer-bg)', color: 'var(--muted)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-12 mb-20">
+        <div className="grid gap-2 md:grid-cols-4 md:gap-12 mb-20">
           <div className="col-span-2">
             <div className="flex items-center gap-3 mb-8">
               <img

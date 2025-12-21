@@ -61,7 +61,7 @@ export default function ContactPage() {
 
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid gap-2 lg:grid-cols-2 lg:gap-16">
             {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -191,7 +191,7 @@ export default function ContactPage() {
                     Envoyez-nous un message
                   </h3>
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid gap-2 md:grid-cols-2 md:gap-6">
                       <div className="space-y-2">
                         <label className="text-sm font-bold text-gray-500 uppercase tracking-wider">
                           Nom Complet

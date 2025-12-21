@@ -292,7 +292,7 @@ export default function EHETIPLandingPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
             {[
               {
                 title: "Relations Internationales",
@@ -348,7 +348,7 @@ export default function EHETIPLandingPage() {
               Ce que disent nos étudiants
             </h3>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
             {[
               {
                 name: "Mahamat Saleh",

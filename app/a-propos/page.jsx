@@ -53,7 +53,7 @@ export default function AboutPage() {
       {/* Vision & Mission */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-12">
             {[
               {
                 title: "Notre Vision",
@@ -163,7 +163,7 @@ export default function AboutPage() {
           >
             Un Corps Professoral d'Élite
           </h3>
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="group">
                 <div className="aspect-square bg-gray-200 rounded-3xl mb-6 overflow-hidden relative">

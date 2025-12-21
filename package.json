@@ -10,6 +10,14 @@
   "dependencies": {
     "next": "13.5.8",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "lucide-react": "*",
+    "motion": "*",
+    "@tanstack/react-query": "*",
+    "sonner": "*",
+    "html-to-image": "*",
+    "@react-aria/button": "*",
+    "serialize-error": "*",
+    "react-router": "*"
   }
 }

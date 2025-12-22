@@ -22,32 +22,22 @@ export default function AboutPage() {
     >
       {/* Remove <header /> usage */}
 
-      {/* Hero Section */}
+      {/* Hero - version cohérente avec les autres pages */}
       <section className="py-20 bg-[#1e3a5f] text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full opacity-10">
-          <img
-            src="https://ucarecdn.com/d65d4ac0-4aa0-49d9-bd7f-de5b4527ed02/-/format/auto/"
-            className="w-full h-full object-cover"
-            alt="Background"
-          />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl"
-          >
-            <h1 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
-              Notre Mission : <span style={{ color: gold }}>L'Excellence</span>{" "}
-              sans compromis.
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+            <h1 className="text-3xl md:text-7xl font-black mb-8 leading-tight">
+              Notre Mission : <span style={{ color: gold }}>L'Excellence</span> sans compromis.
             </h1>
-            <p className="text-xl text-blue-100 leading-relaxed">
+            <p className="text-base md:text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed">
               Depuis sa création, l'EHETIP s'est imposée comme le pilier de
               l'enseignement supérieur au Tchad, formant les leaders qui
               façonnent l'avenir de notre nation.
             </p>
           </motion.div>
         </div>
+        <div className="absolute top-[-20%] left-[-10%] w-[40%] h-[80%] rounded-full bg-white/5 blur-3xl"></div>
+        <div className="absolute bottom-[-20%] right-[-10%] w-[40%] h-[80%] rounded-full bg-[#d4af37]/10 blur-3xl"></div>
       </section>
 
       {/* Vision & Mission */}
@@ -108,7 +98,7 @@ export default function AboutPage() {
             <div className="flex-1">
               <img
                 src="https://ucarecdn.com/d2160582-259a-41ee-b84f-ee6adabf67da/-/format/auto/"
-                className="rounded-[3rem] shadow-2xl"
+                className="rounded-[3rem] shadow-2xl h-48 md:h-auto w-full object-cover"
                 alt="History"
               />
             </div>
@@ -120,7 +110,7 @@ export default function AboutPage() {
                 Notre Histoire
               </h2>
               <h3
-                className="text-4xl font-black mb-8 leading-tight"
+                className="text-2xl md:text-4xl font-black mb-8 leading-tight"
                 style={{ color: primaryBlue }}
               >
                 Plus d'une décennie au service du savoir.
@@ -158,7 +148,7 @@ export default function AboutPage() {
             Notre Équipe
           </h2>
           <h3
-            className="text-4xl font-black mb-16"
+            className="text-2xl md:text-4xl font-black mb-16"
             style={{ color: primaryBlue }}
           >
             Un Corps Professoral d'Élite

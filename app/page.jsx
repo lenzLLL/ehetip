@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import Card from "../components/Card";
 import Stepper from "../components/Stepper";
+import Hero from "../components/Hero";
 
 const primaryBlue = "#1e3a5f";
 const gold = "#d4af37";
@@ -64,98 +65,13 @@ export default function EHETIPLandingPage() {
       className="min-h-screen font-sans text-gray-900 selection:bg-[#d4af37] selection:text-white"
       style={{ backgroundColor: lightBeige }}
     >
-      {/* Hero Section */}
-      <section className="relative pt-16 pb-24 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="flex-1 text-center lg:text-left"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow-sm border border-gray-100 mb-6">
-                <span
-                  className="w-2 h-2 rounded-full animate-pulse"
-                  style={{ backgroundColor: gold }}
-                ></span>
-                <span className="text-xs font-bold uppercase tracking-widest text-gray-500">
-                  Inscriptions Ouvertes 2025-2026
-                </span>
-              </div>
-              <h1
-                className="text-5xl md:text-7xl font-black leading-[1.1] mb-8 tracking-tight"
-                style={{ color: primaryBlue }}
-              >
-                Forger les{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-[#b8860b]">
-                  Leaders
-                </span>{" "}
-                de Demain.
-              </h1>
-              <p className="text-xl text-gray-600 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                L'EHETIP est l'institution de référence au Tchad pour les
-                relations internationales et les sciences politiques. Une
-                éducation d'élite pour un impact global.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button
-                  className="px-10 py-4 rounded-full text-white font-bold text-lg shadow-2xl transition-transform transform-gpu hover:-translate-y-1"
-                  style={{ background: 'linear-gradient(90deg, var(--primary-blue), #15415a)' }}
-                >
-                  Postuler en ligne
-                </button>
-                <a
-                  href="/contact"
-                  className="px-10 py-4 rounded-full border-2 font-bold text-lg transition-all hover:bg-white/50 active:scale-95 text-center"
-                  style={{ borderColor: 'var(--primary-blue)', color: 'var(--primary-blue)' }}
-                >
-                  Nous Contacter
-                </a>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="flex-1 relative"
-            >
-              <div className="relative z-10 rounded-3xl overflow-hidden shadow-[0_32px_64px_-12px_rgba(0,0,0,0.2)] border-[12px] border-white">
-                <img
-                  src="https://ucarecdn.com/d65d4ac0-4aa0-49d9-bd7f-de5b4527ed02/-/format/auto/"
-                  alt="Étudiants EHETIP"
-                  className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              {/* Floating Card */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute -bottom-8 -left-8 z-20 bg-white p-6 rounded-2xl shadow-2xl border border-gray-100 hidden md:block"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-                    <Award className="text-green-600" size={24} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-gray-900">
-                      Diplôme Accrédité
-                    </p>
-                    <p className="text-xs text-gray-500">Reconnu par l'État</p>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <Hero
+        variant="home"
+        title={"Forger une pensée critique pour un impact durable"}
+        subtitle={"Une pédagogie exigeante, des partenariats internationaux et une expérience immersive pour préparer les leaders de la région."}
+        cta={[{ href: '/contact', label: 'Contacter' }, { href: '/a-propos', label: 'En savoir plus', variant: 'ghost' }]}
+        bgImage={"/hero.png"}
+      />
 
       {/* Stats Section */}
       <section className="py-16 bg-white border-y border-gray-100">
@@ -178,7 +94,7 @@ export default function EHETIPLandingPage() {
                   <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gray-50 mb-3 mx-auto" style={{ color: gold }}>
                     <stat.icon size={20} />
                   </div>
-                  <div className="text-2xl md:text-3xl font-extrabold mb-1" style={{ color: primaryBlue }}>
+                  <div className="text-xl md:text-3xl font-extrabold mb-1" style={{ color: primaryBlue }}>
                     {stat.value}
                   </div>
                   <div className="text-xs font-bold text-gray-400 uppercase tracking-widest">
@@ -199,7 +115,7 @@ export default function EHETIPLandingPage() {
               <div className="space-y-4">
                 <img
                   src="https://ucarecdn.com/d2160582-259a-41ee-b84f-ee6adabf67da/-/format/auto/"
-                  className="rounded-2xl shadow-lg h-64 w-full object-cover"
+                  className="rounded-2xl shadow-lg h-40 md:h-64 w-full object-cover"
                   alt="Campus"
                 />
                 <div className="bg-[#1e3a5f] p-8 rounded-2xl text-white">
@@ -218,7 +134,7 @@ export default function EHETIPLandingPage() {
                 </div>
                 <img
                   src="https://ucarecdn.com/d65d4ac0-4aa0-49d9-bd7f-de5b4527ed02/-/format/auto/"
-                  className="rounded-2xl shadow-lg h-64 w-full object-cover"
+                  className="rounded-2xl shadow-lg h-40 md:h-64 w-full object-cover"
                   alt="Students"
                 />
               </div>
@@ -231,7 +147,7 @@ export default function EHETIPLandingPage() {
                 À Propos de l'EHETIP
               </h2>
               <h3
-                className="text-4xl font-black mb-8 leading-tight"
+                className="text-2xl md:text-4xl font-black mb-8 leading-tight"
                 style={{ color: primaryBlue }}
               >
                 Une Vision Moderne de l'Éducation Supérieure.
@@ -281,7 +197,7 @@ export default function EHETIPLandingPage() {
               Nos Filières
             </h2>
             <h3
-              className="text-4xl font-black mb-6"
+              className="text-2xl md:text-4xl font-black mb-6"
               style={{ color: primaryBlue }}
             >
               Excellence Académique
@@ -344,7 +260,7 @@ export default function EHETIPLandingPage() {
             >
               Témoignages
             </h2>
-            <h3 className="text-4xl font-black" style={{ color: primaryBlue }}>
+            <h3 className="text-2xl md:text-4xl font-black" style={{ color: primaryBlue }}>
               Ce que disent nos étudiants
             </h3>
           </div>
@@ -397,7 +313,7 @@ export default function EHETIPLandingPage() {
               FAQ
             </h2>
             <h3
-              className="text-4xl font-black mb-6"
+              className="text-2xl md:text-4xl font-black mb-6"
               style={{ color: primaryBlue }}
             >
               Questions Fréquentes

@@ -1,13 +1,13 @@
 "use client"
 import React from "react";
-import { Phone, Mail, MapPin, Globe } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="pt-24 pb-12" style={{ backgroundColor: 'var(--footer-bg)', color: 'var(--muted)' }}>
+    <footer className="pt-16 pb-12" style={{ background: 'linear-gradient(180deg, #071126, #0b1220)', color: '#cbd5e1' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-2 md:grid-cols-4 md:gap-12 mb-20">
-          <div className="col-span-2">
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:gap-12 mb-20">
+            <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-8">
               <img
                 src="https://ucarecdn.com/7be9609c-8e34-4326-829d-3e19dc4a6a7d/-/format/auto/"
@@ -23,17 +23,18 @@ const Footer = () => {
               futurs cadres et diplomates du Tchad et de la sous-région.
             </p>
             <div className="flex gap-4">
-              {["Facebook", "Twitter", "LinkedIn", "Instagram"].map(
-                (social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--accent-gold)] hover:text-white transition-all"
-                  >
-                    <Globe size={18} />
-                  </a>
-                ),
-              )}
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--accent-gold)] hover:text-white transition-all">
+                <Facebook size={18} />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--accent-gold)] hover:text-white transition-all">
+                <Twitter size={18} />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--accent-gold)] hover:text-white transition-all">
+                <Linkedin size={18} />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--accent-gold)] hover:text-white transition-all">
+                <Instagram size={18} />
+              </a>
             </div>
           </div>
           <div>
@@ -49,7 +50,7 @@ const Footer = () => {
                 { name: "Contact", href: "/contact" },
               ].map((item) => (
                 <li key={item.name}>
-                  <a href={item.href} className="hover:text-[var(--accent-gold)] transition-colors text-gray-300">
+                  <a href={item.href} className="hover:text-[var(--accent-gold)] transition-colors text-gray-300 focus:outline-none focus:ring-1 focus:ring-[var(--accent-gold)] rounded">
                     {item.name}
                   </a>
                 </li>
@@ -76,7 +77,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="pt-12 border-t border-white/5 text-center text-sm text-gray-400">
+        <div className="pt-8 border-t border-white/5 text-center text-sm text-gray-400">
           <p>
             © {new Date().getFullYear()} EHETIP. Tous droits réservés. Excellence &amp; Intégrité.
           </p>

@@ -45,10 +45,10 @@ export default function ContactPage() {
             >
               Contactez-nous
             </h2>
-            <h1 className="text-5xl md:text-7xl font-black mb-8">
+            <h1 className="text-3xl md:text-7xl font-black mb-8">
               Parlons de votre <span style={{ color: gold }}>Avenir</span>.
             </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base md:text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed">
               Notre équipe est à votre disposition pour répondre à toutes vos
               questions concernant l'admission, les programmes ou la vie sur le
               campus.
@@ -69,12 +69,12 @@ export default function ContactPage() {
               viewport={{ once: true }}
             >
               <h3
-                className="text-3xl font-black mb-8"
+                className="text-2xl md:text-3xl font-black mb-8"
                 style={{ color: primaryBlue }}
               >
                 Informations de Contact
               </h3>
-              <p className="text-gray-600 mb-12 text-lg">
+              <p className="text-gray-600 mb-12 text-base md:text-lg">
                 N'hésitez pas à nous rendre visite sur l'un de nos campus ou à
                 nous contacter par téléphone ou email.
               </p>
@@ -108,7 +108,7 @@ export default function ContactPage() {
                 ].map((item, i) => (
                   <div key={i} className="flex gap-6 group">
                     <div
-                      className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-110"
+                      className="w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-110"
                       style={{
                         backgroundColor: "white",
                         border: "1px solid #eee",
@@ -166,7 +166,7 @@ export default function ContactPage() {
                     <CheckCircle2 size={40} className="text-green-600" />
                   </div>
                   <h3
-                    className="text-3xl font-black mb-4"
+                    className="text-2xl md:text-3xl font-black mb-4"
                     style={{ color: primaryBlue }}
                   >
                     Message Envoyé !
@@ -185,7 +185,7 @@ export default function ContactPage() {
               ) : (
                 <>
                   <h3
-                    className="text-3xl font-black mb-8"
+                    className="text-2xl md:text-3xl font-black mb-8"
                     style={{ color: primaryBlue }}
                   >
                     Envoyez-nous un message
@@ -239,7 +239,7 @@ export default function ContactPage() {
                     </div>
                     <button
                       disabled={formState === "loading"}
-                      className="w-full py-5 rounded-2xl text-white font-black text-xl shadow-xl flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-70"
+                      className="w-full py-5 rounded-2xl text-white font-black text-lg md:text-xl shadow-xl flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-70"
                       style={{ backgroundColor: primaryBlue }}
                     >
                       {formState === "loading" ? (

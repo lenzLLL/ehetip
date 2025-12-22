@@ -174,12 +174,13 @@ export default function FAQPage() {
               Notre équipe d'admission est là pour vous accompagner
               personnellement.
             </p>
-            <button
-              className="px-10 py-4 rounded-2xl text-white font-bold transition-transform hover:scale-105"
+            <a
+              href="/contact"
+              className="inline-block px-10 py-4 rounded-2xl text-white font-bold transition-transform hover:scale-105"
               style={{ backgroundColor: primaryBlue }}
             >
               Contactez-nous directement
-            </button>
+            </a>
           </div>
         </div>
       </section>

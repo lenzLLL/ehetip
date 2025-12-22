@@ -17,7 +17,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <nav className="sticky top-0 z-50 backdrop-blur-md border-b border-white/5 shadow-sm" style={{ background: 'var(--glass)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <a href="/" className="flex items-center gap-3 group">
@@ -53,15 +53,14 @@ const Navbar = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm font-semibold text-gray-600 hover:text-[#d4af37] transition-colors"
+                className="text-sm font-semibold text-[var(--muted)] hover:text-[var(--accent-gold)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent-gold)] rounded"
               >
                 {item.name}
               </a>
             ))}
               <a
                 href="/contact"
-                className="px-6 py-2.5 rounded-full text-white text-sm font-bold transition-all hover:shadow-lg active:scale-95 text-center"
-                style={{ backgroundColor: 'var(--primary-blue)' }}
+                className="px-6 py-2.5 rounded-full text-white text-sm font-bold transition-all hover:shadow-lg active:scale-95 text-center btn-primary"
               >
               Nous Contacter
             </a>
@@ -71,7 +70,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-gray-600 hover:text-[var(--primary-blue)] transition-colors"
+              className="p-2 text-[var(--muted)] hover:text-[var(--primary-blue)] transition-colors"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -83,18 +82,19 @@ const Navbar = () => {
       {/* Mobile Nav */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+            <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-gray-100 overflow-hidden"
+              className="md:hidden border-t border-white/5 overflow-hidden"
+              style={{ background: 'var(--glass)' }}
           >
             <div className="px-4 pt-2 pb-6 space-y-1">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="block px-3 py-4 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                    className="block px-3 py-4 text-base font-medium text-[var(--muted)] hover:bg-white/5 rounded-lg transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
@@ -103,8 +103,7 @@ const Navbar = () => {
               <div className="pt-4 px-3">
                 <a
                   href="/contact"
-                  className="block w-full py-3 rounded-xl text-white font-bold transition-all text-center"
-                  style={{ backgroundColor: 'var(--primary-blue)' }}
+                    className="block w-full py-3 rounded-xl text-white font-bold transition-all text-center btn-primary"
                   onClick={() => setIsOpen(false)}
                 >
                   Nous Contacter

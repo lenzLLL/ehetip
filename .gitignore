@@ -1,14 +1,25 @@
+# OS
 .DS_Store
-/node_modules/
+Thumbs.db
 
-# Environment variables (local, not committed)
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
 .env.local
 .env.*.local
 
-# React Router
-/.react-router/
-/build/
-
 # Next.js
-/.next/
-/out/
+.next/
+out/
+
+# Build / cache
+build/
+.cache/
+
+# React Router (si utilisé)
+.react-router/

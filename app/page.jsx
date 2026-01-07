@@ -68,7 +68,7 @@ export default function EHETIPLandingPage() {
       <Hero
         variant="home"
         title={"Forger une pensée critique pour un impact durable"}
-        subtitle={"Fondée en 2021 à N'Djamena par le Dr. Manga Makrada Maina, l'EHETIP allie théorie et pratique pour former des leaders capables de contribuer au développement socio-économique et politique de la région."}
+        subtitle={"Une pédagogie exigeante, des partenariats internationaux et une expérience immersive pour préparer les leaders de la région."}
         cta={[{ href: '/contact', label: 'Contacter' }, { href: '/a-propos', label: 'En savoir plus', variant: 'ghost' }]}
         bgImage={"/hero.png"}
       />
@@ -153,11 +153,9 @@ export default function EHETIPLandingPage() {
                 Une Vision Moderne de l'Éducation Supérieure.
               </h3>
               <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-                L'EHETIP, fondée en 2021 par le Dr. Manga Makrada Maina à
-                N'Djamena, propose un enseignement théorique et pratique de
-                haut niveau, des infrastructures modernes et des partenariats
-                internationaux, afin de préparer des leaders engagés pour le
-                développement socio-économique et politique de la région.
+                L'École des Hautes Études Internationales et Politiques (EHETIP)
+                est née d'une ambition : offrir aux jeunes tchadiens un cadre
+                d'apprentissage digne des plus grandes institutions mondiales.
               </p>
               <ul className="space-y-4 mb-10">
                 {[

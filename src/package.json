@@ -17,8 +17,7 @@
     "sonner": "*",
     "html-to-image": "*",
     "@react-aria/button": "*",
-    "serialize-error": "*",
-    "react-router": "*"
+    "serialize-error": "*"
   }
   ,
   "devDependencies": {

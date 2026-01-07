@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Merriweather:wght@700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  input, textarea, select, button {
+    @apply outline-none focus:outline-none;
+  }
+}
+
+:root {
+  --primary-blue: #1e3a5f;
+  --accent-gold: #d4af37;
+  --muted: #6b7280;
+  --bg: #f8faf9;
+  --card-bg: #ffffff;
+  --footer-bg: #0b1220;
+  --glass: rgba(255,255,255,0.7);
+}
+
+@layer base {
+  html, body {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background-color: var(--bg);
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image: radial-gradient(circle at 10% 10%, rgba(29,58,94,0.02), transparent 6%), radial-gradient(circle at 90% 90%, rgba(212,175,55,0.02), transparent 8%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  h1,h2,h3,h4 { line-height: 1.05 }
+
+  /* Headings */
+  h1,h2,h3 { font-family: Merriweather, Georgia, serif }
+
+  /* Buttons */
+  .btn-primary {
+    background: linear-gradient(90deg, var(--primary-blue), #15415a);
+    color: white;
+    padding: .75rem 1.25rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    box-shadow: 0 10px 30px rgba(29,58,94,0.12);
+  }
+
+  /* Larger hero primary */
+  .btn-primary.btn-hero {
+    padding: .6rem 1rem;
+    font-size: 0.96rem;
+    border-radius: 10px;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--primary-blue);
+    padding: .5rem .75rem;
+    border-radius: .75rem;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+
+  /* Ghost variant for dark backgrounds */
+  .btn-ghost.text-white,
+  .btn-ghost--light {
+    color: white !important;
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(255,255,255,0.12) !important;
+  }
+
+  /* Hover / focus states */
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(29,58,94,0.14); }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-primary:focus { outline: 3px solid rgba(29,58,94,0.12); }
+
+  .btn-ghost:hover { background: rgba(0,0,0,0.03); }
+  .btn-ghost--light:hover { background: rgba(255,255,255,0.06); }
+
+  /* Hero ghost button (white border, bolder) */
+  .btn-hero-ghost {
+    color: white !important;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: transparent;
+    padding: .55rem 0.95rem;
+    border-radius: 12px;
+    font-weight: 700;
+  }
+  .btn-hero-ghost:hover { background: rgba(255,255,255,0.06); }
+
+  a { text-decoration: none }
+
+  /* Utility backgrounds */
+  .bg-card { background-color: var(--card-bg) }
+  .bg-glass { background-color: var(--glass) }
+}

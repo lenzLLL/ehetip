@@ -23,3 +23,7 @@ build/
 
 # React Router (si utilisé)
 .react-router/
+src/.next/
+package-lock.json
+node_modules/
+

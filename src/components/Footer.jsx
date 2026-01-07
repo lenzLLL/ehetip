@@ -1,218 +1,90 @@
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Facebook,
-  Instagram,
-  Twitter,
-  Linkedin,
-} from "lucide-react";
+"use client"
+import React from "react";
+import { Phone, Mail, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-[#1E5FA8] to-[#164a8a] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Entreprise */}
-          <div>
-            <div className="flex items-center space-x-3 mb-6">
-              <img 
-                src="/logo.png" 
-                alt="EnerTchad Logo" 
-                className="h-12 w-auto"
+    <footer className="pt-16 pb-12" style={{ background: 'linear-gradient(180deg, #071126, #0b1220)', color: '#cbd5e1' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 md:gap-12 mb-20">
+            <div className="md:col-span-2">
+            <div className="flex items-center gap-3 mb-8">
+              <img
+                src="https://ucarecdn.com/7be9609c-8e34-4326-829d-3e19dc4a6a7d/-/format/auto/"
+                alt="Logo"
+                className="w-10 h-10"
               />
-              <h3 className="font-bold text-xl">EnerTchad</h3>
+              <span className="text-2xl font-black text-white tracking-tighter">
+                EHETIP
+              </span>
             </div>
-            <p className="text-gray-200 text-sm leading-relaxed mb-6">
-              L'énergie qui fait avancer le Tchad. Distribution de carburant,
-              énergies renouvelables et mobilité électrique.
+            <p className="text-lg max-w-md mb-8 leading-relaxed text-gray-300">
+              L'École des Hautes Études Internationales et Politiques forme les
+              futurs cadres et diplomates du Tchad et de la sous-région.
             </p>
-            <div className="flex space-x-3">
-              <a
-                href="#"
-                className="bg-white/10 p-2 rounded-lg hover:bg-[#E6C34A] hover:text-[#1E5FA8] transition"
-              >
+            <div className="flex gap-4">
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--accent-gold)] hover:text-white transition-all">
                 <Facebook size={18} />
               </a>
-              <a
-                href="#"
-                className="bg-white/10 p-2 rounded-lg hover:bg-[#E6C34A] hover:text-[#1E5FA8] transition"
-              >
-                <Instagram size={18} />
-              </a>
-              <a
-                href="#"
-                className="bg-white/10 p-2 rounded-lg hover:bg-[#E6C34A] hover:text-[#1E5FA8] transition"
-              >
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--accent-gold)] hover:text-white transition-all">
                 <Twitter size={18} />
               </a>
-              <a
-                href="#"
-                className="bg-white/10 p-2 rounded-lg hover:bg-[#E6C34A] hover:text-[#1E5FA8] transition"
-              >
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--accent-gold)] hover:text-white transition-all">
                 <Linkedin size={18} />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--accent-gold)] hover:text-white transition-all">
+                <Instagram size={18} />
               </a>
             </div>
           </div>
-
-          {/* Services */}
           <div>
-            <h4 className="font-bold text-lg mb-4">Nos Services</h4>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <a
-                  href="/services"
-                  className="text-gray-200 hover:text-[#E6C34A] transition"
-                >
-                  Stations-service
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/services"
-                  className="text-gray-200 hover:text-[#E6C34A] transition"
-                >
-                  Recharge électrique
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/services"
-                  className="text-gray-200 hover:text-[#E6C34A] transition"
-                >
-                  Énergie solaire
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/services"
-                  className="text-gray-200 hover:text-[#E6C34A] transition"
-                >
-                  Huiles moteur
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/services"
-                  className="text-gray-200 hover:text-[#E6C34A] transition"
-                >
-                  Laverie automobile
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/services"
-                  className="text-gray-200 hover:text-[#E6C34A] transition"
-                >
-                  Maintenance auto
-                </a>
-              </li>
+            <h4 className="text-white font-bold mb-8 uppercase tracking-widest text-sm">
+              Navigation
+            </h4>
+            <ul className="space-y-4">
+              {[
+                { name: "Accueil", href: "/" },
+                { name: "À Propos", href: "/a-propos" },
+                { name: "Programmes", href: "/programmes" },
+                { name: "FAQ", href: "/faq" },
+                { name: "Contact", href: "/contact" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <a href={item.href} className="hover:text-[var(--accent-gold)] transition-colors text-gray-300 focus:outline-none focus:ring-1 focus:ring-[var(--accent-gold)] rounded">
+                    {item.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
-
-          {/* Navigation */}
           <div>
-            <h4 className="font-bold text-lg mb-4">Liens rapides</h4>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <a
-                  href="/"
-                  className="text-gray-200 hover:text-[#E6C34A] transition"
-                >
-                  Accueil
-                </a>
+            <h4 className="text-white font-bold mb-8 uppercase tracking-widest text-sm">
+              Contact
+            </h4>
+            <ul className="space-y-6">
+              <li className="flex gap-4">
+                <Phone size={20} className="shrink-0" style={{ color: 'var(--accent-gold)' }} />
+                <span>+235 61 77 55 66</span>
               </li>
-              <li>
-                <a
-                  href="/about"
-                  className="text-gray-200 hover:text-[#E6C34A] transition"
-                >
-                  À propos
-                </a>
+              <li className="flex gap-4">
+                <Mail size={20} className="shrink-0" style={{ color: 'var(--accent-gold)' }} />
+                <span>ehetip@gmail.com</span>
               </li>
-              <li>
-                <a
-                  href="/shop"
-                  className="text-gray-200 hover:text-[#E6C34A] transition"
-                >
-                  Boutique
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/blog"
-                  className="text-gray-200 hover:text-[#E6C34A] transition"
-                >
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/contact"
-                  className="text-gray-200 hover:text-[#E6C34A] transition"
-                >
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="font-bold text-lg mb-4">Nous contacter</h4>
-            <ul className="space-y-4 text-sm">
-              <li className="flex items-start space-x-3">
-                <Phone
-                  size={18}
-                  className="text-[#E6C34A] mt-1 flex-shrink-0"
-                />
-                <div>
-                  <div className="text-gray-200">+235 62 123 456</div>
-                  <div className="text-gray-300 text-xs">Lun - Dim: 24/7</div>
-                </div>
-              </li>
-              <li className="flex items-start space-x-3">
-                <Mail size={18} className="text-[#E6C34A] mt-1 flex-shrink-0" />
-                <div>
-                  <div className="text-gray-200">contact@enertchad.td</div>
-                  <div className="text-gray-300 text-xs">Réponse sous 24h</div>
-                </div>
-              </li>
-              <li className="flex items-start space-x-3">
-                <MapPin
-                  size={18}
-                  className="text-[#E6C34A] mt-1 flex-shrink-0"
-                />
-                <span className="text-gray-200">
-                  Avenue Charles de Gaulle
-                  <br />
-                  N'Djaména, Tchad
-                </span>
+              <li className="flex gap-4">
+                <MapPin size={20} className="shrink-0" style={{ color: 'var(--accent-gold)' }} />
+                <span>Moursal & Al Afia, N'Djamena, Tchad</span>
               </li>
             </ul>
           </div>
         </div>
-
-        {/* Divider */}
-        <div className="border-t border-white/20 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-center text-gray-300 text-sm">
-              &copy; 2025 EnerTchad S.A. Tous droits réservés.
-            </p>
-            <div className="flex space-x-6 text-xs text-gray-300">
-              <a href="#" className="hover:text-[#E6C34A] transition">
-                Mentions légales
-              </a>
-              <a href="#" className="hover:text-[#E6C34A] transition">
-                Politique de confidentialité
-              </a>
-              <a href="#" className="hover:text-[#E6C34A] transition">
-                CGV
-              </a>
-            </div>
-          </div>
+        <div className="pt-8 border-t border-white/5 text-center text-sm text-gray-400">
+          <p>
+            © {new Date().getFullYear()} EHETIP. Tous droits réservés. Excellence &amp; Intégrité.
+          </p>
         </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

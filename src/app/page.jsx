@@ -1,353 +1,433 @@
-"use client";
-import { useState } from "react";
+"use client"
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import {
-  Facebook,
-  Instagram,
-  Linkedin,
-  Twitter,
-  Zap,
-  Target,
-  TrendingUp,
-  Users,
+  Phone,
+  Mail,
+  MapPin,
   Globe,
-  Video,
-  Bot,
-  Smartphone,
-  CheckCircle,
-  ArrowRight,
-  Sparkles,
-  Rocket,
+  GraduationCap,
+  BookOpen,
+  Users,
   Award,
-  Clock,
+  ChevronRight,
+  CheckCircle2,
+  MessageSquare,
+  ArrowRight,
   Menu,
   X,
   ChevronDown,
-  ChevronUp,
+  Star,
 } from "lucide-react";
-import PacksPreview from "../components/PacksPreview";
-import ServiceImage from "../components/ServiceImage";
-import ProjectCard from "../components/ProjectCard";
+import Card from "../components/Card";
+import Stepper from "../components/Stepper";
+import Hero from "../components/Hero";
 
-export default function DigiCorePage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("all");
-  const [openFaqIndex, setOpenFaqIndex] = useState(null);
+const primaryBlue = "#1e3a5f";
+const gold = "#d4af37";
+const lightBeige = "#fdfbf7";
 
-  const services = [
-    { icon: Target, title: "Campagnes publicitaires Meta", desc: "Facebook & Instagram Ads ciblées avec ROI optimisé", color: "from-blue-500 to-cyan-500" },
-    { icon: TrendingUp, title: "Stratégie digitale", desc: "Plans personnalisés basés sur vos objectifs business", color: "from-purple-500 to-pink-500" },
-    { icon: Users, title: "Community Management", desc: "Animation professionnelle de vos réseaux sociaux", color: "from-orange-500 to-red-500" },
-    { icon: Video, title: "Vidéos publicitaires", desc: "Production de contenus vidéo impactants", color: "from-indigo-500 to-blue-500" },
-    { icon: Smartphone, title: "Conception d'application mobile", desc: "Design UI/UX et développement d'apps iOS & Android", color: "from-indigo-500 to-purple-500" },
-    { icon: Bot, title: "Automatisation", desc: "Chatbots intelligents et WhatsApp Business API", color: "from-teal-500 to-cyan-500" },
-    { icon: Globe, title: "Création de site web", desc: "Sites vitrines et e-commerce optimisés pour la conversion", color: "from-blue-500 to-cyan-500" },
-    { icon: Sparkles, title: "Création graphique", desc: "Identité visuelle professionnelle et logos uniques", color: "from-pink-500 to-rose-500" },
-  ];
-
-  const stats = [
-    { value: "72h", label: "Livraison express", icon: Clock },
-    { value: "100%", label: "Digital", icon: Rocket },
-    { value: "6+", label: "Secteurs d'activité", icon: Target },
-    { value: "24/7", label: "Support client", icon: Award },
-  ];
-
-  const allProjects = [
-    { name: "GreenPowerSolar", category: "energie", categoryLabel: "Énergie", desc: "Site vitrine + WhatsApp bot", image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=600&fit=crop" },
-    { name: "SmartEdu", category: "education", categoryLabel: "Éducation", desc: "Logo + page Instagram + vidéo TikTok", image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop" },
-    { name: "LogisPlus", category: "logistique", categoryLabel: "Logistique", desc: "Chatbot + 4 campagnes Facebook", image: "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&h=600&fit=crop" },
-    { name: "AfricaStyle", category: "ecommerce", categoryLabel: "E-commerce", desc: "E-commerce + automation Messenger", image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop" },
-    { name: "HealthPlus Clinic", category: "sante", categoryLabel: "Santé", desc: "Site web + Google Ads + SEO", image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=600&fit=crop" },
-    { name: "TechStartup Inc", category: "tech", categoryLabel: "Tech", desc: "Branding complet + stratégie digitale", image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop" },
-  ];
-
-  const tabs = [
-    { id: "all", label: "Tous les projets" },
-    { id: "energie", label: "Énergie" },
-    { id: "education", label: "Éducation" },
-    { id: "ecommerce", label: "E-commerce" },
-    { id: "tech", label: "Tech" },
-    { id: "sante", label: "Santé" },
-    { id: "logistique", label: "Logistique" },
-  ];
-
-  const filteredProjects = activeTab === "all" ? allProjects : allProjects.filter((p) => p.category === activeTab);
-
-  const packs = [
-    { name: "Pack Visibilité", price: "150 000", priceEuro: "230€", desc: "Idéal pour démarrer votre présence digitale", features: ["Création de 3 visuels/semaine","1 page Facebook animée","Audit rapide de présence en ligne","Community Manager","Rapport mensuel basique"], gradient: "from-blue-500 to-cyan-500", popular: false },
-    { name: "Pack Croissance", price: "300 000", priceEuro: "450€", desc: "Pour accélérer votre croissance digitale", popular: true, features: ["2 Publications professionnelles/semaine","Community Manager dédié","1 vidéo professionnelle/mois","1 campagne sponsorisée ciblée","Visuels pro + stratégie hashtags","Rapport mensuel détaillé avec insights"], gradient: "from-[#00D4D4] to-[#B4F34C]" },
-    { name: "Pack Premium", price: "750 000", priceEuro: "1 150€", desc: "La solution complète pour dominer votre marché", features: ["3 à 5 publications premium/semaine","Gestion complète et optimisation du site web","CRM configuré et personnalisé","Community manager dédié à temps plein","2 campagnes sponsorisées optimisées","2 vidéos professionnelles/mois","WhatsApp bot intelligent offert","Support prioritaire 24/7"], gradient: "from-purple-500 to-pink-500", popular: false },
-  ];
-
-  const faqs = [
-    { question: "Quels sont vos délais de livraison ?", answer: "Nos délais varient selon le service : un logo ou une identité visuelle en 72h maximum, un site web en 5-7 jours, et une stratégie digitale complète en 2 semaines. Nous proposons également des formules express pour les projets urgents." },
-    { question: "Comment se passe la collaboration ?", answer: "Tout se fait en ligne ! Après un premier échange pour comprendre vos besoins, nous vous envoyons un devis. Une fois validé, nous travaillons par étapes avec des points de validation réguliers via WhatsApp, email ou visio." },
-    { question: "Proposez-vous des formules mensuelles ?", answer: "Oui ! Nous avons des packs mensuels pour le community management, les campagnes publicitaires, et l'automatisation. Consultez notre page 'Nos Packs' pour découvrir toutes nos offres récurrentes." },
-    { question: "Travaillez-vous avec des petites entreprises ?", answer: "Absolument ! Nous accompagnons aussi bien les grandes entreprises que les PME, startups et entrepreneurs. Nos tarifs sont adaptés à tous les budgets et nous proposons des solutions évolutives." },
-    { question: "Quels outils utilisez-vous ?", answer: "Nous utilisons les meilleurs outils du marché : Canva Pro pour le design, Google Analytics et Meta Business Suite pour l'analyse, ManyChat et WhatsApp API pour l'automatisation, WordPress pour les sites web, et bien d'autres selon vos besoins." },
-  ];
-
+const FAQItem = ({ question, answer }) => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-emerald-100 to-emerald-200 text-gray-900">
-      {/* Header */}
-      <header className="fixed top-0 w-full bg-white/80 backdrop-blur-lg shadow-lg z-50 border-b border-gray-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-3">
-            <img src="/logo.png" alt="DigiCore Logo" className="h-12 sm:h-14" />
-          </a>
-          <nav className="hidden md:flex items-center gap-8">
-            <a href="/" className="text-gray-900 hover:text-[#00D4D4] font-medium transition">Accueil</a>
-            <a href="/about" className="text-gray-700 hover:text-[#00D4D4] font-medium transition">À propos</a>
-            <a href="/services" className="text-gray-700 hover:text-[#00D4D4] font-medium transition">Services</a>
-            <a href="/packs" className="text-gray-700 hover:text-[#00D4D4] font-medium transition">Nos Packs</a>
-            <a href="/contact" className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-2 rounded-full font-semibold hover:shadow-lg transition">Contact</a>
-          </nav>
-          <button
-            type="button"
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-menu"
-            aria-label="Toggle menu"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-gray-900 p-2"
+    <div className="border-b border-gray-200 py-4">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex justify-between items-center text-left group"
+      >
+        <span className="text-lg font-semibold text-gray-800 group-hover:text-[#1e3a5f] transition-colors">
+          {question}
+        </span>
+        <ChevronDown
+          className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+          style={{ color: gold }}
+        />
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="overflow-hidden"
           >
-            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
-        {mobileMenuOpen && (
-          <nav id="mobile-menu" className="md:hidden mt-4 pb-4 space-y-4 relative z-50 bg-white/95 backdrop-blur-sm rounded-lg p-3 shadow-lg">
-            <a href="/" className="block text-gray-900 hover:text-[#00D4D4] py-2">Accueil</a>
-            <a href="/about" className="block text-gray-700 hover:text-[#00D4D4] py-2">À propos</a>
-            <a href="/services" className="block text-gray-700 hover:text-[#00D4D4] py-2">Services</a>
-            <a href="/packs" className="block text-gray-700 hover:text-[#00D4D4] py-2">Nos Packs</a>
-            <a href="/contact" className="block bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-3 rounded-full text-center font-semibold">Contact</a>
-          </nav>
+            <p className="pt-4 text-gray-600 leading-relaxed">{answer}</p>
+          </motion.div>
         )}
-      </header>
+      </AnimatePresence>
+    </div>
+  );
+};
 
-      {/* Hero Section */}
-      <section className="relative pt-28 pb-12 px-4 md:pt-36 md:pb-24 max-h-[520px] md:max-h-none overflow-hidden">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          {/* Background image — replace URL with a local file in /public if desired */}
-          <img
-            src="/hero.jpg"
-            alt="Hero background"
-            className="absolute inset-0 w-full h-full object-cover opacity-90"
-          />
-          {/* Gradient overlay between image and text to improve contrast */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-transparent mix-blend-multiply"></div>
-        </div>
-        <div className="absolute inset-0 z-10 pointer-events-none">
-          <div className="absolute top-24 left-0 w-56 h-56 md:w-96 md:h-96 bg-[#00D4D4]/18 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-36 right-0 w-56 h-56 md:w-96 md:h-96 bg-[#B4F34C]/18 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
-          <div className="absolute bottom-0 left-1/3 w-56 h-56 md:w-96 md:h-96 bg-[#B4F34C]/18 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "2s" }}></div>
-        </div>
-        <div className="max-w-7xl mx-auto relative text-center z-20">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#00D4D4]/20 to-[#B4F34C]/20 border border-[#00D4D4]/50 px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-semibold mb-6 sm:mb-8 backdrop-blur-sm">
-            <Zap size={20} className="text-[#00D4D4]" /> Agence Marketing Digital 100% en ligne
-          </div>
-          <h1 className="text-3xl sm:text-6xl lg:text-8xl font-black mb-6 text-white" style={{ textShadow: '0 6px 20px rgba(0,0,0,0.6)' }}>
-            DigiCore Inc
-          </h1>
-          <p className="text-lg sm:text-2xl font-bold mb-4 text-white/90" style={{ textShadow: '0 4px 16px rgba(0,0,0,0.5)' }}>Marketing Agency</p>
-          <p className="text-base sm:text-xl mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed text-white/80" style={{ textShadow: '0 3px 12px rgba(0,0,0,0.45)' }}>
-            Créons ensemble votre <span className="font-semibold text-white">présence digitale</span> qui convertit. Stratégie, design, technologie et automatisation pour des <span className="font-semibold text-white">résultats mesurables</span>.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8 sm:mb-16">
-            <a href="/packs" className="group bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black px-6 py-3 sm:px-10 sm:py-5 rounded-full font-bold text-sm sm:text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-3">
-              Découvrir nos offres <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
-            </a>
-            <a href="/contact" className="border-2 border-gray-900 text-gray-900 px-6 py-3 sm:px-10 sm:py-5 rounded-full font-bold text-sm sm:text-lg hover:bg-gray-900 hover:text-white transition-all">Demander un devis</a>
-          </div>
-        </div>
-        <style jsx global>{`
-          @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.1); }
-          }
-          .animate-pulse { animation: pulse 4s cubic-bezier(0.4,0,0.6,1) infinite; }
-        `}</style>
-      </section>
+export default function EHETIPLandingPage() {
+  return (
+    <div
+      className="min-h-screen font-sans text-gray-900 selection:bg-[#d4af37] selection:text-white"
+      style={{ backgroundColor: lightBeige }}
+    >
+      <Hero
+        variant="home"
+        title={"Forger une pensée critique pour un impact durable"}
+        subtitle={"L'EHETIP (École des Hautes Études Internationales et Politique), fondée en 2021 à N'Djamena par le Dr. Manga MAKRADA MAINA, offre un enseignement théorique et pratique de haut niveau pour former des leaders capables de contribuer au développement socio-économique et politique de la région."}
+        cta={[{ href: '/contact', label: 'Contacter' }, { href: '/a-propos', label: 'En savoir plus', variant: 'ghost' }]}
+        bgImage={"/hero.png"}
+      />
 
       {/* Stats Section */}
-      <section className="py-16 px-4 border-y border-emerald-100 bg-emerald-50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto flex flex-row items-center justify-between gap-6 text-center">
-          {stats.map((stat, index) => {
-            const Icon = stat.icon;
-            return (
-              <div key={index} className="group min-w-[80px] sm:min-w-[120px] px-2 overflow-hidden">
-                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
-                  <Icon size={20} className="text-black" />
-                </div>
-                <div className="text-2xl sm:text-5xl font-black text-gray-900 mb-1 sm:mb-2 whitespace-nowrap truncate">{stat.value}</div>
-                <div className="text-sm sm:text-base text-gray-700 font-medium whitespace-nowrap truncate">{stat.label}</div>
-              </div>
-            );
-          })}
+      <section className="py-16 bg-white border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-12">
+            {[
+              { label: "Étudiants", value: "800+", icon: Users },
+              { label: "Taux de Réussite", value: "98%", icon: Award },
+              { label: "Partenaires", value: "25+", icon: Globe },
+              { label: "Campus", value: "02", icon: MapPin },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <Card className="text-center p-6">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gray-50 mb-3 mx-auto" style={{ color: gold }}>
+                    <stat.icon size={20} />
+                  </div>
+                  <div className="text-xl md:text-3xl font-extrabold mb-1" style={{ color: primaryBlue }}>
+                    {stat.value}
+                  </div>
+                  <div className="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                    {stat.label}
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-24 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl sm:text-6xl font-black mb-6">
-              Nos <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">Services</span>
+      {/* About Section */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row gap-20 items-center">
+            <div className="flex-1 grid grid-cols-2 gap-2 md:gap-4">
+              <div className="space-y-4">
+                <img
+                  src="https://ucarecdn.com/d2160582-259a-41ee-b84f-ee6adabf67da/-/format/auto/"
+                  className="rounded-2xl shadow-lg h-40 md:h-64 w-full object-cover"
+                  alt="Campus"
+                />
+                <div className="bg-[#1e3a5f] p-8 rounded-2xl text-white">
+                  <h4 className="text-3xl font-bold mb-2">10+</h4>
+                  <p className="text-blue-200 text-sm">
+                    Années d'excellence dans l'enseignement supérieur au Tchad.
+                  </p>
+                </div>
+              </div>
+              <div className="space-y-4 pt-12">
+                <div className="bg-[#d4af37] p-8 rounded-2xl text-white">
+                  <GraduationCap size={32} className="mb-4" />
+                  <p className="font-bold">
+                    Formation de pointe adaptée au marché.
+                  </p>
+                </div>
+                <img
+                  src="https://ucarecdn.com/d65d4ac0-4aa0-49d9-bd7f-de5b4527ed02/-/format/auto/"
+                  className="rounded-2xl shadow-lg h-40 md:h-64 w-full object-cover"
+                  alt="Students"
+                />
+              </div>
+            </div>
+            <div className="flex-1">
+              <h2
+                className="text-sm font-bold uppercase tracking-[0.3em] mb-4"
+                style={{ color: gold }}
+              >
+                À Propos de l'EHETIP
+              </h2>
+              <h3
+                className="text-2xl md:text-4xl font-black mb-8 leading-tight"
+                style={{ color: primaryBlue }}
+              >
+                Une Vision Moderne de l'Éducation Supérieure.
+              </h3>
+              <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+                L'EHETIP, abréviation pour École des Hautes Études Internationales et
+                Politique, est une institution d'enseignement de premier plan située à
+                N'Djamena, fondée en 2021 par le Dr. Manga MAKRADA MAINA. Elle offre
+                un enseignement théorique et pratique de haut niveau et vise à former
+                des leaders capables de contribuer au développement socio-économique
+                et politique de leur pays et de la région.
+              </p>
+              <ul className="space-y-4 mb-10">
+                {[
+                  "Corps professoral hautement qualifié",
+                  "Programmes alignés sur les standards internationaux",
+                  "Environnement d'apprentissage moderne et connecté",
+                  "Accompagnement personnalisé vers l'emploi",
+                ].map((item, i) => (
+                  <li
+                    key={i}
+                    className="flex items-center gap-3 font-semibold text-gray-700"
+                  >
+                    <CheckCircle2 size={20} style={{ color: gold }} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="/a-propos"
+                className="inline-flex items-center gap-2 font-bold text-lg group"
+                style={{ color: primaryBlue }}
+              >
+                Découvrir notre histoire{" "}
+                <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Programs Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2
+              className="text-sm font-bold uppercase tracking-[0.3em] mb-4"
+              style={{ color: gold }}
+            >
+              Nos Filières
             </h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">Des solutions digitales complètes pour propulser votre croissance</p>
+            <h3
+              className="text-2xl md:text-4xl font-black mb-6"
+              style={{ color: primaryBlue }}
+            >
+              Excellence Académique
+            </h3>
+            <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+              Choisissez parmi nos programmes spécialisés conçus pour répondre
+              aux défis du 21ème siècle.
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              const slug = service.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-              return (
-                <a key={index} href={`/services/${slug}`} className="group relative bg-white shadow-md rounded-3xl p-6 sm:p-8 border border-gray-200 hover:shadow-lg transition-all duration-300 block">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
-                    <Icon className="text-white" size={32} />
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-8">
+            {[
+              {
+                title: "Relations Internationales",
+                icon: Globe,
+                desc: "Diplomatie, géopolitique et gestion des crises internationales.",
+                color: "#eff6ff",
+              },
+              {
+                title: "Sciences Politiques",
+                icon: Users,
+                desc: "Gouvernance, politiques publiques et analyse électorale.",
+                color: "#fdf2f8",
+              },
+              {
+                title: "Droit & Administration",
+                icon: BookOpen,
+                desc: "Droit public, privé et administration des entreprises.",
+                color: "#f0fdf4",
+              },
+            ].map((item, idx) => (
+              <motion.div key={idx} whileHover={{ y: -6 }}>
+                <Card className="p-8">
+                  <div className="w-14 h-14 rounded-lg flex items-center justify-center mb-4 mx-auto" style={{ backgroundColor: item.color }}>
+                    <item.icon size={24} style={{ color: primaryBlue }} />
                   </div>
-                  <h3 className="font-bold text-xl mb-3 text-gray-900">{service.title}</h3>
-                  <p className="text-gray-700 leading-relaxed">{service.desc}</p>
-                </a>
-              );
-            })}
+                  <h4 className="text-xl md:text-2xl font-bold mb-3 text-center" style={{ color: primaryBlue }}>
+                    {item.title}
+                  </h4>
+                  <p className="text-gray-600 mb-6 text-center">{item.desc}</p>
+                  <div className="text-center">
+                    <button className="inline-flex items-center gap-2 font-bold text-sm uppercase tracking-widest text-[#d4af37]">
+                      Détails du cursus <ChevronRight size={18} />
+                    </button>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
           </div>
+        </div>
+      </section>
 
-          <div className="text-center">
-            <a href="/services" className="inline-flex items-center gap-3 bg-white border border-gray-300 text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all group">
-              Voir tous nos services <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
+      {/* Testimonials */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2
+              className="text-sm font-bold uppercase tracking-[0.3em] mb-4"
+              style={{ color: gold }}
+            >
+              Témoignages
+            </h2>
+            <h3 className="text-2xl md:text-4xl font-black" style={{ color: primaryBlue }}>
+              Ce que disent nos étudiants
+            </h3>
+          </div>
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-8">
+            {[
+              {
+                name: "Mahamat Saleh",
+                role: "Étudiant en L3 RI",
+                text: "L'EHETIP m'a ouvert des portes que je n'aurais jamais imaginées. Les professeurs sont exceptionnels.",
+              },
+              {
+                name: "Aicha Moussa",
+                role: "Alumni 2023",
+                text: "Grâce à la formation pratique, j'ai trouvé un emploi dans une organisation internationale dès ma sortie.",
+              },
+              {
+                name: "Youssouf Ali",
+                role: "Étudiant en M1 SP",
+                text: "Le cadre d'étude est moderne et stimulant. C'est vraiment la meilleure école du pays.",
+              },
+            ].map((t, i) => (
+              <Card key={i} className="p-6">
+                <div className="flex gap-2 mb-3 justify-center">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={16} fill={gold} color={gold} />
+                  ))}
+                </div>
+                <p className="text-gray-600 italic mb-4 text-center">"{t.text}"</p>
+                <div className="flex items-center gap-4 justify-center">
+                  <div className="w-10 h-10 rounded-full bg-gray-200"></div>
+                  <div className="text-center">
+                    <p className="font-bold text-gray-900">{t.name}</p>
+                    <p className="text-xs text-gray-500">{t.role}</p>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2
+              className="text-sm font-bold uppercase tracking-[0.3em] mb-4"
+              style={{ color: gold }}
+            >
+              FAQ
+            </h2>
+            <h3
+              className="text-2xl md:text-4xl font-black mb-6"
+              style={{ color: primaryBlue }}
+            >
+              Questions Fréquentes
+            </h3>
+            <p className="text-gray-500">
+              Tout ce que vous devez savoir sur l'admission et la vie à
+              l'EHETIP.
+            </p>
+          </div>
+          <div className="space-y-2">
+            <FAQItem
+              question="Quelles sont les conditions d'admission ?"
+              answer="L'admission se fait sur dossier et entretien. Vous devez être titulaire d'un Baccalauréat pour le cycle Licence, ou d'une Licence pour le cycle Master."
+            />
+            <FAQItem
+              question="Quels sont les frais de scolarité ?"
+              answer="Les frais varient selon le cycle et la filière. Nous proposons des facilités de paiement en plusieurs tranches. Contactez notre service comptabilité pour un devis détaillé."
+            />
+            <FAQItem
+              question="L'école propose-t-elle des bourses ?"
+              answer="Oui, l'EHETIP octroie des bourses d'excellence aux meilleurs étudiants chaque année, ainsi que des aides sociales sous conditions."
+            />
+            <FAQItem
+              question="Où se situent les campus ?"
+              answer="Nous avons deux campus à N'Djamena : Moursal (près de l'Hôpital Américain) et Al Afia (face au marché Al Afia)."
+            />
+          </div>
+          <div className="mt-12 text-center">
+            <a href="/faq" className="font-bold text-[#d4af37] hover:underline">
+              Voir toutes les questions →
             </a>
           </div>
         </div>
       </section>
 
-      {/* La suite (Projects, Packs, FAQ, CTA, Footer) doit être adaptée de la même manière */}
-      {/* Pour ne pas surcharger ce message, je peux te fournir **le code complet entier Light Theme prêt à copier** dans un fichier séparé si tu veux. */}
-    <section className="py-24 px-4 bg-emerald-50">
-  <div className="max-w-7xl mx-auto">
-    <div className="text-center mb-16">
-      <h2 className="text-5xl sm:text-6xl font-black mb-6">
-        Nos <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">Projets</span>
-      </h2>
-      <p className="text-xl text-gray-700 max-w-3xl mx-auto">Découvrez nos réalisations dans différents secteurs</p>
-    </div>
-
-    {/* Tabs */}
-    <div className="flex flex-wrap justify-center gap-4 mb-12">
-      {tabs.map((tab) => (
-        <button
-          key={tab.id}
-          onClick={() => setActiveTab(tab.id)}
-          className={`px-6 py-3 rounded-full font-semibold transition ${activeTab === tab.id ? "bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black" : "bg-white text-gray-900 border border-gray-300 hover:bg-gray-200"}`}
-        >
-          {tab.label}
-        </button>
-      ))}
-    </div>
-
-    {/* Projects Grid */}
-    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {filteredProjects.map((project, index) => (
-        <ProjectCard key={index} project={project} />
-      ))}
-    </div>
-  </div>
-</section>
-
-{/* Packs Section (shared component) */}
-<section className="py-24 px-4 bg-emerald-50">
-  <div className="max-w-7xl mx-auto text-center mb-16">
-    <h2 className="text-5xl sm:text-6xl font-black mb-6">
-      Nos <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">Packs</span>
-    </h2>
-    <p className="text-xl text-gray-700 max-w-3xl mx-auto">Choisissez la formule qui correspond à vos besoins</p>
-  </div>
-
-  <div className="max-w-7xl mx-auto">
-    <PacksPreview packs={packs} />
-  </div>
-</section>
-
-{/* FAQ Section */}
-<section className="py-24 px-4 bg-emerald-50">
-  <div className="max-w-7xl mx-auto text-center mb-16">
-    <h2 className="text-5xl sm:text-6xl font-black mb-6">
-      Foire aux <span className="bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] bg-clip-text text-transparent">Questions</span>
-    </h2>
-    <p className="text-xl text-gray-700 max-w-3xl mx-auto">Nous répondons à toutes vos interrogations</p>
-  </div>
-
-  <div className="max-w-4xl mx-auto space-y-4">
-    {faqs.map((faq, index) => (
-      <div key={index} className="bg-white p-6 rounded-3xl shadow-md border border-gray-200">
-        <button onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)} className="w-full flex justify-between items-center font-semibold text-gray-900 text-lg">
-          {faq.question}
-          {openFaqIndex === index ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
-        </button>
-        {openFaqIndex === index && <p className="mt-4 text-gray-700">{faq.answer}</p>}
-      </div>
-    ))}
-  </div>
-</section>
-
-{/* CTA Section */}
-<section className="py-24 px-4 bg-gradient-to-r from-[#00D4D4] to-[#B4F34C] text-black text-center">
-  <div className="max-w-4xl mx-auto">
-    <h2 className="text-5xl sm:text-6xl font-black mb-6">Prêt à booster votre présence digitale ?</h2>
-    <p className="text-xl mb-8">Contactez-nous aujourd’hui et transformez vos idées en résultats concrets !</p>
-    <a href="/contact" className="inline-flex items-center gap-3 px-10 py-5 rounded-full font-bold bg-black text-[#00D4D4] hover:bg-gray-900 transition-all">
-      Demander un devis <ArrowRight size={24} />
-    </a>
-  </div>
-</section>
-
-{/* Footer */}
-  <footer className="border-t border-slate-200 bg-white py-12 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
-            <div className="md:col-span-2">
-              <img src="/logo.png" alt="DigiCore Logo" className="h-12 mb-6" />
-              <p className="text-slate-600 mb-6 max-w-md">DigiCore Inc - Votre partenaire digital pour créer de la valeur, générer des conversions et atteindre vos objectifs business.</p>
-              <div className="flex items-center gap-4">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-emerald-100 transition">
-                  <Facebook size={20} />
-                </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-emerald-100 transition">
-                  <Instagram size={20} />
-                </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-emerald-100 transition">
-                  <Linkedin size={20} />
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-emerald-100 transition">
-                  <Twitter size={20} />
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-lg mb-4 text-slate-900">Navigation</h3>
-              <div className="space-y-3">
-                <a href="/" className="block text-slate-600 hover:text-emerald-600 transition">Accueil</a>
-                <a href="/about" className="block text-slate-600 hover:text-emerald-600 transition">À propos</a>
-                <a href="/services" className="block text-slate-600 hover:text-emerald-600 transition">Services</a>
-                <a href="/packs" className="block text-slate-600 hover:text-emerald-600 transition">Nos Packs</a>
-                <a href="/contact" className="block text-slate-600 hover:text-emerald-600 transition">Contact</a>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-lg mb-4 text-slate-900">Contact</h3>
-              <div className="space-y-3 text-slate-600">
-                <p>+237 690 91 04 01</p>
-                <p>contact@digicoreinc.org</p>
-                <p>www.digicoreinc.org</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-200 pt-8 text-center text-slate-500">
-            <p>© 2025 DigiCore Inc. Marketing Agency - Tous droits réservés</p>
+      {/* Admissions Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-sm font-bold uppercase tracking-[0.3em] mb-4" style={{ color: gold }}>
+            Admissions
+          </h2>
+          <h3 className="text-3xl font-black mb-6" style={{ color: primaryBlue }}>
+            Processus simple en 3 étapes
+          </h3>
+          <p className="text-gray-600 max-w-2xl mx-auto mb-8">
+            Postulez en ligne, soumettez vos pièces et participez à un entretien.
+          </p>
+          <Stepper
+            steps={[
+              { title: 'Candidature en ligne', description: 'Remplissez le formulaire et joignez vos documents.' },
+              { title: 'Sélection', description: 'Nous évaluons votre dossier et réalisons un entretien.' },
+              { title: 'Inscription', description: 'Confirmez votre place et commencez votre parcours.' },
+            ]}
+          />
+          <div className="mt-8">
+            <a href="/contact" className="inline-flex items-center px-8 py-3 rounded-lg bg-[#d4af37] text-white font-bold">Postuler maintenant</a>
           </div>
         </div>
-      </footer>
+      </section>
+
+      {/* Bourses & Aides Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-sm font-bold uppercase tracking-[0.3em] mb-4" style={{ color: gold }}>
+              Bourses & Aides
+            </h2>
+            <h3 className="text-3xl font-black" style={{ color: primaryBlue }}>Des aides pour tous</h3>
+            <p className="text-gray-600 max-w-2xl mx-auto">Nous offrons des bourses d'excellence et des soutiens financiers selon les besoins.</p>
+          </div>
+
+          <div className="max-w-3xl mx-auto mt-8">
+            <Card className="mx-auto p-6">
+              <h4 className="text-lg font-bold mb-2">Bourses d'excellence</h4>
+              <p className="text-sm text-gray-600 mb-4">Attribuées aux meilleurs candidats sur dossier et entretien.</p>
+              <a href="/contact" className="text-[#1e3a5f] font-bold">Demander une bourse →</a>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-5xl mx-auto rounded-[3rem] overflow-hidden relative bg-[#1e3a5f] p-12 md:p-20 text-center text-white shadow-2xl">
+          <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-white blur-[100px]"></div>
+            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-[#d4af37] blur-[100px]"></div>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black mb-8 relative z-10">
+            Prêt à rejoindre l'élite ?
+          </h2>
+          <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto relative z-10">
+            Ne laissez pas passer votre chance de construire une carrière
+            internationale d'exception. Les places sont limitées.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center relative z-10">
+            <a
+              href="/contact"
+              className="px-12 py-5 rounded-2xl bg-[#d4af37] text-white font-black text-xl shadow-xl hover:scale-105 transition-transform text-center"
+            >
+              Prendre Rendez-vous
+            </a>
+            <a
+              href="/contact"
+              className="px-12 py-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white font-black text-xl hover:bg-white/20 transition-all text-center"
+            >
+              Nous Contacter
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

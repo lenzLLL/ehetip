@@ -9,6 +9,9 @@ const team = [
   { name: "Pr. Amina Tchatchou", role: "Directrice des Études", image: "/service-placeholder.svg", bio: "Responsable pédagogique, spécialisée en sciences politiques et gouvernance.", email: "amina.t@ehetip.td" },
   { name: "Dr Idriss Kaldou", role: "Responsable Recherche", image: "/service-placeholder.svg", bio: "Chercheur en développement et politiques publiques.", email: "idriss.k@ehetip.td" },
   { name: "Mme Salma Ouedraogo", role: "Chargée des Relations Internationales", image: "/service-placeholder.svg", bio: "Coordonne les partenariats et les échanges académiques.", email: "salma.o@ehetip.td" },
+  { name: "Dr Armand Tchinemba", role: "Directeur Administratif et académique", image: "/service-placeholder.svg", bio: "En charge des affaires administratives et du suivi académique.", email: "armand.t@ehetip.td" },
+  { name: "M. Fidèle Allarabey Assengar", role: "Chef de service scolarité", image: "/service-placeholder.svg", bio: "Responsable de la scolarité, inscriptions et suivi des étudiants.", email: "fidele.a@ehetip.td" },
+  { name: "Mme Janice Remadji", role: "Secrétaire", image: "/service-placeholder.svg", bio: "Secrétariat administratif et support aux étudiants et enseignants.", email: "janice.r@ehetip.td" },
 ];
 
 function TeamCard({ member }) {
